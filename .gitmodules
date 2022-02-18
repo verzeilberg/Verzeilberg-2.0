@@ -1,0 +1,6 @@
+[submodule "module/blog"]
+	path = module/blog
+	url = https://github.com/verzeilberg/Blog.git
+[submodule "module/Blog"]
+	path = module/Blog
+	url = https://github.com/verzeilberg/Blog.git
