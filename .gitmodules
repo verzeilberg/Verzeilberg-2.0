@@ -1,0 +1,24 @@
+[submodule "module/Blog"]
+	path = module/Blog
+	url = https://github.com/verzeilberg/Blog.git
+[submodule "module/UploadImages"]
+	path = module/UploadImages
+	url = https://github.com/verzeilberg/UploadImages.git
+[submodule "module/YouTube"]
+	path = module/YouTube
+	url = https://github.com/verzeilberg/YouTube.git
+[submodule "module/User"]
+	path = module/User
+	url = https://github.com/verzeilberg/Login.git
+[submodule "module/Event"]
+	path = module/Event
+	url = https://github.com/verzeilberg/Events.git
+[submodule "module/UploadFiles"]
+	path = module/UploadFiles
+	url = https://github.com/verzeilberg/UploadFiles.git
+[submodule "module/StravaApi"]
+	path = module/StravaApi
+	url = https://github.com/verzeilberg/StravaApi.git
+[submodule "module/Twitter"]
+	path = module/Twitter
+	url = https://github.com/verzeilberg/Twitter.git
