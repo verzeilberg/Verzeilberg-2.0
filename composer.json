@@ -27,7 +27,12 @@
         "laminas/laminas-di": "^3.2.2",
         "symfony/console": "^5.4.15",
         "psr/cache": "^1.0",
-        "doctrine/doctrine-orm-module": "^5.3"
+        "doctrine/doctrine-orm-module": "^5.3",
+        "laminas/laminas-cache": "^3.9",
+        "laminas/laminas-cache-storage-adapter-filesystem": "^2.3",
+        "laminas/laminas-permissions-rbac": "^3.4",
+        "laminas/laminas-serializer": "^2.14",
+        "laminas/laminas-crypt": "^3.9"
     },
     "autoload": {
         "psr-4": {
@@ -36,7 +41,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "Blog\\"        : "module/Blog/src/",
+            "UploadImages\\": "module/UploadImages/src/",
+            "UploadFiles\\": "module/UploadFiles/src/",
+            "YouTube\\"     : "module/YouTube/src/",
+            "User\\"        : "module/User/src/",
+            "Event\\"        : "module/Event/src/",
+            "StravaApi\\"        : "module/StravaApi/src/",
+            "Twitter\\"        : "module/Twitter/src/"
         }
     },
     "scripts": {
@@ -53,7 +66,8 @@
         ],
         "serve": "php -S 0.0.0.0:8080 -t public",
         "test": "vendor/bin/phpunit",
-        "static-analysis": "vendor/bin/psalm --shepherd --stats"
+        "static-analysis": "vendor/bin/psalm --shepherd --stats",
+        "doctrine-module": "vendor/bin/doctrine-module orm:schema-tool:update"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",

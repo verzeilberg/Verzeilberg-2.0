@@ -6,6 +6,7 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Serializer',
     'Laminas\Cache',
     'Laminas\Paginator',
     'Laminas\Mvc\Plugin\FilePrg',
@@ -28,5 +29,14 @@ return [
     'Laminas\Diactoros',
     'DoctrineModule',
     'DoctrineORMModule',
+    'Laminas\Cache\Storage\Adapter\Filesystem',
     'Application',
+    'Blog',
+    'UploadImages',
+    'UploadFiles',
+    'YouTube',
+    'User',
+    'Event',
+    'StravaApi',
+    'Twitter'
 ];
