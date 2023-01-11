@@ -1,12 +1,11 @@
-:root {
-    --brand-color: #013755;
+html, body {
+    color: #666666;
 }
 
-.navbar {
-    background-color: var(--brand-color);
+#login {
+    margin-top:5px;
 }
 
-.btn-primary {
-    background-color: var(--brand-color);
-    border-color: var(--brand-color);
+#login a {
+    padding: 8px 20px;
 }

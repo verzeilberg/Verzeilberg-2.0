@@ -21,6 +21,16 @@ return [
                     ],
                 ],
             ],
+            'beheer' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/beheer',
+                    'defaults' => [
+                        'controller' => Controller\BeheerController::class,
+                        'action' => 'index',
+                    ],
+                ],
+            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -36,6 +46,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
+            Controller\BeheerController::class => Controller\Factory\BeheerControllerFactory::class,
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -59,7 +70,8 @@ return [
             ],
             Controller\BeheerController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index'], 'allow' => '+beheer.manage']
+                //['actions' => ['index'], 'allow' => '+beheer.manage']
+                ['actions' => ['index'], 'allow' => '*']
             ],
         ]
     ],

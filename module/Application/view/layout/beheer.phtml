@@ -1,0 +1,80 @@
+<?php echo $this->doctype() ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('Verzeilberg')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?=
+    $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?=
+    $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->prependStylesheet('https://use.fontawesome.com/releases/v5.9.0/css/all.css')
+        ->prependStylesheet($this->basePath('css/style-beheer.css'))
+        ->prependStylesheet($this->basePath('css/bootstrap-4.3.1/bootstrap.css'))
+    ?>
+
+    <!-- Scripts -->
+    <?=
+    $this->headScript()
+        ->prependFile($this->basePath('/js/ckEditor/ckeditor.js'))
+        ->prependFile($this->basePath('js/custom/beheer.js'))
+        ->prependFile($this->basePath('js/bootstrap-4.3.1/bootstrap.bundle.js'))
+        ->prependFile($this->basePath('js/jquery-3.1.0.min.js'))
+    ?>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Navigation bar -->
+        <?php
+        // Check if the activeMenuItemId passed to layout view model
+        // and if so, use it for setting active navbar item.
+        if (isset($activeMenuItemId)) {
+            $this->beheerMenu()->setActiveItemId($activeMenuItemId);
+        }
+        // Render the navbar
+        echo $this->beheerMenu()->render();
+        ?>
+        <div class="col">
+            <?php
+            $flashMessenger = $this->flashMessenger()
+                ->setMessageOpenFormat(
+                    '<div%s>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+						&times;
+					</button>
+				<ul class="flashMessages"><li>')
+                ->setMessageSeparatorString('</li><li>')
+                ->setMessageCloseString('</li></ul></div>');
+            ?>
+
+            <?php
+            echo $this->flashMessenger()->render('error', array('alert', 'alert-dismissable', 'alert-danger'));
+            echo $this->flashMessenger()->render('info', array('alert', 'alert-dismissable', 'alert-info'));
+            echo $this->flashMessenger()->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+            echo $this->flashMessenger()->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+            ?>
+            <?= $this->content ?>
+        </div>
+
+    </div>
+
+    <footer class="row">
+        <div class="col text-center">
+            <p>&copy; 2016 - <?php echo date('Y') ?> by <a class="text-white" href="mailto:info@verzeilberg.nl"
+                                                           title="verzeilberg">info@verzeilberg.nl</a>. All rights
+                reserved.
+            </p>
+        </div>
+    </footer>
+</div>
+<?= $this->inlineScript() ?>
+
+</body>
+</html>

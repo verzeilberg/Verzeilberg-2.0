@@ -1,0 +1,27 @@
+<?php
+$this->mainMenu()->setActiveItemId('beheer');
+$this->pageBreadcrumbs()->setLayout('beheer');
+$this->pageBreadcrumbs()->setItems([
+    'Beheer' => $this->url('beheer'),
+]);
+?>
+<!-- Page Header -->
+<div class="row">
+    <h1 class="col">BEHEER</h1>
+</div>
+<!-- Breadcrumbs -->
+<div class="row">
+    <div class="col">
+        <?= $this->pageBreadcrumbs()->render(); ?>
+    </div>
+</div>
+<div class="row">
+    <p class="col">
+        Welkom in de beheer omgeving.
+    </p>
+</div>
+<div class="row">
+    <div class="col">
+
+    </div>
+</div>

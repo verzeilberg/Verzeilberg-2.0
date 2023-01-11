@@ -54,6 +54,12 @@ class NavManager {
             'link' =>  $this->router->getRoute('blog')->assemble()
         ];
 
+        $items[] = [
+            'id' => 'event',
+            'label' => 'Event',
+            'link' =>  $this->router->getRoute('event')->assemble()
+        ];
+
 
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.
@@ -62,32 +68,12 @@ class NavManager {
                 'id' => 'login',
                 'label' => 'Sign in',
                 'link' =>  $this->router->getRoute('login')->assemble(),
-                'float' => 'right'
             ];
         } else {
-
-            $dropDownItems = [];
-
-            if ($this->rbacManager->isGranted(null, 'beheer.manage')) {
-                $dropDownItems[] = [
-                    'id' => 'beheer',
-                    'label' => 'Beheer',
-                    'link' =>  $this->router->getRoute('beheer')->assemble()
-                ];
-            }
-
-
-            $dropDownItems[] = [
-                'id' => 'logout',
-                'label' => 'Sign out',
-                'link' =>  $this->router->getRoute('logouts')->assemble()
-            ];
-
             $items[] = [
-                'id' => 'logout',
-                'label' => $this->authService->getIdentity(),
-                'float' => 'right',
-                'dropdown' => $dropDownItems
+                'id' => 'profile',
+                'label' => 'Profile',
+                'link' =>  $this->router->getRoute('profile')->assemble(),
             ];
         }
 
