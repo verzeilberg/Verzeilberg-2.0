@@ -68,14 +68,8 @@ class BeheerMenu extends AbstractHelper
      */
     protected function renderItem(array $item): string
     {
-        $id = $item['id'] ?? '';
-        $isActive = ($id == $this->activeItemId);
-        $label = $item['label'] ?? '';
-
         $result = '';
-
         $escapeHtml = $this->getView()->plugin('escapeHtml');
-
         $link = $item['link'] ?? '#';
         $label = $item['label'] ?? '';
         $icon = $item['icon']? '<i class="far '.$item['icon'].' me-2"></i>':'';
