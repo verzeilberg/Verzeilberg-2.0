@@ -52,19 +52,11 @@ class BeheerMenu extends AbstractHelper
             return '';
         }
 
-        $result = '<div class="col-md-auto">';
-        $result .= '<h1>MENU</h1>';
-        $result .=  '<nav class="navbar navbar-dark bg-dark">';
-        $result .=      '<ul class="nav flex-column flex-nowrap w-100" id="beheerMenu">';
+        $result = '';
         // Render items
         foreach ($this->items as $item) {
-            if (!isset($item['float'])) {
-                $result .= $this->renderItem($item);
-            }
+            $result .= $this->renderItem($item);
         }
-        $result .=      '</ul>';
-        $result .=  '</nav>';
-        $result .= '</div>';
 
         return $result;
     }
@@ -84,33 +76,28 @@ class BeheerMenu extends AbstractHelper
 
         $escapeHtml = $this->getView()->plugin('escapeHtml');
 
+        $link = $item['link'] ?? '#';
+        $label = $item['label'] ?? '';
+        $icon = $item['icon']? '<i class="far '.$item['icon'].' me-2"></i>':'';
+
         if (isset($item['dropdown'])) { //Menu has subitems
 
             $dropdownItems = $item['dropdown'];
-            
-            $result .= '<li class="nav-item w-100">';
-            $result .=      '<a href="#" class="nav-link collapsed text-white" data-toggle="collapse" data-target="#submenu'.$id.'">';
-            $result .=          $escapeHtml($label) . ' ' . $this->activeItemId;
-            $result .=      '</a>';
 
+            $result  = '<div class="nav-item dropdown">';
+            $result .= '<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">'.$icon.$escapeHtml($label).'</a>';
+            $result .= '<div class="dropdown-menu bg-transparent border-0">';
+            foreach ($dropdownItems as $dropdownItem) {
+                $dropDownLink  = $dropdownItem['link'] ?? '#';
+                $dropDownlabel = $dropdownItem['label'] ?? '';
 
-            $result .= '<div class="collapse" id="submenu'.$id.'" aria-expanded="false">';
-            $result .=  '<ul class="flex-column pl-2 nav">';
-            foreach ($dropdownItems as $item) {
-                $label = $item['label'] ?? '';
-
-                $result .= '<li class="nav-item">';
-                $result .=      '<a href="' . $escapeHtml($link) . '" class="nav-link py-0 text-white">' . $escapeHtml($label) . '</a>';
-                $result .= '</li>';
+                $result .= '<a href="'.$escapeHtml($dropDownLink).'" class="dropdown-item">'.$escapeHtml($dropDownlabel).'</a>';
             }
-            $result .=  '</ul>';
-            $result .= '</div>';
+
+            $result .= '</div></div>';
         } else { //Menu has no sub items
-            $link = $item['link'] ?? '#';
-            $result .= '<li class="nav-item w-100">';
-            $result .= '<a href="' . $escapeHtml($link) . '" class="nav-link text-white">' . $escapeHtml($label) . '</a>';
+            $result .= '<a href="'.$escapeHtml($link).'" class="nav-item nav-link">'.$icon.$escapeHtml($label).'</a>';
         }
-        $result .= '</li>';
 
         return $result;
     }

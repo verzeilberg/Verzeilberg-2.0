@@ -41,7 +41,7 @@ class BeheerNavManager
                 'id' => 'login',
                 'label' => 'Sign in',
                 'link' => $this->router->getRoute('login')->assemble(),
-                'float' => 'right'
+                'icon' => ''
             ];
         } else {
 
@@ -52,7 +52,8 @@ class BeheerNavManager
                 $items[] = [
                     'id' => 'beheer',
                     'label' => 'Beheer',
-                    'link' => $this->router->getRoute('beheer')->assemble()
+                    'link' => $this->router->getRoute('beheer')->assemble(),
+                    'icon' => ''
                 ];
             }
 
@@ -60,7 +61,8 @@ class BeheerNavManager
                 $items[] = [
                     'id' => 'email',
                     'label' => 'E-mail',
-                    'link' => $this->router->getRoute('beheer/email')->assemble()
+                    'link' => $this->router->getRoute('beheer/email')->assemble(),
+                    'icon' => ''
                 ];
             }
 
@@ -68,7 +70,8 @@ class BeheerNavManager
                 $items[] = [
                     'id' => 'agenda',
                     'label' => 'Agenda',
-                    'link' => $this->router->getRoute('beheer/agenda')->assemble()
+                    'link' => $this->router->getRoute('beheer/agenda')->assemble(),
+                    'icon' => ''
                 ];
             }
 
@@ -80,22 +83,26 @@ class BeheerNavManager
                         [
                             'id' => 'overviewstrava',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/strava')->assemble()
+                            'link' => $this->router->getRoute('beheer/strava')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'activitiesstrava',
                             'label' => 'Activiteiten',
-                            'link' => $this->router->getRoute('beheer/strava')->assemble(['action' => 'activiteiten'])
+                            'link' => $this->router->getRoute('beheer/strava')->assemble(['action' => 'activiteiten']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'importstrava',
                             'label' => 'Import',
-                            'link' => $this->router->getRoute('beheer/stravaimport')->assemble()
+                            'link' => $this->router->getRoute('beheer/stravaimport')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'importstrava',
                             'label' => 'Log',
-                            'link' => $this->router->getRoute('beheer/stravalog')->assemble()
+                            'link' => $this->router->getRoute('beheer/stravalog')->assemble(),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -110,12 +117,14 @@ class BeheerNavManager
                         [
                             'id' => 'overviewusers',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/users')->assemble()
+                            'link' => $this->router->getRoute('beheer/users')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'adduser',
                             'label' => 'Add user',
-                            'link' => $this->router->getRoute('beheer/stravalog')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/stravalog')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -129,12 +138,14 @@ class BeheerNavManager
                         [
                             'id' => 'overviewpermissions',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/permissions')->assemble()
+                            'link' => $this->router->getRoute('beheer/permissions')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addpermission',
                             'label' => 'Add permission',
-                            'link' => $this->router->getRoute('beheer/permissions')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/permissions')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -148,12 +159,14 @@ class BeheerNavManager
                         [
                             'id' => 'overviewroles',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/roles')->assemble()
+                            'link' => $this->router->getRoute('beheer/roles')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addrole',
                             'label' => 'Add role',
-                            'link' => $this->router->getRoute('beheer/roles')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/roles')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -167,17 +180,20 @@ class BeheerNavManager
                         [
                             'id' => 'overviewblog',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/blog')->assemble()
+                            'link' => $this->router->getRoute('beheer/blog')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addblog',
                             'label' => 'Add blog',
-                            'link' => $this->router->getRoute('beheer/blog')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/blog')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'archive',
                             'label' => 'Archief',
-                            'link' => $this->router->getRoute('beheer/blog')->assemble(['action' => 'archive'])
+                            'link' => $this->router->getRoute('beheer/blog')->assemble(['action' => 'archive']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -189,12 +205,14 @@ class BeheerNavManager
                         [
                             'id' => 'overviewcategory',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/categories')->assemble()
+                            'link' => $this->router->getRoute('beheer/categories')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addcategory',
                             'label' => 'Add category',
-                            'link' => $this->router->getRoute('beheer/categories')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/categories')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -203,7 +221,8 @@ class BeheerNavManager
                 $items[] = [
                     'id' => 'contact',
                     'label' => 'Contact',
-                    'link' => $this->router->getRoute('beheer/contact')->assemble()
+                    'link' => $this->router->getRoute('beheer/contact')->assemble(),
+                    'icon' => ''
                 ];
             }
 
@@ -211,7 +230,8 @@ class BeheerNavManager
                 $items[] = [
                     'id' => 'search',
                     'label' => 'Search',
-                    'link' => $this->router->getRoute('beheer/search')->assemble()
+                    'link' => $this->router->getRoute('beheer/search')->assemble(),
+                    'icon' => ''
                 ];
             }
 
@@ -223,22 +243,26 @@ class BeheerNavManager
                         [
                             'id' => 'overviewevent',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/event')->assemble()
+                            'link' => $this->router->getRoute('beheer/event')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addevent',
                             'label' => 'Add event',
-                            'link' => $this->router->getRoute('beheer/event')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/event')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'archiveevent',
                             'label' => 'Archief',
-                            'link' => $this->router->getRoute('beheer/event')->assemble(['action' => 'archive'])
+                            'link' => $this->router->getRoute('beheer/event')->assemble(['action' => 'archive']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'eventcategories',
                             'label' => 'Categorieen',
-                            'link' => $this->router->getRoute('beheer/eventcategories')->assemble()
+                            'link' => $this->router->getRoute('beheer/eventcategories')->assemble(),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -254,17 +278,20 @@ class BeheerNavManager
                         [
                             'id' => 'overviewchecklist',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/checklist')->assemble()
+                            'link' => $this->router->getRoute('beheer/checklist')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'addchecklist',
                             'label' => 'Add checklist',
-                            'link' => $this->router->getRoute('beheer/checklist')->assemble(['action' => 'add'])
+                            'link' => $this->router->getRoute('beheer/checklist')->assemble(['action' => 'add']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'archivechecklist',
                             'label' => 'Archief',
-                            'link' => $this->router->getRoute('beheer/checklist')->assemble(['action' => 'archive'])
+                            'link' => $this->router->getRoute('beheer/checklist')->assemble(['action' => 'archive']),
+                            'icon' => ''
                         ],
                     ]
                 ];
@@ -278,17 +305,20 @@ class BeheerNavManager
                         [
                             'id' => 'checkimages',
                             'label' => 'Overview',
-                            'link' => $this->router->getRoute('beheer/images')->assemble()
+                            'link' => $this->router->getRoute('beheer/images')->assemble(),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'servercheckimages',
                             'label' => 'Server check',
-                            'link' => $this->router->getRoute('beheer/images')->assemble(['action' => 'serverCheck'])
+                            'link' => $this->router->getRoute('beheer/images')->assemble(['action' => 'serverCheck']),
+                            'icon' => ''
                         ],
                         [
                             'id' => 'imagecheckimages',
                             'label' => 'File check',
-                            'link' => $this->router->getRoute('beheer/images')->assemble(['action' => 'fileCheck'])
+                            'link' => $this->router->getRoute('beheer/images')->assemble(['action' => 'fileCheck']),
+                            'icon' => ''
                         ]
                     ]
                 ];
@@ -297,7 +327,8 @@ class BeheerNavManager
             $items[] = [
                 'id' => 'home',
                 'label' => 'Naar website',
-                'link' => $this->router->getRoute('home')->assemble()
+                'link' => $this->router->getRoute('home')->assemble(),
+                'icon' => ''
             ];
         }
         return $items;
