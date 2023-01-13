@@ -9,11 +9,10 @@ use Laminas\View\Helper\AbstractHelper;
  */
 class BeheerMenu extends AbstractHelper
 {
-
     /** @var array */
-    protected $items = [];
+    protected array $items = [];
     /** @var string */
-    protected $activeItemId = '';
+    protected string $activeItemId = '';
 
     /**
      * Constructor.
@@ -28,7 +27,7 @@ class BeheerMenu extends AbstractHelper
      * Sets menu items.
      * @param array $items Menu items.
      */
-    public function setItems(array $items)
+    public function setItems(array $items): void
     {
         $this->items = $items;
     }
@@ -37,7 +36,7 @@ class BeheerMenu extends AbstractHelper
      * Sets ID of the active items.
      * @param string $activeItemId
      */
-    public function setActiveItemId(string $activeItemId)
+    public function setActiveItemId(string $activeItemId): void
     {
         $this->activeItemId = $activeItemId;
     }
@@ -48,7 +47,7 @@ class BeheerMenu extends AbstractHelper
      */
     public function render(): string
     {
-        if (count($this->items) == 0) {
+        if (count($this->items) === 0) {
             return '';
         }
 
