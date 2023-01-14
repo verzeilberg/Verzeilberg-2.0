@@ -1,6 +1,6 @@
 [submodule "UploadFiles"]
     path = module/UploadFiles
-    url = https://github.com/verzeilberg/UploadFiles.git
+    url = git@ithub.com:verzeilberg/UploadFiles.git
 [submodule "UploadImages"]
     path = module/UploadImages
     url = https://github.com/verzeilberg/UploadImages.git
@@ -38,8 +38,8 @@
     path = module/YouTube
     url = https://github.com/verzeilberg/YouTube.git
 [submodule "StravaApi"]
-	path = module/StravaApi
-	url = https://github.com/verzeilberg/StravaApi.git
+    path = module/StravaApi
+    url = https://github.com/verzeilberg/StravaApi.git
 [submodule "BitlyShortener"]
     path = module/BitlyShortener
     url = https://github.com/verzeilberg/BitlyShortener.git
