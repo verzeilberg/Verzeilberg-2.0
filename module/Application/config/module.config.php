@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Application;
 
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -10,15 +8,30 @@ use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'import-questions' => array(
+                    'options' => array(
+                        'route' => 'import-questions [<file>]',
+                        'defaults' => array(
+                            'controller' => Controller\CliController::class,
+                            'action' => 'importPppLibraryQuestions'
+                        )
+                    )
+                ),
+            )
+        )
+    ),
     'router' => [
         'routes' => [
             'home' => [
-                'type'    => Literal::class,
+                'type' => Literal::class,
                 'options' => [
-                    'route'    => '/',
+                    'route' => '/',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action' => 'index',
                     ],
                 ],
             ],
@@ -31,14 +44,55 @@ return [
                         'action' => 'index',
                     ],
                 ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'email' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email[/:folder[/:page]][/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'application' => [
-                'type'    => Segment::class,
+                'type' => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route' => '/application[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+'
+                    ],
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
-                        'action'     => 'index',
+                        'action' => 'index',
+                    ],
+                ],
+            ],
+            'about' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/about',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'about',
+                    ],
+                ],
+            ],
+            'events' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/events[/:action[/:id]]',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'events',
                     ],
                 ],
             ],
@@ -46,7 +100,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\BeheerController::class => Controller\Factory\BeheerControllerFactory::class,
         ],
     ],
@@ -65,32 +119,19 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index'], 'allow' => '*'],
+                ['actions' => ['index', 'about', 'events', 'event', 'getEventLocations', 'user', 'getLocations', 'runningStats', 'getChartData', 'detail'], 'allow' => '*'],
                 // Allow authorized users to visit "profiel" action
                 //['actions' => ['profiel'], 'allow' => '@']
             ],
             Controller\BeheerController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                //['actions' => ['index'], 'allow' => '+beheer.manage']
-                ['actions' => ['index'], 'allow' => '*']
+                ['actions' => ['index'], 'allow' => '+beheer.manage']
             ],
         ]
     ],
-    'view_manager' => [
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
-        'doctype'                  => 'HTML5',
-        'not_found_template'       => 'error/404',
-        'exception_template'       => 'error/index',
-        'template_map' => [
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
-            'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
-        ],
-        'template_path_stack' => [
-            __DIR__ . '/../view',
-        ],
+    // This key stores configuration for RBAC manager.
+    'rbac_manager' => [
+        'assertions' => [Service\RbacAssertionManager::class],
     ],
     'doctrine' => [
         'driver' => [
@@ -128,5 +169,53 @@ return [
             'beheerMenu' => View\Helper\BeheerMenu::class,
             'pageBreadcrumbs' => View\Helper\Breadcrumbs::class,
         ],
+    ],
+    'view_manager' => [
+        'display_not_found_reason' => true,
+        'display_exceptions' => true,
+        'doctype' => 'HTML5',
+        'not_found_template' => 'error/404',
+        'exception_template' => 'error/index',
+        'template_map' => [
+            'layout/layout' => __DIR__ . '/../view/layout/layout.phtml',
+            'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+            'error/404' => __DIR__ . '/../view/error/404.phtml',
+            'error/index' => __DIR__ . '/../view/error/index.phtml',
+        ],
+        'template_path_stack' => [
+            __DIR__ . '/../view',
+        ],
+    ],
+    // The following key allows to define custom styling for FlashMessenger view helper.
+    'view_helper_config' => [
+        'flashmessenger' => [
+            'message_open_format' => '<div%s><ul><li>',
+            'message_close_string' => '</li></ul></div>',
+            'message_separator_string' => '</li><li>'
+        ]
+    ],
+    'translator' => array(
+        'locale' => 'nl_NL',
+        'translation_file_patterns' => array(
+            array(
+                'type' => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern' => '%s.mo',
+            ),
+        ),
+    ),
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__ . '/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ]
+            ]
+        ]
     ],
 ];

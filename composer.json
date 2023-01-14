@@ -33,7 +33,8 @@
         "laminas/laminas-permissions-rbac": "^3.4",
         "laminas/laminas-serializer": "^2.14",
         "laminas/laminas-crypt": "^3.9",
-        "rwoverdijk/assetmanager": "^3.0.0"
+        "rwoverdijk/assetmanager": "^3.0.0",
+        "laminas/laminas-mail": "^2.21"
     },
     "autoload": {
         "psr-4": {
@@ -42,15 +43,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/",
-            "Blog\\"        : "module/Blog/src/",
+            "Application\\": "module/Application/src/",
+            "Twitter\\": "module/Twitter/src/",
+            "User\\": "module/User/src/",
+            "Blog\\": "module/Blog/src/",
             "UploadImages\\": "module/UploadImages/src/",
             "UploadFiles\\": "module/UploadFiles/src/",
-            "YouTube\\"     : "module/YouTube/src/",
-            "User\\"        : "module/User/src/",
-            "Event\\"        : "module/Event/src/",
-            "StravaApi\\"        : "module/StravaApi/src/",
-            "Twitter\\"        : "module/Twitter/src/"
+            "YouTube\\": "module/YouTube/src/",
+            "Contact\\": "module/Contact/src/",
+            "Agenda\\": "module/Agenda/src/",
+            "Email\\": "module/Email/src/",
+            "GoogleAgendaApi\\": "module/GoogleAgendaApi/src/",
+            "Search\\": "module/Search/src/",
+            "Event\\": "module/Event/src/",
+            "CheckList\\": "module/CheckList/src/",
+            "BitlyShortener\\": "module/BitlyShortener/src/",
+            "StravaApi\\": "module/StravaApi/src/"
         }
     },
     "scripts": {

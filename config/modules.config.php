@@ -6,6 +6,7 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Mail',
     'Laminas\Serializer',
     'Laminas\Cache',
     'Laminas\Paginator',
@@ -30,13 +31,21 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'Laminas\Cache\Storage\Adapter\Filesystem',
-    'Application',
-    'Blog',
-    'UploadImages',
-    'UploadFiles',
-    'YouTube',
+    'Twitter',
     'User',
+    'Blog',
+    'Agenda',
+    //'GoogleAgendaApi',
+    'Email',
+    'UploadFiles',
+    'UploadImages',
+    'YouTube',
+    'Contact',
+    'Search',
     'Event',
+    'CheckList',
+    'BitlyShortener',
     'StravaApi',
-    'Twitter'
+    'AssetManager',
+    'Application'
 ];

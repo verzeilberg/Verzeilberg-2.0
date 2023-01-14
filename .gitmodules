@@ -22,3 +22,6 @@
 [submodule "module/Twitter"]
 	path = module/Twitter
 	url = git@github.com:verzeilberg/Twitter.git
+[submodule "module/Agenda"]
+    path = module/Agenda
+    url = git@github.com:verzeilberg/Agenda.git
