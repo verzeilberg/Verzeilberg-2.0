@@ -20,6 +20,24 @@ class LoadFixturesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
 
+        $output->writeln([
+            'Load role fixtures',
+            '============',
+            '',
+        ]);
+
+        $output->writeln([
+            'Load user fixtures',
+            '============',
+            '',
+        ]);
+
+        $output->writeln([
+            'Load menu fixtures',
+            '============',
+            '',
+        ]);
+
         die('test');
 // ... put here the code to create the user
 
