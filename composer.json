@@ -51,6 +51,7 @@
             "UploadFiles\\": "module/UploadFiles/src/",
             "YouTube\\": "module/YouTube/src/",
             "Contact\\": "module/Contact/src/",
+            "Agenda\\": "module/Agenda/src/",
             "Email\\": "module/Email/src/",
             "GoogleAgendaApi\\": "module/GoogleAgendaApi/src/",
             "Search\\": "module/Search/src/",
@@ -75,7 +76,8 @@
         "serve": "php -S 0.0.0.0:8080 -t public",
         "test": "vendor/bin/phpunit",
         "static-analysis": "vendor/bin/psalm --shepherd --stats",
-        "doctrine-module": "vendor/bin/doctrine-module orm:schema-tool:update"
+        "doctrine-module": "vendor/bin/doctrine-module",
+        "cli-laminas": "vendor/bin/laminas"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",

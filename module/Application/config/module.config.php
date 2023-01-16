@@ -2,27 +2,19 @@
 
 namespace Application;
 
+use Application\Command\LoadFixturesCommand;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
-    'console' => array(
-        'router' => array(
-            'routes' => array(
-                'import-questions' => array(
-                    'options' => array(
-                        'route' => 'import-questions [<file>]',
-                        'defaults' => array(
-                            'controller' => Controller\CliController::class,
-                            'action' => 'importPppLibraryQuestions'
-                        )
-                    )
-                ),
-            )
-        )
-    ),
+
+    'laminas-cli' => [
+        'commands' => [
+            'verzeilberg:load-fixtures' => LoadFixturesCommand::class,
+        ],
+    ],
     'router' => [
         'routes' => [
             'home' => [

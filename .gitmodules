@@ -40,3 +40,6 @@
 [submodule "module/BitlyShortener"]
 	path = module/BitlyShortener
 	url = git@github.com:verzeilberg/BitlyShortener.git
+[submodule "module/Agenda"]
+	path = module/Agenda
+	url = git@github.com:verzeilberg/Agenda.git
