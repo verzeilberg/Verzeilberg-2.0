@@ -19,9 +19,6 @@
 [submodule "module/Email"]
 	path = module/Email
 	url = git@github.com:verzeilberg/Email.git
-[submodule "module/Agenda"]
-	path = module/Agenda
-	url = git@github.com:verzeilberg/Agenda.git
 [submodule "module/Blog"]
 	path = module/Blog
 	url = git@github.com:verzeilberg/Blog.git
