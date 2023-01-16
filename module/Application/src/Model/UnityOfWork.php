@@ -58,7 +58,7 @@ class UnityOfWork
     /**
      * @return string
      */
-    public function getDateCreated(): string
+    public function getDateCreated(): ? string
     {
         return $this->dateCreated;
     }
@@ -76,7 +76,7 @@ class UnityOfWork
     /**
      * @return object
      */
-    public function getCreatedBy(): object
+    public function getCreatedBy(): ? sobject
     {
         return $this->createdBy;
     }
@@ -112,7 +112,7 @@ class UnityOfWork
     /**
      * @return object
      */
-    public function getChangedBy(): object
+    public function getChangedBy(): ? object
     {
         return $this->changedBy;
     }
@@ -148,7 +148,7 @@ class UnityOfWork
     /**
      * @return object
      */
-    public function getDeletedBy(): object
+    public function getDeletedBy(): ? object
     {
         return $this->deletedBy;
     }

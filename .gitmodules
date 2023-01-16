@@ -1,45 +1,45 @@
-[submodule "UploadFiles"]
-    path = module/UploadFiles
-    url = git@ithub.com:verzeilberg/UploadFiles.git
-[submodule "UploadImages"]
-    path = module/UploadImages
-    url = https://github.com/verzeilberg/UploadImages.git
-[submodule "User"]
-    path = module/User
-    url = https://github.com/verzeilberg/Login.git
-[submodule "Event"]
-    path = module/Event
-    url = https://github.com/verzeilberg/Events.git
-[submodule "Contact"]
-    path = module/Contact
-    url = https://github.com/verzeilberg/Contact.git
-[submodule "CheckList"]
-    path = module/CheckList
-    url = https://github.com/verzeilberg/Checklist.git
-[submodule "Email"]
-    path = module/Email
-    url = https://github.com/verzeilberg/Email.git
-[submodule "Agenda"]
-    path = module/Agenda
-    url = https://github.com/verzeilberg/Agenda.git
-[submodule "Blog"]
-    path = module/Blog
-    url = https://github.com/verzeilberg/Blog.git
-[submodule "GoogleAgendaApi"]
-    path = module/GoogleAgendaApi
-    url = https://github.com/verzeilberg/GoogleAgendaApi.git
-[submodule "Search"]
-    path = module/Search
-    url = https://github.com/verzeilberg/Search.git
-[submodule "Twitter"]
-    path = module/Twitter
-    url = https://github.com/verzeilberg/Twitter.git
-[submodule "YouTube"]
-    path = module/YouTube
-    url = https://github.com/verzeilberg/YouTube.git
-[submodule "StravaApi"]
-    path = module/StravaApi
-    url = https://github.com/verzeilberg/StravaApi.git
-[submodule "BitlyShortener"]
-    path = module/BitlyShortener
-    url = https://github.com/verzeilberg/BitlyShortener.git
+[submodule "module/UploadFiles"]
+	path = module/UploadFiles
+	url = git@github.com:verzeilberg/UploadFiles.git
+[submodule "module/UploadImages"]
+	path = module/UploadImages
+	url = git@github.com:verzeilberg/UploadImages.git
+[submodule "module/User"]
+	path = module/User
+	url = git@github.com:verzeilberg/Login.git
+[submodule "module/Event"]
+	path = module/Event
+	url = git@github.com:verzeilberg/Events.git
+[submodule "module/Contact"]
+	path = module/Contact
+	url = git@github.com:verzeilberg/Contact.git
+[submodule "module/CheckList"]
+	path = module/CheckList
+	url = git@github.com:verzeilberg/Checklist.git
+[submodule "module/Email"]
+	path = module/Email
+	url = git@github.com:verzeilberg/Email.git
+[submodule "module/Agenda"]
+	path = module/Agenda
+	url = git@github.com:verzeilberg/Agenda.git
+[submodule "module/Blog"]
+	path = module/Blog
+	url = git@github.com:verzeilberg/Blog.git
+[submodule "module/GoogleAgendaApi"]
+	path = module/GoogleAgendaApi
+	url = git@github.com:verzeilberg/GoogleAgendaApi.git
+[submodule "module/Search"]
+	path = module/Search
+	url = git@github.com:verzeilberg/Search.git
+[submodule "module/Twitter"]
+	path = module/Twitter
+	url = git@github.com:verzeilberg/Twitter.git
+[submodule "module/YouTube"]
+	path = module/YouTube
+	url = git@github.com:verzeilberg/YouTube.git
+[submodule "module/StravaApi"]
+	path = module/StravaApi
+	url = git@github.com:verzeilberg/StravaApi.git
+[submodule "module/BitlyShortener"]
+	path = module/BitlyShortener
+	url = git@github.com:verzeilberg/BitlyShortener.git

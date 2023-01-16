@@ -5,6 +5,7 @@ namespace Application\Service\Factory;
 use Interop\Container\ContainerInterface;
 use Application\Service\BeheerNavManager;
 use User\Service\RbacManager;
+use Laminas\View\Helper\Url;
 
 /**
  * This is the factory class for NavManager service. The purpose of the factory

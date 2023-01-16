@@ -44,55 +44,33 @@ return [
                         'action' => 'index',
                     ],
                 ],
-                'may_terminate' => true,
-                'child_routes' => [
-                    'email' => [
-                        'type' => Segment::class,
-                        'options' => [
-                            'route' => '/email[/:folder[/:page]][/:action[/:id]]',
-                            'constraints' => [
-                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'id' => '[0-9]*',
-                            ],
-                            'defaults' => [
-                                'controller' => 'emailbeheer',
-                                'action' => 'index',
-                            ],
-                        ],
-                    ],
-                ],
             ],
-            'application' => [
-                'type' => Segment::class,
+            // Literal route for viewing blog RSS feed
+            'emailbeheer' => [
+                'type' => 'segment',
                 'options' => [
-                    'route' => '/application[/:action[/:id]]',
+                    'route' => '/beheer/email[/:folder[/:page]][/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
+                        'id' => '[0-9]*',
                     ],
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        'controller' => 'emailbeheer',
                         'action' => 'index',
                     ],
                 ],
             ],
-            'about' => [
-                'type' => Literal::class,
+            'agendabeheer' => [
+                'type' => 'segment',
                 'options' => [
-                    'route' => '/about',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action' => 'about',
+                    'route' => '/beheer/agenda[/:action][/:id]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]+',
                     ],
-                ],
-            ],
-            'events' => [
-                'type' => Segment::class,
-                'options' => [
-                    'route' => '/events[/:action[/:id]]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action' => 'events',
+                        'controller' => 'agendabeheer',
+                        'action' => 'index',
                     ],
                 ],
             ],
