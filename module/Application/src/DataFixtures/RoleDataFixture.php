@@ -1,15 +1,13 @@
 <?php
 
-namespace Application\MyDataFixtures;
+namespace Application\DataFixtures;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Laminas\Crypt\Password\Bcrypt;
 use User\Entity\Role;
-use User\Entity\User;
 use function date;
 
-class RoleDataLoader implements FixtureInterface
+class RoleDataFixture implements FixtureInterface
 {
     public function load(ObjectManager $manager): void
     {

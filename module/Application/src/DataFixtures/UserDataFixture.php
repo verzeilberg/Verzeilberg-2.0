@@ -9,7 +9,7 @@ use User\Entity\Role;
 use User\Entity\User;
 use function date;
 
-class UserDataLoader implements FixtureInterface
+class UserDataFixture implements DataFixtures
 {
     public function load(ObjectManager $manager): void
     {

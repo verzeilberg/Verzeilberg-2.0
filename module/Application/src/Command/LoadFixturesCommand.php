@@ -4,6 +4,10 @@ namespace Application\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\DataFixtures\Loader;
+use Application\DataFixtures\RoleDataFixture;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 class LoadFixturesCommand extends Command
 {
@@ -13,7 +17,7 @@ class LoadFixturesCommand extends Command
     {
         $this
             // the command help shown when running the command with the "--help" option
-            ->setHelp('This command allows you to create a user...')
+            ->setHelp('This command allows you to load fixtures.')
         ;
     }
 
@@ -25,6 +29,12 @@ class LoadFixturesCommand extends Command
             '============',
             '',
         ]);
+
+        $loader = new Loader();
+        $loader->addFixture(new RoleDataFixture());
+
+        $executor = new ORMExecutor($entityManager, new ORMPurger());
+        $executor->execute($loader->getFixtures());
 
         $output->writeln([
             'Load user fixtures',
