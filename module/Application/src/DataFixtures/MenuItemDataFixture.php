@@ -11,6 +11,11 @@ use function date;
 
 class MenuItemDataFixture extends AbstractFixture implements FixtureInterface
 {
+    /**
+     * Create Menu items
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
 
@@ -140,6 +145,9 @@ class MenuItemDataFixture extends AbstractFixture implements FixtureInterface
 
     }
 
+    /**
+     * @return int
+     */
     public function getOrder(): int
     {
         return 10;

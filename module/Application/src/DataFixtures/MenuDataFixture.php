@@ -11,40 +11,32 @@ use DateTime;
 
 class MenuDataFixture extends AbstractFixture implements FixtureInterface
 {
+    /**
+     * Create Beheer menu and add beheer menu items
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
+        $newMenuItem = new Menu();
+        $newMenuItem->setId(1);
+        $newMenuItem->setName('Beheer');
+        $newMenuItem->setDateCreated(new DateTime());
 
-        $menuItems = [
-            1 => [
-                'name' => 'Beheer',
-            ],
-            2 => [
-                'name' => 'Main',
-            ]
-        ];
-
-        foreach ($menuItems as $index => $menuItem) {
-            $newMenuItem = new Menu();
-            $newMenuItem->setId($index);
-            $newMenuItem->setName($menuItem['name']);
-            $newMenuItem->setDateCreated(new DateTime());
-
-            if ($index === 1) {
-                $items = $manager->getRepository(MenuItem::class)->findAll();
-
-                foreach ($items as $item) {
-                    $newMenuItem->addMenuItem($item);
-                }
-            }
-
-            $manager->persist($newMenuItem);
-            $manager->flush();
+        $items = $manager->getRepository(MenuItem::class)->findAll();
+        foreach ($items as $item) {
+            $newMenuItem->addMenuItem($item);
         }
 
+        $manager->persist($newMenuItem);
+        $manager->flush();
 
 
     }
 
+    /**
+     * @return int
+     */
     public function getOrder(): int
     {
         return 20;
