@@ -45,7 +45,7 @@ class BeheerMenu extends AbstractHelper
      * Renders the menu.
      * @return string HTML code of the menu.
      */
-    public function render(): string
+    public function render($menu): string
     {
         if (count($this->items) === 0) {
             return '';

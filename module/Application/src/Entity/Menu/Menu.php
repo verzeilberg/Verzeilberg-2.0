@@ -9,7 +9,7 @@ use Laminas\Form\Annotation;
 
 /**
  * This class represents a menu item.
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Application\Repository\MenuRepository")
  * @ORM\Table(name="menu")
  */
 class Menu extends UnityOfWork {

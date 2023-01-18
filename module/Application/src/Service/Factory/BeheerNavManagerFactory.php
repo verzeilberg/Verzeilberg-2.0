@@ -2,6 +2,7 @@
 
 namespace Application\Service\Factory;
 
+use Application\Repository\MenuRepository;
 use Interop\Container\ContainerInterface;
 use Application\Service\BeheerNavManager;
 use User\Service\RbacManager;
@@ -19,9 +20,16 @@ class BeheerNavManagerFactory
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): BeheerNavManager
     {
-        $authService = $container->get(\Laminas\Authentication\AuthenticationService::class);
-        $router = $container->get('Router');
-        $rbacManager = $container->get(RbacManager::class);
-        return new BeheerNavManager($authService, $router, $rbacManager);
+        $authService        = $container->get(\Laminas\Authentication\AuthenticationService::class);
+        $router             = $container->get('Router');
+        $rbacManager        = $container->get(RbacManager::class);
+        $entityManager      = $container->get('doctrine.entitymanager.orm_default');
+        $menuRepository    = $entityManager->getRepository(MenuRepository::class);
+        return new BeheerNavManager(
+            $authService,
+            $router,
+            $rbacManager,
+            $menuRepository
+        );
     }
 }

@@ -18,7 +18,7 @@ class BeheerMenuFactory implements FactoryInterface
         $navManager = $container->get(BeheerNavManager::class);
 
         // Get menu items.
-        $items = $navManager->getMenuItems();
+        $items = $navManager->getMenuItems('Beheer');
 
         // Instantiate the helper.
         return new BeheerMenu($items);

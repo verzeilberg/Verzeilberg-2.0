@@ -73,7 +73,7 @@ class NavManager {
             $items[] = [
                 'id' => 'profile',
                 'label' => 'Profile',
-                'link' =>  $this->router->getRoute('profile')->assemble(),
+                'link' =>  ''
             ];
         }
 

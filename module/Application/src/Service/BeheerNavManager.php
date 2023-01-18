@@ -2,6 +2,7 @@
 
 namespace Application\Service;
 
+use Application\Repository\MenuRepository;
 use Laminas\Router\RouteInterface;
 use Laminas\Authentication\AuthenticationService;
 /**
@@ -12,28 +13,36 @@ class BeheerNavManager
 {
 
     /** @var AuthenticationService */
-    private $authService;
+    private AuthenticationService $authService;
     /** @var RouteInterface */
-    private $router;
+    private RouteInterface $router;
     /** @var User\Service\RbacManager */
-    private $rbacManager;
+    private User\Service\RbacManager $rbacManager;
+    /** @var MenuRepository */
+    private MenuRepository $menuRepository;
 
     /**
      * Constructs the service.
      */
-    public function __construct($authService, $router, $rbacManager)
+    public function __construct($authService, $router, $rbacManager, $menuRepository)
     {
         $this->authService = $authService;
         $this->router = $router;
         $this->rbacManager = $rbacManager;
+        $this->menuRepository = $menuRepository;
     }
 
     /**
      * This method returns menu items depending on whether user has logged in or not.
      */
-    public function getMenuItems(): array
+    public function getMenuItems($menu): array
     {
-        $items = [];
+        $items = $this->menuRepository->getItemByName($menu);
+
+        foreach ($items as $item) {
+            var_dump($item); die;
+        }
+
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.
         if (!$this->authService->hasIdentity()) {
