@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\MyDataFixtures;
+namespace Application\DataFixtures;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -9,7 +9,7 @@ use User\Entity\Role;
 use User\Entity\User;
 use function date;
 
-class UserDataFixture implements DataFixtures
+class UserDataFixture implements FixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -24,7 +24,6 @@ class UserDataFixture implements DataFixtures
         $user->setStatus(1);
         $currentDate = date('Y-m-d H:i:s');
         $user->setDateCreated($currentDate);
-
         $role = $manager->getRepository(Role::class)->find(1);
         $user->addRole($role);
 

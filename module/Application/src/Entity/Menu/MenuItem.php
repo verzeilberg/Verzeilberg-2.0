@@ -1,9 +1,10 @@
 <?php
 
-namespace Application\Menu\Entity\Menu;
+namespace Application\Entity\Menu;
 
 use Application\Model\UnityOfWork;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Laminas\Form\Annotation;
 
@@ -63,6 +64,16 @@ class MenuItem extends UnityOfWork {
     protected string $menuId;
 
     /**
+     * @var string
+     * @ORM\Column(name="autorized_for", type="string", length=255, nullable=true)
+     * @Annotation\Options({
+     * "label": "Authorized for"
+     * })
+     * @Annotation\Attributes({"class":"form-control", "placeholder":"Authorized for"})
+     */
+    protected string $authorizedFor;
+
+    /**
      * One MenuItem has Many MenuItems.
      * @ORM\OneToMany(targetEntity="MenuItem", mappedBy="parent")
      */
@@ -76,9 +87,13 @@ class MenuItem extends UnityOfWork {
      */
     private $parent;
 
+
+
     public function __construct() {
         $this->children = new ArrayCollection();
+
     }
+
 
     /**
      * @return int
@@ -159,6 +174,24 @@ class MenuItem extends UnityOfWork {
     {
         $this->menuId = $menuId;
     }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizedFor(): string
+    {
+        return $this->authorizedFor;
+    }
+
+    /**
+     * @param string $authorizedFor
+     */
+    public function setAuthorizedFor(string $authorizedFor): void
+    {
+        $this->authorizedFor = $authorizedFor;
+    }
+
+
 
     /**
      * @return ArrayCollection

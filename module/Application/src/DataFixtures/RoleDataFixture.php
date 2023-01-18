@@ -24,12 +24,12 @@ class RoleDataFixture implements FixtureInterface
         ];
 
         foreach ($roles as $role) {
-            $role = new Role;
-            $role->setName($role['name']);
-            $role->setDescription($role['description']);
-            $role->setDateCreated(date('Y-m-d H:i:s'));
+            $newRole = new Role;
+            $newRole->setName($role['name']);
+            $newRole->setDescription($role['description']);
+            $newRole->setDateCreated(date('Y-m-d H:i:s'));
 
-            $manager->persist($role);
+            $manager->persist($newRole);
             $manager->flush();
 
         }

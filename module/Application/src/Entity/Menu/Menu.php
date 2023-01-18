@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Menu\Entity\Menu;
+namespace Application\Entity\Menu;
 
 use Application\Model\UnityOfWork;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,41 +33,18 @@ class Menu extends UnityOfWork {
     protected string $name;
 
     /**
-     * Many menu's have many menu items
-     * @ORM\ManyToMany(targetEntity="Application\Entity\MenuItem")
+     * @ORM\ManyToMany(targetEntity="MenuItem")
      * @ORM\JoinTable(name="menu_menuitems",
-     *      joinColumns={@ORM\JoinColumn(name="menuId", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="menuItemId", referencedColumnName="id", unique=true, onDelete="CASCADE")}
+     *      joinColumns={@ORM\JoinColumn(name="menu_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")}
      *      )
      */
-    private ArrayCollection $menuItems;
+    private $menuItems;
+
+
 
     public function __construct() {
         $this->menuItems = new ArrayCollection();
-    }
-
-    /**
-     * @param $menuItems
-     * @return $this
-     */
-    public function addMenuItems($menuItems): Menu
-    {
-        if (!$this->menuItems->contains($menuItems)) {
-            $this->menuItems->add($menuItems);
-        }
-        return $this;
-    }
-
-    /**
-     * @param $menuItems
-     * @return $this
-     */
-    public function removeMenuItem($menuItems): Menu
-    {
-        if ($this->menuItems->contains($menuItems)) {
-            $this->menuItems->removeElement($menuItems);
-        }
-        return $this;
     }
 
     /**
@@ -103,20 +80,11 @@ class Menu extends UnityOfWork {
     }
 
     /**
-     * @return ArrayCollection
+     * Assigns a role to user.
      */
-    public function getMenuItems(): ArrayCollection
+    public function addMenuItem($menuItem)
     {
-        return $this->menuItems;
+        $this->menuItems->add($menuItem);
     }
-
-    /**
-     * @param ArrayCollection $menuItems
-     */
-    public function setMenuItems(ArrayCollection $menuItems): void
-    {
-        $this->menuItems = $menuItems;
-    }
-
 
 }

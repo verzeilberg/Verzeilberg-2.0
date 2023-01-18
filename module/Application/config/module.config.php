@@ -122,6 +122,7 @@ return [
             Service\NavManager::class => Service\Factory\NavManagerFactory::class,
             Service\BeheerNavManager::class => Service\Factory\BeheerNavManagerFactory::class,
             Service\RbacAssertionManager::class => Service\Factory\RbacAssertionManagerFactory::class,
+            Command\LoadFixturesCommand::class => Command\Factory\LoadFixturesCommandFactory::class,
         ],
         'invokables' => [
             Service\beheerServiceInterface::class => Service\beheerService::class,

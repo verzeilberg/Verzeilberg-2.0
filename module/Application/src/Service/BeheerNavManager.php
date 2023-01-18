@@ -296,7 +296,7 @@ class BeheerNavManager
                 ];
             }
 
-            if ($this->rbacManager->isGranted(null, 'checklist.manage')) {
+            if ($this->rbacManager->isGranted(null, 'images.manage')) {
                 $items[] = [
                     'id' => 'images',
                     'label' => 'Images',

@@ -1,7 +1,11 @@
 <?php
 namespace Application\Command;
 
+use Application\DataFixtures\MenuDataFixture;
+use Application\DataFixtures\MenuItemDataFixture;
+use Application\DataFixtures\UserDataFixture;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Doctrine\Common\DataFixtures\Loader;
@@ -13,57 +17,78 @@ class LoadFixturesCommand extends Command
 {
     protected static $defaultDescription = 'Creates date for the database.';
 
+    /**
+     * @var
+     */
+    protected $entityManager;
+
+    /**
+     * Constructs the service.
+     */
+    public function __construct($entityManager)
+    {
+        $this->entityManager = $entityManager;
+        parent::__construct();
+    }
+
     protected function configure(): void
     {
         $this
             // the command help shown when running the command with the "--help" option
             ->setHelp('This command allows you to load fixtures.')
-        ;
+            ->addArgument(
+                'fixtures',
+                InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
+                'Select fixture(s) to be load: role, user, menu',
+                ['all']
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
-        $output->writeln([
-            'Load role fixtures',
-            '============',
-            '',
-        ]);
-
         $loader = new Loader();
+        $executor = new ORMExecutor($this->entityManager, new ORMPurger());
+
+        $fixtures = $input->getArgument('fixtures');
+
+
+        if (in_array('all', $fixtures) || in_array('role', $fixtures)){
+
+            $output->writeln([
+                'Load role fixtures',
+                '============',
+                '',
+            ]);
+
         $loader->addFixture(new RoleDataFixture());
+        }
 
-        $executor = new ORMExecutor($entityManager, new ORMPurger());
-        $executor->execute($loader->getFixtures());
+        if (in_array('all', $fixtures) || in_array('user', $fixtures)) {
+            $output->writeln([
+                'Load user fixtures',
+                '============',
+                '',
+            ]);
 
-        $output->writeln([
-            'Load user fixtures',
-            '============',
-            '',
-        ]);
+            $loader->addFixture(new UserDataFixture());
+        }
 
-        $output->writeln([
-            'Load menu fixtures',
-            '============',
-            '',
-        ]);
+        if (in_array('all', $fixtures) || in_array('menu', $fixtures)) {
+            $output->writeln([
+                'Load menu fixtures',
+                '============',
+                '',
+            ]);
 
-        die('test');
-// ... put here the code to create the user
+            $loader->addFixture(new MenuItemDataFixture());
+            $loader->addFixture(new MenuDataFixture());
 
-// this method must return an integer number with the "exit status code"
-// of the command. You can also use these constants to make code more readable
+        }
 
-// return this if there was no problem running the command
-// (it's equivalent to returning int(0))
+
+        $executor->execute($loader->getFixtures(), append: true);
+
         return Command::SUCCESS;
 
-// or return this if some error happened during the execution
-// (it's equivalent to returning int(1))
-// return Command::FAILURE;
-
-// or return this to indicate incorrect command usage; e.g. invalid options
-// or missing arguments (it's equivalent to returning int(2))
-// return Command::INVALID
     }
 }
