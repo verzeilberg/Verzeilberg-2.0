@@ -36,7 +36,8 @@
         "rwoverdijk/assetmanager": "^3.0.0",
         "laminas/laminas-mail": "^2.21",
         "beberlei/doctrineextensions": "^1.3",
-        "oro/doctrine-extensions": "^2.0"
+        "oro/doctrine-extensions": "^2.0",
+        "vlucas/phpdotenv": "^5.5"
     },
     "autoload": {
         "psr-4": {

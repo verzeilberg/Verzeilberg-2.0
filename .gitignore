@@ -8,3 +8,4 @@ phpunit.xml
 .phpunit.result.cache
 .idea/
 config/autoload/local.php
+.env
