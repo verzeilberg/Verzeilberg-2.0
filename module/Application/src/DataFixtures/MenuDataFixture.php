@@ -2,12 +2,12 @@
 
 namespace Application\DataFixtures;
 
-use Application\Entity\Menu\Menu;
-use Application\Entity\Menu\MenuItem;
+use Application\Entity\Menu;
+use Application\Entity\MenuItem;
+use DateTime;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use DateTime;
 
 class MenuDataFixture extends AbstractFixture implements FixtureInterface
 {

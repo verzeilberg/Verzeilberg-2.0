@@ -76,7 +76,7 @@ class UnityOfWork
     /**
      * @return object
      */
-    public function getCreatedBy(): ? sobject
+    public function getCreatedBy(): ? object
     {
         return $this->createdBy;
     }

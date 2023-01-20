@@ -3,9 +3,8 @@
 namespace Application\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Application\Entity\Menu\Menu;
+use Application\Entity\Menu;
 use Exception;
-use function intval;
 
 class MenuRepository extends EntityRepository
 {

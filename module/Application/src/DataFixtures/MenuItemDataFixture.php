@@ -2,12 +2,10 @@
 
 namespace Application\DataFixtures;
 
-use Application\Entity\Menu\Menu;
-use Application\Entity\Menu\MenuItem;
+use Application\Entity\MenuItem;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use function date;
 
 class MenuItemDataFixture extends AbstractFixture implements FixtureInterface
 {
@@ -23,98 +21,98 @@ class MenuItemDataFixture extends AbstractFixture implements FixtureInterface
             1 => [
                 'id' => 'beheer',
                 'label' => 'Beheer',
-                'link' => '',
+                'link' => '/beheer',
                 'icon' => 'fa-thin fa-bars-progress',
                 'authorizedFor' => 'beheer.manage'
             ],
             2 => [
                 'id' => 'email',
                 'label' => 'E-mail',
-                'link' => '',
-                'icon' => 'fa-thin fa-envelope',
+                'link' => '/beheer/email',
+                'icon' => 'fal fa-envelope-open-text',
                 'authorizedFor' => 'email.manage'
             ],
             3 => [
                 'id' => 'agenda',
                 'label' => 'Agenda',
-                'link' => '',
+                'link' => '/beheer/agenda',
                 'icon' => 'fa-thin fa-calendar-days',
                 'authorizedFor' => 'agenda.manage'
             ],
             4 => [
                 'id' => 'strava',
                 'label' => 'Strava',
-                'link' => '',
+                'link' => '/beheer/strava',
                 'icon' => 'fa-brands fa-strava',
                 'authorizedFor' => 'strava.manage'
             ],
             5 => [
                 'id' => 'users',
                 'label' => 'Users',
-                'link' => '',
+                'link' => '/beheer/users',
                 'icon' => 'fa-thin fa-users',
                 'authorizedFor' => 'user.manage'
             ],
             6 => [
                 'id' => 'permissions',
                 'label' => 'Permissions',
-                'link' => '',
+                'link' => '/beheer/permissions',
                 'icon' => 'fa-light fa-octagon-exclamation',
                 'authorizedFor' => 'permission.manage'
             ],
             7 => [
                 'id' => 'roles',
                 'label' => 'Roles',
-                'link' => '',
+                'link' => '/beheer/roles',
                 'icon' => 'fa-thin fa-address-book',
                 'authorizedFor' => 'role.manage'
             ],
             8 => [
                 'id' => 'blogs',
                 'label' => 'Blogs',
-                'link' => '',
+                'link' => '/beheer/blog',
                 'icon' => 'fa-light fa-square-rss',
                 'authorizedFor' => 'blog.manage'
             ],
             9 => [
                 'id' => 'categories',
                 'label' => 'Categories',
-                'link' => '',
+                'link' => '/beheer/categories',
                 'icon' => 'fa-thin fa-list',
                 'authorizedFor' => 'blog.manage'
             ],
             10 => [
                 'id' => 'contact',
                 'label' => 'Contact',
-                'link' => '',
+                'link' => '/beheer/contact',
                 'icon' => 'fa-thin fa-address-card',
                 'authorizedFor' => 'contact.manage'
             ],
             11 => [
                 'id' => 'search',
                 'label' => 'Search',
-                'link' => '',
+                'link' => '/beheer/search',
                 'icon' => 'fa-thin fa-magnifying-glass',
                 'authorizedFor' => 'search.manage'
             ],
             12 => [
                 'id' => 'events',
                 'label' => 'Events',
-                'link' => '',
+                'link' => '/beheer/event',
                 'icon' => 'fa-thin fa-ranking-star',
                 'authorizedFor' => 'event.manage'
             ],
             13 => [
                 'id' => 'checklists',
                 'label' => 'Checklists',
-                'link' => '',
+                'link' => '/beheer/checklistitem',
                 'icon' => 'fa-thin fa-list-check',
                 'authorizedFor' => 'checklist.manage'
             ],
             14 => [
                 'id' => 'images',
                 'label' => 'Images',
-                'link' => '',
+                'link' => '/beheer/images',
                 'icon' => 'fa-thin fa-image',
                 'authorizedFor' => 'images.manage'
             ],

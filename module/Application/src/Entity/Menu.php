@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Entity\Menu;
+namespace Application\Entity;
 
 use Application\Model\UnityOfWork;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -86,5 +86,19 @@ class Menu extends UnityOfWork {
     {
         $this->menuItems->add($menuItem);
     }
+
+    public function getMenuItems()
+    {
+        return $this->menuItems;
+    }
+
+    /**
+     * @param ArrayCollection $menuItems
+     */
+    public function setMenuItems(ArrayCollection $menuItems): void
+    {
+        $this->menuItems = $menuItems;
+    }
+
 
 }

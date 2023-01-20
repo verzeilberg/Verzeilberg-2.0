@@ -36,33 +36,328 @@ return [
                         'action' => 'index',
                     ],
                 ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'blog' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/blog[[/]:action[/:id]]',
+                            'defaults' => [
+                                'controller' => 'blogbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'categories' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/categories[/:action[/:id]]',
+                            'defaults' => [
+                                'controller' => 'categorybeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'roles' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/roles[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'rolebeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'permissions' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/permissions[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'permissionbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'users' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/users[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[a-zA-Z0-9_-]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'userbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'contact' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/contact[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'contactbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'email' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email[/:folder[/:page]][/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'showEmail' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email/show[/:folder[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'showEmail',
+                            ],
+                        ],
+                    ],
+                    'showEmailBody' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email/showbody[/:folder[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'showEmailBody',
+                            ],
+                        ],
+                    ],
+                    'manageEmailfolders' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email/folders[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'addFolder',
+                            ],
+                        ],
+                    ],
+                    'downloadAttachment' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/email/attachement[/:folder][/:id][/:attachmentId]',
+                            'constraints' => [
+                                'folder' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                                'attachmentId' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'emailbeheer',
+                                'action' => 'downloadFile',
+                            ],
+                        ],
+                    ],
+                    'agenda' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/agenda[/:action[/:day]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'day' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'agendabeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'search' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/search[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'searchbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'event' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/event[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'eventbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'eventcategories' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/event/categories[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'eventcategorybeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'checklist' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/checklist[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'checklistbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'checklistitem' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/checklistitem[/:action[/:id][/:checklistid]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'checklistitembeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'images' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/images[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'imagesbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'strava' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/strava[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'stravabeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'stravaimport' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/stravaimport[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'stravaimportbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                    'stravalog' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/stravalog[/:action[/:id]]',
+                            'constraints' => [
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id' => '[0-9]*',
+                            ],
+                            'defaults' => [
+                                'controller' => 'stravalogbeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
+                ],
             ],
-            // Literal route for viewing blog RSS feed
-            'emailbeheer' => [
-                'type' => 'segment',
+            'application' => [
+                'type' => Segment::class,
                 'options' => [
-                    'route' => '/beheer/email[/:folder[/:page]][/:action[/:id]]',
+                    'route' => '/application[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]*',
+                        'id' => '[0-9]+'
                     ],
                     'defaults' => [
-                        'controller' => 'emailbeheer',
+                        'controller' => Controller\IndexController::class,
                         'action' => 'index',
                     ],
                 ],
             ],
-            'agendabeheer' => [
-                'type' => 'segment',
+            'about' => [
+                'type' => Literal::class,
                 'options' => [
-                    'route' => '/beheer/agenda[/:action][/:id]',
-                    'constraints' => [
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+',
-                    ],
+                    'route' => '/about',
                     'defaults' => [
-                        'controller' => 'agendabeheer',
-                        'action' => 'index',
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'about',
+                    ],
+                ],
+            ],
+            'events' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/events[/:action[/:id]]',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'events',
                     ],
                 ],
             ],
@@ -108,7 +403,9 @@ return [
             __NAMESPACE__ . '_driver' => [
                 'class' => AnnotationDriver::class,
                 'cache' => 'array',
-                'paths' => [__DIR__ . '/../src/Entity']
+                'paths' => [
+                    __DIR__ . '/../src/Entity'
+                ]
             ],
             'orm_default' => [
                 'drivers' => [

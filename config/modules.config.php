@@ -45,7 +45,8 @@ return [
     'Event',
     'CheckList',
     'BitlyShortener',
+    'Application',
     'StravaApi',
     'AssetManager',
-    'Application'
+
 ];

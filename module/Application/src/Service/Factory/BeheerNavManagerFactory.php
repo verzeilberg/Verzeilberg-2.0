@@ -2,6 +2,7 @@
 
 namespace Application\Service\Factory;
 
+use Application\Entity\Menu;
 use Application\Repository\MenuRepository;
 use Interop\Container\ContainerInterface;
 use Application\Service\BeheerNavManager;
@@ -24,7 +25,7 @@ class BeheerNavManagerFactory
         $router             = $container->get('Router');
         $rbacManager        = $container->get(RbacManager::class);
         $entityManager      = $container->get('doctrine.entitymanager.orm_default');
-        $menuRepository    = $entityManager->getRepository(MenuRepository::class);
+        $menuRepository    = $entityManager->getRepository(Menu::class);
         return new BeheerNavManager(
             $authService,
             $router,

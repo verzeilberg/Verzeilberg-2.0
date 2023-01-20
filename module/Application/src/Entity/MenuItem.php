@@ -1,10 +1,9 @@
 <?php
 
-namespace Application\Entity\Menu;
+namespace Application\Entity;
 
 use Application\Model\UnityOfWork;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Laminas\Form\Annotation;
 
