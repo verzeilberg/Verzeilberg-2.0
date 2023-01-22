@@ -5,6 +5,7 @@ namespace Application\Model;
 use Laminas\Form\Annotation;
 use Doctrine\ORM\Mapping as ORM;
 use User\Entity\User;
+use DateTime;
 
 class UnityOfWork
 {
@@ -58,7 +59,7 @@ class UnityOfWork
     /**
      * @return string
      */
-    public function getDateCreated(): ? string
+    public function getDateCreated(): ? DateTime
     {
         return $this->dateCreated;
     }
@@ -94,7 +95,7 @@ class UnityOfWork
     /**
      * @return string
      */
-    public function getDateChanged(): ?string
+    public function getDateChanged(): ? DateTime
     {
         return $this->dateChanged;
     }

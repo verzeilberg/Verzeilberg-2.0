@@ -19,12 +19,10 @@ class BeheerNavManagerFactory
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): BeheerNavManager
     {
-        $authService        = $container->get(\Laminas\Authentication\AuthenticationService::class);
         $rbacManager        = $container->get(RbacManager::class);
         $entityManager      = $container->get('doctrine.entitymanager.orm_default');
         $menuRepository    = $entityManager->getRepository(Menu::class);
         return new BeheerNavManager(
-            $authService,
             $rbacManager,
             $menuRepository
         );
