@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 services:
   laminas:
@@ -11,10 +11,14 @@ services:
     image: mariadb:10.6.5
     container_name: laminas-db
     ports:
-      - '8099:3377'
+      - "3308:3306"
     environment:
-      MARIADB_USER: srs
-      MARIADB_PASSWORD: xs4srs
+      MARIADB_USER: sander2
+      MARIADB_PASSWORD: gravity35
+      MARIADB_DATABASE: sander33
       MARIADB_ROOT_PASSWORD: icanwrite
     volumes:
-      - .:/var/lib/mysql
+      - ./docker/sql/laminas-db:/docker-entrypoint-initdb.d/
+      - laminas-db:/var/lib/mysql
+volumes:
+  laminas-db: ~

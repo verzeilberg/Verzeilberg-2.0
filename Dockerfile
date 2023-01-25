@@ -9,6 +9,9 @@ LABEL maintainer="getlaminas.org" \
 ## Update package information
 RUN apt-get update
 
+RUN apt update && apt install -y \
+    mariadb-client
+
 ## Configure Apache
 RUN a2enmod rewrite \
     && sed -i 's!/var/www/html!/var/www/public!g' /etc/apache2/sites-available/000-default.conf \
