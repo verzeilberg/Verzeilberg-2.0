@@ -37,7 +37,8 @@
         "laminas/laminas-mail": "^2.21",
         "beberlei/doctrineextensions": "^1.3",
         "oro/doctrine-extensions": "^2.0",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "doctrine/orm": "^2.14"
     },
     "autoload": {
         "psr-4": {
