@@ -9,3 +9,5 @@ phpunit.xml
 .idea/
 config/autoload/local.php
 .env
+public/files/*
+public/img/userFiles/*

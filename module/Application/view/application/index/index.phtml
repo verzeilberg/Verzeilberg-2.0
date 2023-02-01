@@ -14,7 +14,7 @@
 </div>
 <!-- ***** Banner End ***** -->
 
-<!-- ***** Most Popular Start ***** -->
+<!-- ***** Blog Start ***** -->
 <div class="most-popular">
     <div class="row">
         <div class="col-lg-12">
@@ -22,102 +22,174 @@
                 <h4><em>Blogs</em> Right Now</h4>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-01.jpg" alt="">
-                        <h4>Fortnite<br><span>Sandbox</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-02.jpg" alt="">
-                        <h4>PubG<br><span>Battle S</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-03.jpg" alt="">
-                        <h4>Dota2<br><span>Steam-X</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-04.jpg" alt="">
-                        <h4>CS-GO<br><span>Legendary</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="item">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="item inner-item">
-                                    <img src="assets/images/popular-05.jpg" alt="">
-                                    <h4>Mini Craft<br><span>Legendary</span></h4>
-                                    <ul>
-                                        <li><i class="fa fa-star"></i> 4.8</li>
-                                        <li><i class="fa fa-download"></i> 2.3M</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="item">
-                                    <img src="assets/images/popular-06.jpg" alt="">
-                                    <h4>Eagles Fly<br><span>Matrix Games</span></h4>
-                                    <ul>
-                                        <li><i class="fa fa-star"></i> 4.8</li>
-                                        <li><i class="fa fa-download"></i> 2.3M</li>
-                                    </ul>
-                                </div>
-                            </div>
+                <?php foreach ($blogs as $blog) { ?>
+                    <?php
+                    $images = $blog->getBlogImages();
+                    foreach ($images as $image) {
+                        foreach ($image->getImageTypes('800x600') as $imageType) {
+                            $blogImage = '<img src="/' . $imageType->getFolder() . $imageType->getFileName() . '" alt="' . $image->getAlt() . '">';
+                            break;
+                        }
+                        break;
+                    }
+                    ?>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="item">
+                            <?= $blogImage ?>
+                            <h4><?= $blog->getTitle(); ?>
+                                <br><span><?= !empty($blog->getCategories()->first()) ? $blog->getCategories()->first()->getName() : ''; ?></span>
+                            </h4>
+                            <ul>
+                                <li><i class="fa fa-star"></i> 4.8</li>
+                                <li><i class="fa fa-download"></i> 2.3M</li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-07.jpg" alt="">
-                        <h4>Warface<br><span>Max 3D</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="item">
-                        <img src="assets/images/popular-08.jpg" alt="">
-                        <h4>Warcraft<br><span>Legend</span></h4>
-                        <ul>
-                            <li><i class="fa fa-star"></i> 4.8</li>
-                            <li><i class="fa fa-download"></i> 2.3M</li>
-                        </ul>
-                    </div>
-                </div>
+                <?php } ?>
                 <div class="col-lg-12">
                     <div class="main-button">
-                        <a href="browse.html">Discover Popular</a>
+                        <a href="<?php echo $this->url('blog', ['action' => 'index']); ?>"
+                           class="btn btn-dark"><?php echo $this->translate('Discover More Blogs'); ?></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- ***** Most Popular End ***** -->
+<!-- ***** Blog End ***** -->
+
+<!-- ***** Running stats Start ***** -->
+<div class="most-popular">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Running</em> Stats</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-success">
+                        <div class="card-header text-center">
+                            <i class="fa fa-running"></i>
+                            <h5 class="card-title text-center mt-2">Totaal activiteiten</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><?= $totalRunActivities ?></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-warning">
+                        <div class="card-header text-center">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <h5 class="card-title text-center mt-2">Gemiddelde tempo</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?= $this->stravaViewHelper()->getAverageSpeed($averageSpeed) ?>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-secondary">
+                        <div class="card-header text-center">
+                            <i class="fas fa-road"></i>
+                            <h5 class="card-title text-center mt-2">Totaal km's</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?= $this->stravaViewHelper()->getDistance($totalRunDistance) ?> km
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-dark">
+                        <div class="card-header text-center">
+                            <i class="fas fa-stopwatch"></i>
+                            <h5 class="card-title text-center mt-2">Totaal tijd</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?= $this->stravaViewHelper()->getTotalMovingTime($totalRunTime); ?>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-info">
+                        <div class="card-header text-center">
+                            <i class="fas fa-mountain"></i>
+                            <h5 class="card-title text-center mt-2">Gemiddelde hoogteverschil</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?= $this->stravaViewHelper()->getTotalElevationGain($averageElevation); ?>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="card bg-danger">
+                        <div class="card-header text-center">
+                            <i class="fas fa-heartbeat"></i>
+                            <h5 class="card-title text-center mt-2">Gemiddelde hartslag</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <?= $this->stravaViewHelper()->getTotalElevationGain($averageHeartbeat); ?>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="main-button">
+                        <a href="<?php echo $this->url('runningStats'); ?>"
+                           class="btn btn-dark"><?php echo $this->translate('Get statisfied'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Running stats End ***** -->
+<!-- ***** Events Start ***** -->
+<?php if (is_object($upcommingEvent)) { ?>
+<div class="most-popular">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Running</em> Stats</h4>
+            </div>
+            <div class="row">
+                <?php
+                $imageURL = '';
+                $image = $upcommingEvent->getEventImage();
+                if (is_object($image)) {
+                    foreach ($image->getImageTypes('original') AS $imageType) {
+                        $imageURL = $imageType->getFolder() . $imageType->getFileName();
+                        break;
+                    }
+                }
+                ?>
+                <!-- Callout -->
+                <aside id="event" class="callout" style="background: url(<?php echo $imageURL; ?>) no-repeat center center scroll;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+                    <div class="text-vertical-center">
+                        <h3 class="eventTitle"><?php echo $upcommingEvent->getTitle(); ?></h3>
+                        <div class="clock"></div>
+                        <input type="hidden" name="eventDate" value="<?php echo (is_object($upcommingEvent->getEventStartDate()) ? $upcommingEvent->getEventStartDate()->format('j M Y G:i:s') : ''); ?>" />
+                        <p>
+                            <a href="<?php echo $this->url('events'); ?>" class="btn btn-dark btn-lg js-scroll-trigger"><i class="fas fa-angle-double-down fa-3x"></i></a>
+                        </p>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+<!-- ***** Evemts End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
 <div class="gaming-library">
