@@ -131,7 +131,7 @@ class UnityOfWork
     /**
      * @return string|null
      */
-    public function getDateDeleted(): ?string
+    public function getDateDeleted(): ?DateTime
     {
         return $this->dateDeleted;
     }
