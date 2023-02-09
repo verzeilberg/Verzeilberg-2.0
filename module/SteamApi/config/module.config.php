@@ -1,6 +1,7 @@
 <?php
 namespace SteamApi;
 
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -50,5 +51,25 @@ return [
         'template_path_stack' => [
             'steamapi' => __DIR__ . '/../view',
         ],
+    ],
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__ . '/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ]
+            ]
+        ]
+    ],
+    'steamApi' => [
+       'Steam-Web-API-key' => '',
+        'Steam-id' => '',
+        'format' => '', #json/xml
+        'version' => '0001'
     ],
 ];
