@@ -9,3 +9,51 @@ html, body {
 #login a {
     padding: 8px 20px;
 }
+
+/* Running stats */
+
+.running-stats .card-header {
+    min-height: 125px;
+    height: 125px;
+    margin-bottom: 20px;
+}
+
+/* Event on homepage */
+
+h3.eventTitle {
+    font-weight: bold;
+    font-size: 60px;
+    letter-spacing: 5px;
+}
+
+/* Events on overview */
+div#events .row {
+    margin-bottom: 30px;
+}
+
+div#events .card {
+    position: relative;
+    width: 100%;
+}
+
+img.finishedStamp {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    width: 175px;
+    height: auto;
+    z-index: 9;
+}
+
+.event-title {
+    font-family: 'Bangers', cursive;
+    font-size: 1.4em;
+    color: #000;
+    letter-spacing: 4px;
+}
+
+/** Tweets homepage **/
+.tweet-item {
+    min-height:300px;
+    height:300px;
+}

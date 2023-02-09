@@ -47,6 +47,7 @@ return [
     'BitlyShortener',
     'Application',
     'StravaApi',
+    'SteamApi',
     'AssetManager',
 
 ];

@@ -65,7 +65,8 @@
             "Event\\": "module/Event/src/",
             "CheckList\\": "module/CheckList/src/",
             "BitlyShortener\\": "module/BitlyShortener/src/",
-            "StravaApi\\": "module/StravaApi/src/"
+            "StravaApi\\": "module/StravaApi/src/",
+            "SteamApi\\": "module/SteamApi/src/"
         }
     },
     "scripts": {
@@ -84,7 +85,8 @@
         "test": "vendor/bin/phpunit",
         "static-analysis": "vendor/bin/psalm --shepherd --stats",
         "doctrine-module": "vendor/bin/doctrine-module",
-        "cli-laminas": "vendor/bin/laminas"
+        "cli-laminas": "vendor/bin/laminas",
+        "new-module": "git clone https://github.com/zendframework/ZendSkeletonModule module/MyNewModule"
     },
     "scripts-descriptions": {
         "cs-check": "Run coding standards checks.",

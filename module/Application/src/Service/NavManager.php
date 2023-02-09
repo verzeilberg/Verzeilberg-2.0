@@ -57,7 +57,7 @@ class NavManager {
         $items[] = [
             'id' => 'event',
             'label' => 'Event',
-            'link' =>  $this->router->getRoute('event')->assemble()
+            'link' =>  $this->router->getRoute('events')->assemble()
         ];
 
 

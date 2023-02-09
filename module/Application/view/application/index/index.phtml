@@ -59,14 +59,14 @@
 <!-- ***** Blog End ***** -->
 
 <!-- ***** Running stats Start ***** -->
-<div class="most-popular">
+<div class="running-stats most-popular">
     <div class="row">
         <div class="col-lg-12">
             <div class="heading-section">
                 <h4><em>Running</em> Stats</h4>
             </div>
             <div class="row">
-                <div class="col-lg-2 col-sm-12">
+                <div class="col-lg-2 col-sm-12 mb-3">
                     <div class="card bg-success">
                         <div class="card-header text-center">
                             <i class="fa fa-running"></i>
@@ -155,41 +155,62 @@
 <!-- ***** Running stats End ***** -->
 <!-- ***** Events Start ***** -->
 <?php if (is_object($upcommingEvent)) { ?>
-<div class="most-popular">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="heading-section">
-                <h4><em>Running</em> Stats</h4>
-            </div>
-            <div class="row">
-                <?php
-                $imageURL = '';
-                $image = $upcommingEvent->getEventImage();
-                if (is_object($image)) {
-                    foreach ($image->getImageTypes('original') AS $imageType) {
-                        $imageURL = $imageType->getFolder() . $imageType->getFileName();
-                        break;
-                    }
-                }
-                ?>
-                <!-- Callout -->
-                <aside id="event" class="callout" style="background: url(<?php echo $imageURL; ?>) no-repeat center center scroll;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
-                    <div class="text-vertical-center">
-                        <h3 class="eventTitle"><?php echo $upcommingEvent->getTitle(); ?></h3>
-                        <div class="clock"></div>
-                        <input type="hidden" name="eventDate" value="<?php echo (is_object($upcommingEvent->getEventStartDate()) ? $upcommingEvent->getEventStartDate()->format('j M Y G:i:s') : ''); ?>" />
-                        <p>
-                            <a href="<?php echo $this->url('events'); ?>" class="btn btn-dark btn-lg js-scroll-trigger"><i class="fas fa-angle-double-down fa-3x"></i></a>
-                        </p>
-                    </div>
-                </aside>
+    <?php
+    $imageURL = '';
+    $image = $upcommingEvent->getEventImage();
+    if (is_object($image)) {
+        foreach ($image->getImageTypes('original') as $imageType) {
+            $imageURL = $imageType->getFolder() . $imageType->getFileName();
+            break;
+        }
+    }
+    ?>
+    <div class="most-popular"
+         style="background: url(<?php echo $imageURL; ?>) no-repeat center center scroll;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-section">
+                    <h4><em>Upcomming</em> event</h4>
+                </div>
 
+                <div class="col-lg-12 col-sm-12 mb-2">
+                    <div class="text-vertical-center">
+                        <h3 class="eventTitle text-center mb-2"><?php echo $upcommingEvent->getTitle(); ?></h3>
+                        <div class="clock"></div>
+                        <input type="hidden" name="eventDate"
+                               value="<?php echo(is_object($upcommingEvent->getEventStartDate()) ? $upcommingEvent->getEventStartDate()->format('j M Y G:i:s') : ''); ?>"/>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="main-button">
+                        <a href="<?php echo $this->url('events'); ?>"
+                           class="btn btn-dark"><?php echo $this->translate('More events'); ?></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php } ?>
-<!-- ***** Evemts End ***** -->
+<!-- ***** Events End ***** -->
+<!-- ***** Start Stream Start ***** -->
+<div class="start-stream">
+    <div class="col-lg-12">
+        <div class="heading-section">
+            <h4><em>Tweets</em> What's going on?</h4>
+        </div>
+        <div class="row">
+            <?php foreach ($tweets as $tweet) { ?>
+                <div class="col-lg-3">
+                    <div class="item tweet-item">
+                        <h4><?= $tweet['tweet_date']; ?></h4>
+                        <p><?= $tweet['tweet_text']; ?></p>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<!-- ***** Start Stream End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
 <div class="gaming-library">

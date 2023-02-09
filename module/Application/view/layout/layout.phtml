@@ -33,6 +33,18 @@
           rel="stylesheet">
 
     <!-- Scripts -->
+    <?=
+    $this->inlineScript()
+        ->prependFile($this->basePath('assets/js/custom.js'))
+        ->prependFile($this->basePath('assets/js/popup.js'))
+        ->prependFile($this->basePath('assets/js/tabs.js'))
+        ->prependFile($this->basePath('assets/js/owl-carousel.js'))
+        ->prependFile($this->basePath('vendor/bootstrap/js/bootstrap.min.js'))
+        ->prependFile($this->basePath('assets/js/isotope.min.js'))
+        ->prependFile($this->basePath('vendor/jquery/jquery.min.js'))
+    ?>
+
+    <!-- More scripts -->
     <?= $this->headScript() ?>
 
 
@@ -59,7 +71,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="/" class="logo">
                         <img src="assets/images/logo.png" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -111,15 +123,6 @@
         </div>
     </div>
 </footer>
-<?=
-$this->inlineScript()
-    ->prependFile($this->basePath('assets/js/custom.js'))
-    ->prependFile($this->basePath('assets/js/popup.js'))
-    ->prependFile($this->basePath('assets/js/tabs.js'))
-    ->prependFile($this->basePath('assets/js/owl-carousel.js'))
-    ->prependFile($this->basePath('assets/js/isotope.min.js'))
-    ->prependFile($this->basePath('vendor/bootstrap/js/bootstrap.min.js'))
-    ->prependFile($this->basePath('vendor/jquery/jquery.min.js'))
-?>
+
 </body>
 </html>

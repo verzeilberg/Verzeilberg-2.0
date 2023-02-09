@@ -3,6 +3,7 @@
 namespace Application\Controller\Factory;
 
 use Blog\Service\blogService;
+use Event\Service\eventCategoryService;
 use Event\Service\eventService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
@@ -38,13 +39,17 @@ class IndexControllerFactory implements FactoryInterface
         );
         $twitterService = new twitterService($config);
         $twitterOathService = new twitterOathService($config, $twitterService);
+        $viewHelperManager = $container->get('ViewHelperManager');
+        $eventCategoryService = new eventCategoryService($entityManager);
 
         return new IndexController(
             $blogService,
             $eventService,
             $stravaService,
             $twitterService,
-            $twitterOathService
+            $twitterOathService,
+            $viewHelperManager,
+            $eventCategoryService
         );
     }
 }
