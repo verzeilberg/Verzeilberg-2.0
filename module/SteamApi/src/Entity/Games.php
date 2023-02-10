@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\Entity;
+namespace SteamApi\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Laminas\Form\Annotation;
