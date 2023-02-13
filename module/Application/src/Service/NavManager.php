@@ -60,6 +60,12 @@ class NavManager {
             'link' =>  $this->router->getRoute('events')->assemble()
         ];
 
+        $items[] = [
+            'id' => 'running-stats',
+            'label' => 'Running stats',
+            'link' =>  $this->router->getRoute('runningStats')->assemble()
+        ];
+
 
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.

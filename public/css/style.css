@@ -45,17 +45,15 @@ img.finishedStamp {
     z-index: 9;
 }
 
-.event-title {
-    font-family: 'Bangers', cursive;
-    font-size: 1.4em;
-    color: #000;
-    letter-spacing: 4px;
-}
-
 /** Tweets homepage **/
 .tweet-item {
     min-height:300px;
     height:300px;
+}
+
+/** Events page **/
+.event-select {
+ padding: 15px 15px !important;
 }
 
 /** buttons **/
@@ -68,4 +66,81 @@ img.finishedStamp {
 
 .card-header {
     color:#e75e8d;
+}
+
+.event-pop-up {
+    background-color: #27292a;
+}
+
+/** Pagination **/
+ul.pagination li.page-item a.page-link {
+    background-color: #27292a;
+    border-color: #343438;
+    color:#ffffff;
+}
+
+ul.pagination li.page-item a.page-link:hover {
+    background-color: #F99;
+}
+
+
+ul.pagination li.active a.page-link {
+    background-color: #e75e8d;
+}
+
+/** Blogs **/
+.blogItems .item {
+    height:350px;
+    min-height:350px;
+}
+
+/** Footer **/
+.social-icons {
+    margin: 0 0 0.75rem;
+    padding: 0;
+}
+
+.social-icons li {
+    list-style: none;
+    display: inline-block;
+}
+
+.social-icons li + li {
+    margin-left: 0.25rem;
+}
+
+.social-icons a {
+    display: block;
+    color: #fff;
+    font-size: 1.85rem;
+    padding: 0.37rem 0.5rem 0.5rem 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    text-align: center;
+    transition: background .3s ease-in-out;
+}
+
+.social-icons a i {
+    vertical-align: text-top;
+}
+
+.fa-twitter {
+    color: #1da1f2;
+}
+
+.fa-pinterest {
+    color: #bd081c;
+}
+
+.fa-google-plus {
+    color: #F34A38;
+}
+
+.fa-youtube {
+    color: #ff0000;
+}
+
+.copyright {
+    margin:0 0 10px 0;
+    padding:0;
 }

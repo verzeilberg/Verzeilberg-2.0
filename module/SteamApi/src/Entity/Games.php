@@ -23,10 +23,7 @@ class Games extends UnityOfWork {
     protected $id;
 
     /**
-     * @ORM\Column(name="title", type="string", lenght=255 nullable=false)
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     protected $title;
-
-
-
 }

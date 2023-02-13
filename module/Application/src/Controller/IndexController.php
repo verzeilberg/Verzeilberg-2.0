@@ -121,6 +121,45 @@ class IndexController extends AbstractActionController
         ));
     }
 
+    /**
+     * This is the "event" action. It is used to display the "event" page.
+     */
+    public function eventAction()
+    {
+        $id = (int)$this->getRequest()->getPost('eventId');
+        $succes = true;
+        $errorMessage = null;
+        if (empty($id)) {
+            $succes = false;
+            $errorMessage = 'Geen id meegegeven.';
+        }
+        $event = $this->eventService->getEventById($id);
+        if (empty($event)) {
+            $succes = false;
+            $errorMessage = 'Event niet gevonden';
+        }
+
+        $eventArray = [];
+        $eventArray['eventStartDate'] = $event->getEventStartDate()->format('Y-m-d');
+        $eventArray['eventEndDate'] = $event->getEventEndDate()->format('Y-m-d');
+        $eventArray['title'] = $event->getTitle();
+        $eventArray['labelText'] = $event->getLabelText();
+        $eventArray['text'] = $event->getText();
+        $eventArray['category'] = $event->getCategory()->getName();
+        $eventArray['categoryImage'] = $event->getCategory()->getFile()->getPath();
+        $image = $event->getEventImage();
+        $eventArray['eventImage'] = $image->getImageTypes('original')[0]->getFolder() . $image->getImageTypes('original')[0]->getFileName();
+
+        // Return variables to view script with the help of
+        // ViewObject variable container
+        return new JsonModel(array(
+            'succes' => $succes,
+            'event' => $eventArray,
+            'errorMessage' => $errorMessage
+        ));
+    }
+
+
     public function getLocationsAction()
     {
         $success = true;
