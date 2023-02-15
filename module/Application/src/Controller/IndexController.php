@@ -139,6 +139,8 @@ class IndexController extends AbstractActionController
             $errorMessage = 'Event niet gevonden';
         }
 
+        VarDumper::dump($event->getCategory()); die;
+
         $eventArray = [];
         $eventArray['eventStartDate'] = $event->getEventStartDate()->format('Y-m-d');
         $eventArray['eventEndDate'] = $event->getEventEndDate()->format('Y-m-d');
@@ -149,6 +151,8 @@ class IndexController extends AbstractActionController
         $eventArray['categoryImage'] = $event->getCategory()->getFile()->getPath();
         $image = $event->getEventImage();
         $eventArray['eventImage'] = $image->getImageTypes('original')[0]->getFolder() . $image->getImageTypes('original')[0]->getFileName();
+
+        VarDumper::dump($event->getCategory()); die;
 
         // Return variables to view script with the help of
         // ViewObject variable container

@@ -10,6 +10,10 @@ html, body {
     padding: 8px 20px;
 }
 
+.module-page {
+    margin-top: 0 !important;
+}
+
 /* Running stats */
 
 .running-stats .card-header {

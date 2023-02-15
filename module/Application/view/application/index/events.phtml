@@ -1,54 +1,53 @@
-    <!-- Main Content -->
-    <div class="most-popular" id="events">
-        <!-- Google maps -->
-        <div id="map"></div>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1n_2dwkLKZ8lMls39ZGeLuxQ08oyniIs&callback=initMap">
-        </script>
-        <!-- End google maps -->
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="item event-select">
-                    <form id="selectYear" method="post">
-                        <div class="row mt-2 mb-2">
-                            <div class="col text-end">
-                                <label class="col-form-label" for="year">Jaar</label>
-                            </div>
-                            <div class="col-4">
-                                <select name="year" id="year" class="form-select form-select-sm">
-                                    <option <?php echo($year == 'all' ? 'selected' : ''); ?> value="all">Alle jaren
-                                    </option>
-                                    <?php foreach ($years AS $eYear) { ?>
-                                        <option <?php echo($year == $eYear['eYear'] ? 'selected' : ''); ?>
-                                            value="<?php echo $eYear['eYear']; ?>"><?php echo $eYear['eYear']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col-4">
-                                <select name="category" id="category" class="form-select form-select-sm">
-                                    <option <?php echo($categoryId == 'all' ? 'selected' : ''); ?> value="all">Alle
-                                        categorie&euml;n
-                                    </option>
-                                    <?php foreach ($categories AS $category) { ?>
-                                        <option <?php echo($categoryId == $category->getId() ? 'selected' : ''); ?>
-                                            value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="col text-left">
-                                <label class="col-form-label" for="category">Categorie</label>
-                            </div>
+<div class="most-popular module-page" id="events">
+    <!-- Google maps -->
+    <div id="map"></div>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1n_2dwkLKZ8lMls39ZGeLuxQ08oyniIs&callback=initMap">
+    </script>
+    <!-- End google maps -->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="item event-select">
+                <form id="selectYear" method="post">
+                    <div class="row mt-2 mb-2">
+                        <div class="col text-end">
+                            <label class="col-form-label" for="year">Jaar</label>
                         </div>
-                    </form>
-                </div>
+                        <div class="col-4">
+                            <select name="year" id="year" class="form-select form-select-sm">
+                                <option <?php echo($year == 'all' ? 'selected' : ''); ?> value="all">Alle jaren
+                                </option>
+                                <?php foreach ($years as $eYear) { ?>
+                                    <option <?php echo($year == $eYear['eYear'] ? 'selected' : ''); ?>
+                                            value="<?php echo $eYear['eYear']; ?>"><?php echo $eYear['eYear']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select name="category" id="category" class="form-select form-select-sm">
+                                <option <?php echo($categoryId == 'all' ? 'selected' : ''); ?> value="all">Alle
+                                    categorie&euml;n
+                                </option>
+                                <?php foreach ($categories as $category) { ?>
+                                    <option <?php echo($categoryId == $category->getId() ? 'selected' : ''); ?>
+                                            value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col text-left">
+                            <label class="col-form-label" for="category">Categorie</label>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
 
-        </div>
-        <div class="row" id="eventItems">
-        </div>
     </div>
+    <div class="row" id="eventItems">
+    </div>
+</div>
 
-    <!-- Event detail  -->
+<!-- Event detail  -->
 <?php
 echo $this->partial('event/partial/event_detail.phtml');
 ?>
