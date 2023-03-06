@@ -515,4 +515,11 @@ return [
         ],
         'rootPath' => $_SERVER['DOCUMENT_ROOT'] . '/img/userFiles',
     ],
+    'filesUploadSettings' => [
+        'blog' => [
+            'uploadFolder' => '/files/userFiles/blog2/',
+            'uploadeFileSize' => '5000000000000000',
+            'allowedFileExtensions' => [],
+        ]
+    ],
 ];
