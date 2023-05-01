@@ -2,6 +2,10 @@ html, body {
     color: #666666;
 }
 
+h1 {
+    color: #e75e8d !important;
+}
+
 #login {
     margin-top:5px;
 }
@@ -35,14 +39,14 @@ div#events .row {
     margin-bottom: 30px;
 }
 
-div#events .card {
+.eventItem .item {
     position: relative;
     width: 100%;
 }
 
 img.finishedStamp {
     position: absolute;
-    top: 10px;
+    top: 40px;
     left: 30px;
     width: 175px;
     height: auto;

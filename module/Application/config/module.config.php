@@ -86,6 +86,16 @@ return [
                             ],
                         ],
                     ],
+                    'steam' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/steam[[/]:action[/:id]]',
+                            'defaults' => [
+                                'controller' => 'steambeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
                     'users' => [
                         'type' => Segment::class,
                         'options' => [

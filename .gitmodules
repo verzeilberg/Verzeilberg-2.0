@@ -43,3 +43,6 @@
 [submodule "module/Agenda"]
 	path = module/Agenda
 	url = git@github.com:verzeilberg/Agenda.git
+[submodule "module/SteamApi"]
+	path = module/SteamApi
+	url = git@github.com:verzeilberg/SteamApi.git

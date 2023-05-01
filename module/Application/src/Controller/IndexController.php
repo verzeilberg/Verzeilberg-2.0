@@ -12,6 +12,7 @@ use Exception;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
+use SteamApi\Service\steamPlayerService;
 use StravaApi\Service\StravaService;
 use Symfony\Component\VarDumper\VarDumper;
 use Twitter\Service\twitterOathService;
@@ -31,9 +32,11 @@ class IndexController extends AbstractActionController
     /** @var twitterOathService */
     protected twitterOathService $twitterOathService;
     /** @var  eventCategoryService */
-    protected $eventCategoryService;
+    protected eventCategoryService $eventCategoryService;
     /**  */
     protected $viewHelperManager;
+    /** @var steamPlayerService */
+    protected steamPlayerService $steamPlayerService;
 
     public function __construct(
         blogService        $blogService,
@@ -42,7 +45,8 @@ class IndexController extends AbstractActionController
         twitterService     $twitterService,
         twitterOathService $twitterOathService,
                            $viewHelperManager,
-        eventCategoryService $eventCategoryService
+        eventCategoryService $eventCategoryService,
+        $steamPlayerService
     )
     {
         $this->blogService          = $blogService;
@@ -52,6 +56,7 @@ class IndexController extends AbstractActionController
         $this->twitterOathService   = $twitterOathService;
         $this->viewHelperManager    = $viewHelperManager;
         $this->eventCategoryService = $eventCategoryService;
+        $this->steamPlayerService   = $steamPlayerService;
     }
 
     /**
@@ -70,12 +75,12 @@ class IndexController extends AbstractActionController
         $blogs = $this->blogService->getOnlineBlogsBasedOnStartAndOffSet(0, 6);
         //Get events
         $events = $this->eventService->getUpcommingEvent(3);
-
         $upcommingEvent = $this->eventService->getUpcommingEvent();
-
         //Tweets
         $tweets = $this->twitterOathService->getTwitterUserTimeline(1, 4);
         $tweets = $this->twitterService->createTweetArray($tweets);
+        //Steam
+        $steamGames = $this->steamPlayerService->getOwnedGames(3);
 
         return new ViewModel([
             'blogs' => $blogs,
@@ -88,6 +93,7 @@ class IndexController extends AbstractActionController
             'averageHeartbeat' => $this->stravaService->activityRepository->getAverageHeartbeat('Run'),
             'tweets' => $tweets,
             'upcommingEvent' => $upcommingEvent,
+            'steamGames' => $steamGames,
         ]);
     }
 
