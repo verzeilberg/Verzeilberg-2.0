@@ -46,7 +46,7 @@ class IndexControllerFactory implements FactoryInterface
         $viewHelperManager              = $container->get('ViewHelperManager');
         $eventCategoryService           = new eventCategoryService($entityManager);
         $steamGameService               = new steamGameService();
-        $steamPlayerAchievementsService        = new steamPlayerAchievementsService($config);
+        $steamPlayerAchievementsService = new steamPlayerAchievementsService($config);
         $steamPlayerService             = new steamPlayerService($config, $steamGameService, $steamPlayerAchievementsService);
 
         return new IndexController(

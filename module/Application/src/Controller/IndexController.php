@@ -169,6 +169,20 @@ class IndexController extends AbstractActionController
         ));
     }
 
+    public function gamesAction()
+    {
+        $this->viewHelperManager->get('headScript')->appendFile('/js/eventsFrontEnd.js');
+        $this->viewHelperManager->get('headScript')->appendFile('/js/lodash.js');
+        $this->viewHelperManager->get('headScript')->appendFile('/js/moment.js');
+        $this->viewHelperManager->get('headLink')->appendStylesheet('/css/events.css');
+
+        // Return variables to view script with the help of
+        // ViewObject variable container
+        return new ViewModel(array(
+
+        ));
+
+    }
 
     public function getLocationsAction()
     {

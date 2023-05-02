@@ -59,6 +59,11 @@ img.finishedStamp {
     height:300px;
 }
 
+/** Games homepage **/
+.gaming-library h4 {
+    font-size: 20px;
+}
+
 /** Events page **/
 .event-select {
  padding: 15px 15px !important;

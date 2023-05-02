@@ -18,7 +18,6 @@ return [
             'SteamApi' => [
                 'type'    => 'segment',
                 'options' => [
-                    // Change this to something specific to your module
                     'route' => '/steam[/:action][/:id]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -67,9 +66,10 @@ return [
         ]
     ],
     'steamApi' => [
-       'Steam-Web-API-key' => '',
+        'url' => 'http://api.steampowered.com',
+        'Steam-Web-API-key' => '',
         'Steam-id' => '',
         'format' => '', #json/xml
-        'version' => '0001'
+        'version' => 'v0001'
     ],
 ];

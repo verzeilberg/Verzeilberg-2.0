@@ -371,6 +371,16 @@ return [
                     ],
                 ],
             ],
+            'games' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/games[/:action[/:id]]',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action' => 'games',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -394,7 +404,7 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index', 'about', 'events', 'event', 'getEventLocations', 'user', 'getLocations', 'runningStats', 'getChartData', 'detail'], 'allow' => '*'],
+                ['actions' => ['index', 'about', 'games', 'events', 'event', 'getEventLocations', 'user', 'getLocations', 'runningStats', 'getChartData', 'detail'], 'allow' => '*'],
                 // Allow authorized users to visit "profiel" action
                 //['actions' => ['profiel'], 'allow' => '@']
             ],
