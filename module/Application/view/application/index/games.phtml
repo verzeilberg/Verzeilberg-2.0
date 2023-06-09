@@ -1,1 +1,37 @@
-test
+<div class="most-popular module-page">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Games</em> Right Now</h4>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <?php foreach ($games as $game) { ?>
+                <div class="row item">
+                    <div class="col">
+                        <a href="<?php echo $this->url('games', ['action' => 'game', 'id' => $game->appid]); ?>">
+                            <img src="<?= $game['image'] ?>" alt="<?= $game['name'] ?>"/>
+                        </a>
+                    </div>
+                    <div class="col">
+                        <h4><?= $game['name'] ?>
+                            <br><span><?= $game['genres'] ?></span>
+                        </h4>
+                    </div>
+                </div>
+            <?php } ?>
+            <!-- Pagination -->
+            <?php
+            //echo $this->paginationControl($games, 'Sliding', 'layout/paginator');
+            ?>
+        </div>
+        <div class="col-lg-4">
+            <div class="fixed">
+                <!-- Search Widget -->
+                <?php //echo $this->partial('partial/search_form.phtml'); ?>
+                <!-- Categories Widget -->
+                <?php //echo $this->partial('partial/category_links.phtml', array('categories' => $categories)); ?>
+            </div>
+        </div>
+    </div>
+</div>

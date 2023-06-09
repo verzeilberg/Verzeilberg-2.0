@@ -1,16 +1,27 @@
 <?php
 namespace SteamApi;
 
+use SteamApi\Command\LoadPlayerGamesCommand;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
 return [
+    'laminas-cli' => [
+        'commands' => [
+            'verzeilberg:import-player-games' => LoadPlayerGamesCommand::class,
+        ],
+    ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
         ],
         'aliases' => [
             'steamindex' => Controller\IndexController::class
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            Command\LoadPlayerGamesCommand::class => Command\Factory\LoadPlayerGamesCommandFactory::class,
         ],
     ],
     'router' => [

@@ -74,10 +74,23 @@ class steamPlayerService
 
         $result = [];
         foreach ($games as $index => $game) {
+
             $gameDetail = $this->steamGameService->getGameDetail($game->appid);
+
+            if ($gameDetail === null) {
+                continue;
+            }
+
+
             $gameStats = $this->steamGameStatsService->getPlayerAchievements($game->appid);
-            $gameAchievements =  $this->steamGameStatsService->getAchievementsStats($gameStats->playerstats->achievements);
+            $gameAchievements = [];
+            if (isset($gameStats->playerstats)) {
+                $gameAchievements =  $this->steamGameStatsService->getAchievementsStats($gameStats->playerstats->achievements);
+            }
+
+
             $appId = $game->appid;
+            $result[$index]['appId'] = $appId;
             $result[$index]['name'] = $gameDetail->$appId->data->name;
             $result[$index]['image'] = $gameDetail->$appId->data->header_image;
             $result[$index]['genres'] = $this->getGenres($gameDetail->$appId->data->genres);

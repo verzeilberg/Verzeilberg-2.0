@@ -80,7 +80,7 @@ class IndexController extends AbstractActionController
         $tweets = $this->twitterOathService->getTwitterUserTimeline(1, 4);
         $tweets = $this->twitterService->createTweetArray($tweets);
         //Steam
-        $steamGames = $this->steamPlayerService->getOwnedGames(3);
+        $steamGames = $this->steamPlayerService->getOwnedGames(6);
 
         return new ViewModel([
             'blogs' => $blogs,
@@ -145,7 +145,6 @@ class IndexController extends AbstractActionController
             $errorMessage = 'Event niet gevonden';
         }
 
-        VarDumper::dump($event->getCategory()); die;
 
         $eventArray = [];
         $eventArray['eventStartDate'] = $event->getEventStartDate()->format('Y-m-d');
@@ -158,7 +157,6 @@ class IndexController extends AbstractActionController
         $image = $event->getEventImage();
         $eventArray['eventImage'] = $image->getImageTypes('original')[0]->getFolder() . $image->getImageTypes('original')[0]->getFileName();
 
-        VarDumper::dump($event->getCategory()); die;
 
         // Return variables to view script with the help of
         // ViewObject variable container
@@ -176,10 +174,13 @@ class IndexController extends AbstractActionController
         $this->viewHelperManager->get('headScript')->appendFile('/js/moment.js');
         $this->viewHelperManager->get('headLink')->appendStylesheet('/css/events.css');
 
+        //Steam
+        $steamGames = $this->steamPlayerService->getOwnedGames(3);
+
         // Return variables to view script with the help of
         // ViewObject variable container
         return new ViewModel(array(
-
+            'games' => $steamGames
         ));
 
     }
