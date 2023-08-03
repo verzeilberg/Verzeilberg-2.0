@@ -29,8 +29,16 @@
         ->prependStylesheet($this->basePath('vendor/bootstrap/css/bootstrap.min.css'))
     ?>
 
+
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
+
+
 
     <!-- Scripts -->
     <?=
@@ -43,6 +51,14 @@
         ->prependFile($this->basePath('assets/js/isotope.min.js'))
         ->prependFile($this->basePath('vendor/jquery/jquery.min.js'))
     ?>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        $( document ).ready(function() {
+            Fancybox.bind("[data-fancybox]", {
+                // Your custom options
+            });
+        });
+    </script>
 
     <!-- More scripts -->
     <?= $this->headScript() ?>

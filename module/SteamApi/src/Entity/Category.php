@@ -38,4 +38,58 @@ class Category extends UnityOfWork {
         $this->games = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Category
+     */
+    public function setId(int $id): Category
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Category
+     */
+    public function setDescription(string $description): Category
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param Collection $games
+     * @return Category
+     */
+    public function setGames(Collection $games): Category
+    {
+        $this->games = $games;
+        return $this;
+    }
+
 }

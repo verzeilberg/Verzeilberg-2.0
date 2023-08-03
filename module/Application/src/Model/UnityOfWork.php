@@ -2,12 +2,15 @@
 
 namespace Application\Model;
 
+use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\OptimisticLockException;
 use Laminas\Form\Annotation;
 use Doctrine\ORM\Mapping as ORM;
 use User\Entity\User;
 use DateTime;
+use Doctrine\ORM\EntityManager;
 
-class UnityOfWork
+class UnityOfWork extends EntityManager
 {
 
     /**
@@ -180,5 +183,16 @@ class UnityOfWork
     {
         $this->deleted = $deleted;
         return $this;
+    }
+
+    /**
+     * @return void
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(): void
+    {
+        $this->persist($this);
+        $this->flush($this);
     }
 }

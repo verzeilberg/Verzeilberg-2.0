@@ -77,7 +77,7 @@ return [
         ]
     ],
     'steamApi' => [
-        'url' => 'http://api.steampowered.com',
+        'url' => 'https://api.steampowered.com',
         'Steam-Web-API-key' => '',
         'Steam-id' => '',
         'format' => '', #json/xml

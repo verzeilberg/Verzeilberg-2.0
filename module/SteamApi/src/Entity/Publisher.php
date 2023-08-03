@@ -39,4 +39,59 @@ class Publisher extends UnityOfWork {
         $this->games = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Publisher
+     */
+    public function setId(int $id): Publisher
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Publisher
+     */
+    public function setName(string $name): Publisher
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param Collection $games
+     * @return Publisher
+     */
+    public function setGames(Collection $games): Publisher
+    {
+        $this->games = $games;
+        return $this;
+    }
+
+
 }

@@ -16,9 +16,17 @@ use Application\Model\UnityOfWork;
  */
 class Game extends UnityOfWork {
 
+
     /**
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer", length=11, unique=true)
+     * @ORM\Column(name="id", type="integer", length=11)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
+     */
+    protected int $id;
+
+    /**
+     * @ORM\Column(name="appid", type="integer", length=11, unique=false, nullable=false)
      */
     protected int $appId;
 

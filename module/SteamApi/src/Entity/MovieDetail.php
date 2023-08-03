@@ -56,4 +56,94 @@ class MovieDetail extends UnityOfWork {
         $this->movies = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return MovieDetail
+     */
+    public function setId(int $id): MovieDetail
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return MovieDetail
+     */
+    public function setName(string $name): MovieDetail
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnail(): string
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string $thumbnail
+     * @return MovieDetail
+     */
+    public function setThumbnail(string $thumbnail): MovieDetail
+    {
+        $this->thumbnail = $thumbnail;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param Collection $games
+     * @return MovieDetail
+     */
+    public function setGames(Collection $games): MovieDetail
+    {
+        $this->games = $games;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getMovies(): Collection
+    {
+        return $this->movies;
+    }
+
+    /**
+     * @param Collection $movies
+     * @return MovieDetail
+     */
+    public function setMovies(Collection $movies): MovieDetail
+    {
+        $this->movies = $movies;
+        return $this;
+    }
+
 }

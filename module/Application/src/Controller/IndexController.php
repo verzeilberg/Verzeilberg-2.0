@@ -76,9 +76,6 @@ class IndexController extends AbstractActionController
         //Get events
         $events = $this->eventService->getUpcommingEvent(3);
         $upcommingEvent = $this->eventService->getUpcommingEvent();
-        //Tweets
-        $tweets = $this->twitterOathService->getTwitterUserTimeline(1, 4);
-        $tweets = $this->twitterService->createTweetArray($tweets);
         //Steam
         $steamGames = $this->steamPlayerService->getOwnedGames(6);
 
@@ -91,7 +88,6 @@ class IndexController extends AbstractActionController
             'averageSpeed' => $this->stravaService->activityRepository->getAverageSpeed('Run'),
             'averageElevation' => $this->stravaService->activityRepository->getAverageElevation('Run'),
             'averageHeartbeat' => $this->stravaService->activityRepository->getAverageHeartbeat('Run'),
-            'tweets' => $tweets,
             'upcommingEvent' => $upcommingEvent,
             'steamGames' => $steamGames,
         ]);

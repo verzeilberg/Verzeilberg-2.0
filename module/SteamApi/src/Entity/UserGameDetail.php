@@ -58,5 +58,60 @@ class UserGameDetail extends UnityOfWork {
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getPlaytimeForever(): int
+    {
+        return $this->playtimeForever;
+    }
+
+    /**
+     * @param int $playtimeForever
+     * @return UserGameDetail
+     */
+    public function setPlaytimeForever(int $playtimeForever): UserGameDetail
+    {
+        $this->playtimeForever = $playtimeForever;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeLastPlayed(): int
+    {
+        return $this->timeLastPlayed;
+    }
+
+    /**
+     * @param int $timeLastPlayed
+     * @return UserGameDetail
+     */
+    public function setTimeLastPlayed(int $timeLastPlayed): UserGameDetail
+    {
+        $this->timeLastPlayed = $timeLastPlayed;
+        return $this;
+    }
+
+    /**
+     * @return Game|null
+     */
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param Game|null $game
+     * @return UserGameDetail
+     */
+    public function setGame(?Game $game): UserGameDetail
+    {
+        $this->game = $game;
+        return $this;
+    }
+
+
 
 }

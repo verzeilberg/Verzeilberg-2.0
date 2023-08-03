@@ -226,7 +226,6 @@
     }
 
 
-	
 
 
 })(window.jQuery);

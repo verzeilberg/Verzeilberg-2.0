@@ -9,30 +9,27 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Application\Model\UnityOfWork;
 
 /**
- * This class represents a steam developer item.
+ * This class represents a steam user achievement item.
  * @ORM\Entity()
- * @ORM\Table(name="steam_developers")
+ * @ORM\Table(name="steam_user_achievements")
  * @Annotation\Hydrator("Laminas\Hydrator\ObjectPropertyHydrator")
  */
-class Developer extends UnityOfWork {
+class UserAchievement extends UnityOfWork {
 
     /**
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer", length=11)
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @var integer
+     * @ORM\Column(name="id", type="integer", length=11, unique=true)
      */
     protected int $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
-     * @var string
+     * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
-    protected string $name;
+    protected string $description;
 
     /**
-     * Many Developers have Many Games.
-     * @ORM\ManyToMany(targetEntity="Game", mappedBy="developers")
+     * Many Genres have Many Games.
+     * @ORM\ManyToMany(targetEntity="Game", mappedBy="genres")
      * @var Collection<int, Game>
      */
     private Collection $games;
@@ -51,9 +48,9 @@ class Developer extends UnityOfWork {
 
     /**
      * @param int $id
-     * @return Developer
+     * @return Genre
      */
-    public function setId(int $id): Developer
+    public function setId(int $id): Genre
     {
         $this->id = $id;
         return $this;
@@ -62,18 +59,18 @@ class Developer extends UnityOfWork {
     /**
      * @return string
      */
-    public function getName(): string
+    public function getDescription(): string
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * @param string $name
-     * @return Developer
+     * @param string $description
+     * @return Genre
      */
-    public function setName(string $name): Developer
+    public function setDescription(string $description): Genre
     {
-        $this->name = $name;
+        $this->description = $description;
         return $this;
     }
 
@@ -87,13 +84,12 @@ class Developer extends UnityOfWork {
 
     /**
      * @param Collection $games
-     * @return Developer
+     * @return Genre
      */
-    public function setGames(Collection $games): Developer
+    public function setGames(Collection $games): Genre
     {
         $this->games = $games;
         return $this;
     }
-
 
 }

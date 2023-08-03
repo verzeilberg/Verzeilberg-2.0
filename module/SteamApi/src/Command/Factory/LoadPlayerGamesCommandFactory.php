@@ -20,11 +20,18 @@ class LoadPlayerGamesCommandFactory
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): LoadPlayerGamesCommand
     {
-        $entityManager = $container->get('doctrine.entitymanager.orm_default');
+        $entityManager                  = $container->get('doctrine.entitymanager.orm_default');
         $config                         = $container->get('config');
         $steamGameService               = new steamGameService();
         $steamPlayerAchievementsService = new steamPlayerAchievementsService($config);
-        $steamPlayerService             = new steamPlayerService($config, $steamGameService, $steamPlayerAchievementsService);
-        return new LoadPlayerGamesCommand($entityManager, $steamPlayerService);
+        $steamPlayerService             = new steamPlayerService(
+            $config,
+            $steamGameService,
+            $steamPlayerAchievementsService
+        );
+        return new LoadPlayerGamesCommand(
+            $entityManager,
+            $steamPlayerService
+        );
     }
 }

@@ -31,14 +31,12 @@
                     ?>
                     <div class="col-lg-4 col-sm-6">
                         <div class="item">
-                            <?= $blogImage ?>
+                            <a href="<?php echo $this->url('blog', ['action' => 'detail', 'id' => $blog->getId()]); ?>">
+                                <?= $blogImage ?>
+                            </a>
                             <h4><?= $blog->getTitle(); ?>
                                 <br><span><?= !empty($blog->getCategories()->first()) ? $blog->getCategories()->first()->getName() : ''; ?></span>
                             </h4>
-                            <ul>
-                                <li><i class="fa fa-star"></i> 4.8</li>
-                                <li><i class="fa fa-download"></i> 2.3M</li>
-                            </ul>
                         </div>
                     </div>
                 <?php } ?>
@@ -188,25 +186,6 @@
     </div>
 <?php } ?>
 <!-- ***** Events End ***** -->
-<!-- ***** Start Stream Start ***** -->
-<div class="start-stream">
-    <div class="col-lg-12">
-        <div class="heading-section">
-            <h4><em>Tweets</em> What's going on?</h4>
-        </div>
-        <div class="row">
-            <?php foreach ($tweets as $tweet) { ?>
-                <div class="col-lg-3">
-                    <div class="item tweet-item">
-                        <h4><?= $tweet['tweet_date']; ?></h4>
-                        <p><?= $tweet['tweet_text']; ?></p>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-</div>
-<!-- ***** Start Stream End ***** -->
 
 <!-- ***** Gaming Library Start ***** -->
 <div class="gaming-library">
@@ -217,43 +196,53 @@
         <?php foreach ($steamGames as $index => $game) { ?>
             <div class="row">
                 <div class="col mb-2">
-                    <h4><?= $game['name'] ?></h4>
-                    <div><?= $game['genres'] ?></div>
+                    <h4><?= $game['game']['name']  ?></h4>
+                    <div>
+                        <?php
+                        $genres = '';
+                        foreach ( $game['genres'] as $index => $genre) {
+                            $genres .= ($index > 0?', ': '') . $genre["description"];
+                        }
+                        echo $genres;
+                        ?>
+                    </div>
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col">
-                    <img src="<?= $game['image'] ?>" alt="<?= $game['name'] ?>">
+                    <img src="<?= $game['game']["header_image"]?>" alt="<?= $game['game']['name'] ?>">
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-calendar-day"></i></i></h4>
-                        <div class="text-center"><?= $game['last_played'] ?></div>
+                        <div class="text-center"><?= $game["user_game_detail"]['time_last_played'] ?></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-hourglass-half"></i></h4>
-                        <div class="text-center"><?= $game['play_time'] ?> hours</div>
+                        <div class="text-center"><?= $game["user_game_detail"]['play_time_forever'] ?> hours</div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-trophy"></i></h4>
                         <div class="text-center">
-                            <?= $game['achievements']['totalAchievements'] ?>
+                            <?= $game["achievements"]['totalAchievements'] ?? '0' ?>
                             /
-                            <?= $game['achievements']['totalFinishedAchievements'] ?>
+                            <?= $game["achievements"]['totalFinishedAchievements'] ?? '0' ?>
                         </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
     </div>
+    <!--
     <div class="col-lg-12">
         <div class="main-button">
             <a href="<?php echo $this->url('games'); ?>">View Your Library</a>
         </div>
     </div>
 </div>
+-->
 <!-- ***** Gaming Library End ***** -->

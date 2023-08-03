@@ -38,4 +38,58 @@ class Genre extends UnityOfWork {
         $this->games = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Genre
+     */
+    public function setId(int $id): Genre
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Genre
+     */
+    public function setDescription(string $description): Genre
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    /**
+     * @param Collection $games
+     * @return Genre
+     */
+    public function setGames(Collection $games): Genre
+    {
+        $this->games = $games;
+        return $this;
+    }
+
 }

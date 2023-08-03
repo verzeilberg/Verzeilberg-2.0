@@ -4,6 +4,7 @@ namespace SteamApi\Service;
 
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Laminas\Form\Annotation\AnnotationBuilder;
+use Laminas\Log\Logger;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
@@ -37,11 +38,28 @@ class steamGameService
 
     /**
      * @param $appId
-     * @return mixed
+     * @return void
      */
     public function getGameDetail($appId)
     {
-        return json_decode(file_get_contents(sprintf($this->url. '%d',$appId)));
+        // make request
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, sprintf($this->url. '%d',$appId));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($ch);
+
+        // convert response
+        $output = json_decode($output);
+
+        // handle error; error output
+        if(curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
+            $logger = new Logger();
+            $logger->addWriter('stream', null, ['stream' => 'php://output']);
+            $logger->info(sprintf('Game detail with appId: %s not imported!', $appId));
+            return null;
+        }
+        curl_close($ch);
+        return $output;
     }
 
 }

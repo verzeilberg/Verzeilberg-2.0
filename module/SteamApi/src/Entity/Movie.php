@@ -37,6 +37,78 @@ class Movie extends UnityOfWork {
      */
     protected string $url;
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return Movie
+     */
+    public function setId(int $id): Movie
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFormat(): string
+    {
+        return $this->format;
+    }
+
+    /**
+     * @param string $format
+     * @return Movie
+     */
+    public function setFormat(string $format): Movie
+    {
+        $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuality(): string
+    {
+        return $this->quality;
+    }
+
+    /**
+     * @param string $quality
+     * @return Movie
+     */
+    public function setQuality(string $quality): Movie
+    {
+        $this->quality = $quality;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     * @return Movie
+     */
+    public function setUrl(string $url): Movie
+    {
+        $this->url = $url;
+        return $this;
+    }
+
 
 
 }
