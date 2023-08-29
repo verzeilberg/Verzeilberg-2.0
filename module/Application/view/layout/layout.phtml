@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <?= $this->headTitle('Cyborg - Awesome HTML5 Template')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?= $this->headTitle('Verzeilberg.nl')->setSeparator(' - ')->setAutoEscape(false) ?>
 
     <?= $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1, shrink-to-fit=no')
@@ -21,24 +21,15 @@
         'href' => $this->basePath() . '/img/favicon.ico'
     ])
         ->prependStylesheet($this->basePath('css/style.css'))
+        ->prependStylesheet('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap')
         ->prependStylesheet('https://unpkg.com/swiper@7/swiper-bundle.min.css')
         ->prependStylesheet($this->basePath('assets/css/animate.css'))
         ->prependStylesheet($this->basePath('assets/css/owl.css'))
         ->prependStylesheet($this->basePath('assets/css/templatemo-cyborg-gaming.css'))
         ->prependStylesheet($this->basePath('assets/css/fontawesome.css'))
         ->prependStylesheet($this->basePath('vendor/bootstrap/css/bootstrap.min.css'))
+        ->prependStylesheet('https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css')
     ?>
-
-
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
-    />
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-
-
 
     <!-- Scripts -->
     <?=
@@ -46,12 +37,12 @@
         ->prependFile($this->basePath('assets/js/custom.js'))
         ->prependFile($this->basePath('assets/js/popup.js'))
         ->prependFile($this->basePath('assets/js/tabs.js'))
+        ->prependFile('https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js')
         ->prependFile($this->basePath('assets/js/owl-carousel.js'))
         ->prependFile($this->basePath('vendor/bootstrap/js/bootstrap.min.js'))
         ->prependFile($this->basePath('assets/js/isotope.min.js'))
         ->prependFile($this->basePath('vendor/jquery/jquery.min.js'))
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
         $( document ).ready(function() {
             Fancybox.bind("[data-fancybox]", {

@@ -93,7 +93,7 @@ class IndexController extends AbstractActionController
         ]);
     }
 
-    public function eventsAction()
+    public function eventsAction(): ViewModel
     {
         $this->viewHelperManager->get('headScript')->appendFile('/js/eventsFrontEnd.js');
         $this->viewHelperManager->get('headScript')->appendFile('/js/lodash.js');
@@ -126,7 +126,7 @@ class IndexController extends AbstractActionController
     /**
      * This is the "event" action. It is used to display the "event" page.
      */
-    public function eventAction()
+    public function eventAction(): JsonModel
     {
         $id = (int)$this->getRequest()->getPost('eventId');
         $succes = true;
