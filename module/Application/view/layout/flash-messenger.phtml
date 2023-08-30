@@ -1,0 +1,16 @@
+<?php
+$flash = $this->flashMessenger();
+$flash->setMessageOpenFormat('<div%s>
+<ul><li>')
+        ->setMessageSeparatorString('</li><li>')
+        ->setMessageCloseString('</li></ul></div>');
+
+?>
+    <div class="row  pt-4 px-4">
+        <div class="col flashMessages">
+            <?= $flash->render('error',   ['alert', 'alert-dismissible', 'alert-danger']); ?>
+            <?= $flash->render('info',    ['alert', 'alert-dismissible', 'alert-info']); ?>
+            <?= $flash->render('default', ['alert', 'alert-dismissible', 'alert-warning']); ?>
+            <?= $flash->render('success', ['alert', 'alert-dismissible', 'alert-success']); ?>
+        </div>
+    </div>

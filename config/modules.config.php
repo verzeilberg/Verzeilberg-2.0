@@ -49,5 +49,4 @@ return [
     'StravaApi',
     'SteamApi',
     'AssetManager',
-
 ];

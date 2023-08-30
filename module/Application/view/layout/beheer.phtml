@@ -20,10 +20,10 @@
     <!-- Le styles -->
     <?=
     $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
-        ->prependStylesheet($this->basePath('beheer/owlcarousel/assets/owl.carousel.min.css'))
-        ->prependStylesheet($this->basePath('beheer/tempusdominus/css/tempusdominus-bootstrap-4.min.css'))
-        ->prependStylesheet($this->basePath('beheer/css/bootstrap.min.css'))
-        ->prependStylesheet($this->basePath('beheer/css/style.css'))
+        ->prependStylesheet($this->basePath('beheerAssets/owlcarousel/assets/owl.carousel.min.css'))
+        ->prependStylesheet($this->basePath('beheerAssets/tempusdominus/css/tempusdominus-bootstrap-4.min.css'))
+        ->prependStylesheet($this->basePath('beheerAssets/css/bootstrap.min.css'))
+        ->prependStylesheet($this->basePath('beheerAssets/css/style.css'))
     ?>
 </head>
 
@@ -37,7 +37,6 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-secondary navbar-dark">
@@ -46,7 +45,7 @@
             </a>
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="rounded-circle" src="/beheer/img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle" src="/beheerAssets/img/user.jpg" alt="" style="width: 40px; height: 40px;">
                     <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                 </div>
                 <div class="ms-3">
@@ -61,8 +60,12 @@
     </div>
     <!-- Sidebar End -->
 
+
     <!-- Content start -->
     <div class="content">
+
+        <?= $this->partial('flash-messenger.phtml'); ?>
+
         <?= $this->content ?>
     </div>
     <!-- Content End -->
@@ -71,15 +74,15 @@
 <!-- JavaScript Libraries -->
 <?=
 $this->inlineScript()
-    ->prependFile($this->basePath('beheer/ckEditor/ckeditor.js'))
-    ->prependFile($this->basePath('beheer/js/main.js'))
-    ->prependFile($this->basePath('beheer/tempusdominus/js/tempusdominus-bootstrap-4.min.js'))
-    ->prependFile($this->basePath('beheer/tempusdominus/js/moment-timezone.min.js'))
-    ->prependFile($this->basePath('beheer/tempusdominus/js/moment.min.js'))
-    ->prependFile($this->basePath('beheer/owlcarousel/owl.carousel.min.js'))
-    ->prependFile($this->basePath('beheer/waypoints/waypoints.min.js'))
-    ->prependFile($this->basePath('beheer/easing/easing.min.js'))
-    ->prependFile($this->basePath('beheer/chart/chart.min.js'))
+    ->prependFile($this->basePath('beheerAssets/ckEditor/ckeditor.js'))
+    ->prependFile($this->basePath('beheerAssets/js/main.js'))
+    ->prependFile($this->basePath('beheerAssets/tempusdominus/js/tempusdominus-bootstrap-4.min.js'))
+    ->prependFile($this->basePath('beheerAssets/tempusdominus/js/moment-timezone.min.js'))
+    ->prependFile($this->basePath('beheerAssets/tempusdominus/js/moment.min.js'))
+    ->prependFile($this->basePath('beheerAssets/owlcarousel/owl.carousel.min.js'))
+    ->prependFile($this->basePath('beheerAssets/waypoints/waypoints.min.js'))
+    ->prependFile($this->basePath('beheerAssets/easing/easing.min.js'))
+    ->prependFile($this->basePath('beheerAssets/chart/chart.min.js'))
     ->prependFile('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js')
     ->prependFile('https://code.jquery.com/jquery-3.4.1.min.js')
 ?>

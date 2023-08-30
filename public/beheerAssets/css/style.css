@@ -278,3 +278,14 @@
     background: var(--dark);
     border-color: var(--primary);
 }
+
+/*** Flash messengers ***/
+div.flashMessages > div.alert {
+    margin-bottom: 0;
+}
+
+div.flashMessages > div.alert > ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0 ;
+}
