@@ -71,7 +71,7 @@ class BeheerMenu extends AbstractHelper
         $escapeHtml = $this->getView()->plugin('escapeHtml');
         $link = $item['link'] ?? '#';
         $label = $item['label'] ?? '';
-        $icon = $item['icon']? '<i class="far '.$item['icon'].' me-2"></i>':'';
+        $icon = $item['icon']? '<i class="'.$item['icon'].' me-2"></i>':'';
 
         if (isset($item['dropdown'])) { //Menu has subitems
 
