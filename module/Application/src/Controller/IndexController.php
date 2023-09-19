@@ -76,6 +76,7 @@ class IndexController extends AbstractActionController
         //Get events
         $events = $this->eventService->getUpcommingEvent(3);
         $upcommingEvent = $this->eventService->getUpcommingEvent();
+
         //Steam
         $steamGames = $this->steamPlayerService->getOwnedGames(6);
 

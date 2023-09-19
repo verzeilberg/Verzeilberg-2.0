@@ -451,11 +451,13 @@ return [
             View\Helper\Menu::class => View\Helper\Factory\MenuFactory::class,
             View\Helper\BeheerMenu::class => View\Helper\Factory\BeheerMenuFactory::class,
             View\Helper\Breadcrumbs::class => InvokableFactory::class,
+            View\Helper\RenderRadioElements::class => InvokableFactory::class,
         ],
         'aliases' => [
             'mainMenu' => View\Helper\Menu::class,
             'beheerMenu' => View\Helper\BeheerMenu::class,
             'pageBreadcrumbs' => View\Helper\Breadcrumbs::class,
+            'renderRadioFormElements' => View\Helper\RenderRadioElements::class,
         ],
     ],
     'view_manager' => [

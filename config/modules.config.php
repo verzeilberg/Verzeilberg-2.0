@@ -6,6 +6,7 @@
  * This should be an array of module namespaces used in the application.
  */
 return [
+    'Laminas\Form',
     'Laminas\Mail',
     'Laminas\Serializer',
     'Laminas\Cache',
@@ -17,7 +18,6 @@ return [
     'Laminas\Session',
     'Laminas\Mvc\Middleware',
     'Laminas\Mvc\I18n',
-    'Laminas\Form',
     'Laminas\I18n',
     'Laminas\Log',
     'Laminas\InputFilter',
@@ -31,6 +31,7 @@ return [
     'DoctrineModule',
     'DoctrineORMModule',
     'Laminas\Cache\Storage\Adapter\Filesystem',
+    'Application',
     'Twitter',
     'User',
     'Blog',
@@ -45,7 +46,6 @@ return [
     'Event',
     'CheckList',
     'BitlyShortener',
-    'Application',
     'StravaApi',
     'SteamApi',
     'AssetManager',

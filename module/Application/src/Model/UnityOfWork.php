@@ -6,12 +6,13 @@ use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Laminas\Form\Annotation;
 use Doctrine\ORM\Mapping as ORM;
-use User\Entity\User;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 
 class UnityOfWork extends EntityManager
 {
+
+
 
     /**
      * @ORM\Column(name="date_created", type="datetime", nullable=false)
@@ -183,16 +184,5 @@ class UnityOfWork extends EntityManager
     {
         $this->deleted = $deleted;
         return $this;
-    }
-
-    /**
-     * @return void
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function save(): void
-    {
-        $this->persist($this);
-        $this->flush($this);
     }
 }

@@ -289,3 +289,8 @@ div.flashMessages > div.alert > ul {
     margin-bottom: 0;
     padding-left: 0 ;
 }
+
+/*** Pagination ***/
+ul.pagination {
+    margin-bottom:0;
+}
