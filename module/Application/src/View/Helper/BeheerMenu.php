@@ -3,6 +3,7 @@
 namespace Application\View\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * This view helper class displays a menu bar.
@@ -72,18 +73,15 @@ class BeheerMenu extends AbstractHelper
         $link = $item['link'] ?? '#';
         $label = $item['label'] ?? '';
         $icon = $item['icon']? '<i class="'.$item['icon'].' me-2"></i>':'';
-
-        if (isset($item['dropdown'])) { //Menu has subitems
-
+        if (count($item['dropdown']??[]) > 0) { //Menu has subitems
             $dropdownItems = $item['dropdown'];
-
             $result  = '<div class="nav-item dropdown">';
             $result .= '<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">'.$icon.$escapeHtml($label).'</a>';
             $result .= '<div class="dropdown-menu bg-transparent border-0">';
+            $result .= '<a href="'.$escapeHtml($link).'" class="dropdown-item">'.$escapeHtml($label).'</a>';
             foreach ($dropdownItems as $dropdownItem) {
                 $dropDownLink  = $dropdownItem['link'] ?? '#';
                 $dropDownlabel = $dropdownItem['label'] ?? '';
-
                 $result .= '<a href="'.$escapeHtml($dropDownLink).'" class="dropdown-item">'.$escapeHtml($dropDownlabel).'</a>';
             }
 

@@ -24,10 +24,11 @@ class BeheerController extends AbstractActionController {
     }
 
     public function indexAction() {
-        $this->vhm->get('headScript')->appendFile('/beheerAssets/js/charts.js');
 
-        $this->vhm->get('headScript')->appendFile('https://www.google.com/jsapi');
         $this->layout('layout/beheer');
+        $this->vhm->get('headScript')->appendFile('/beheerAssets/js/charts.js');
+        $this->vhm->get('headScript')->appendFile('https://www.google.com/jsapi');
+
         return new ViewModel();
     }
 

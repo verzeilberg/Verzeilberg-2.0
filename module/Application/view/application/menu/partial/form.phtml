@@ -1,0 +1,59 @@
+<?php
+
+$fieldset = $form->get('menu-item');
+
+$label = $fieldset->get('label'); ?>
+<div class="row mb-2">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+        <?= $this->formLabel($label) ?>
+        <div class="input-group mb-2 mt-2">
+            <?= $this->formElement($label) ?>
+            <small class="form-text text-danger"> <?= $this->formElementErrors()->render($label) ?></small>
+        </div>
+    </div>
+</div>
+<?php $link = $fieldset->get('link'); ?>
+<div class="row mb-2">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+        <?= $this->formLabel($link) ?>
+        <div class="input-group mb-2 mt-2">
+            <?= $this->formElement($link) ?>
+            <small class="form-text text-danger"> <?= $this->formElementErrors()->render($link) ?></small>
+        </div>
+    </div>
+</div>
+<?php $icon = $fieldset->get('icon'); ?>
+<div class="row mb-2">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+        <?= $this->formLabel($icon) ?>
+
+        <div class="input-group mb-2 mt-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text h-100 selected-icon"></span>
+            </div>
+            <?= $this->formElement($icon) ?>
+            <small class="form-text text-danger"> <?= $this->formElementErrors()->render($icon) ?></small>
+        </div>
+    </div>
+</div>
+<?php $menuId = $fieldset->get('menuId'); ?>
+<div class="row mb-2">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+        <?= $this->formLabel($menuId) ?>
+        <div class="input-group mb-2 mt-2">
+            <?= $this->formElement($menuId) ?>
+            <small class="form-text text-danger"> <?= $this->formElementErrors()->render($menuId) ?></small>
+        </div>
+    </div>
+</div>
+
+<?php $authorizedFor = $fieldset->get('authorizedFor'); ?>
+<div class="row mb-2">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+        <?= $this->formLabel($authorizedFor) ?>
+        <div class="input-group mb-2 mt-2">
+            <?= $this->formElement($authorizedFor) ?>
+            <small class="form-text text-danger"> <?= $this->formElementErrors()->render($authorizedFor) ?></small>
+        </div>
+    </div>
+</div>

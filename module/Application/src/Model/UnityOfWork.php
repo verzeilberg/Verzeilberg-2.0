@@ -171,7 +171,7 @@ class UnityOfWork extends EntityManager
     /**
      * @return int
      */
-    public function getDeleted(): int
+    public function getDeleted(): ? int
     {
         return $this->deleted;
     }

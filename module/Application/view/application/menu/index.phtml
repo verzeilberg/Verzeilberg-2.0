@@ -1,0 +1,35 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-md-12 col-xl-12">
+            <div class="bg-secondary rounded  p-4">
+                <div class="row g-4">
+                    <h2 class="col-sm-12 col-md-12 col-xl-12 mb-4 text-primary">Menu beheer</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-xl-12">
+            <div class="bg-secondary rounded  p-4">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th class="text-center"><i class="fas fa-cogs"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($menus as $menu) { ?>
+                        <tr>
+                            <td><?= $menu->getName() ?></td>
+                            <td class="text-center">
+                                <a class="btn btn-sm btn-primary" href="<?= $this->url('beheer/menu', ['action' => 'edit', 'id' => $menu->getId()]); ?>">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                   <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

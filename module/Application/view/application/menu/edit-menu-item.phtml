@@ -1,0 +1,28 @@
+<div class="container-fluid pt-4 px-4">
+    <?php $form->prepare(); ?>
+    <?= $this->form()->openTag($form); ?>
+    <?= $this->formRow($form->get('csrf')); ?>
+    <div class="row g-4">
+        <div class="col-sm-12 col-md-12 col-xl-12">
+            <div class="bg-secondary rounded p-4">
+                <h2 class="mb-4">Add blog</h2>
+                <!-- Menu item form -->
+                <?= $this->partial('application/menu/partial/form.phtml', array('form' => $form)) ?>
+                <!-- End menu item form -->
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-xl-12">
+            <div class="bg-secondary rounded p-4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-xl-6">
+                        <?= $this->formRow($form->get('submit')); ?>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-6 text-end">
+                        <a href="<?= $this->url('beheer/menu', ['action' => 'index']) ?>" class="btn btn-primary"
+                           title="Annuleren">Annuleren</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

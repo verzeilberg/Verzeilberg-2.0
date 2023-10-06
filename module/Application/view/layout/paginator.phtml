@@ -1,34 +1,59 @@
 <?php if ($this->pageCount > 1): ?>
     <nav aria-label="Page navigation">
         <ul class="pagination">
-
             <!-- Previous page link -->
             <?php if (isset($this->previous)): ?>
                 <li class="page-item">
-                    <a class="page-link bg-dark text-white" href="<?= $this->url($this->route, ['action' => $this->action], ['query'=>['page'=>$this->previous]]); ?>" aria-label="Previous">
-                        <i class="fas fa-angle-double-left"></i>
+                    <a class="page-link" href="<?= $this->url($this->route, ['action' => $this->action], ['query' => ['page' => 1]]);?>" aria-label="Previous">
+                        <i class="fas fa-fast-backward fa-xs"></i>
                     </a>
                 </li>
+                <li class="page-item">
+                    <a class="page-link" href=" <?= $this->url($this->route, ['action' => $this->action], ['query' => ['page' => $this->previous]]);?>" aria-label="Previous">
+                        <i class="fas fa-backward fa-xs"></i>
+                    </a>
+                </li>
+                <?php if ($this->currentPage >= $this->pagesInRange) { ?>
+                    <li class="page-item">
+                        <a class="page-link" href="<?= $this->url($this->route, ['action' => $this->action], ['query' => ['page' => 1,]]); ?>">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"><i class="fas fa-ellipsis-h fa-xs"></i></a>
+                    </li>
+                <?php } ?>
             <?php endif; ?>
 
             <!-- Numbered page links -->
             <?php foreach ($this->pagesInRange as $page): ?>
                 <?php if ($page != $this->current): ?>
-                    <li class="page-item bg-dark">
-                        <a class="page-link bg-dark text-white" href="<?= $this->url($this->route, ['action' => $this->action], ['query'=>['page'=>$page]]); ?>"><?= $this->escapeHtml($page); ?></a>
+                    <li class="page-item ">
+                        <a class="page-link" href="<?= $this->url($this->route, ['action' => $this->action], ['query'=>['page'=>$page]]); ?>"><?= $this->escapeHtml($page); ?></a>
                     </li>
                 <?php else: ?>
-                    <li class="page-item bg-dark">
-                        <span class="page-link bg-secondary text-white" aria-hidden="true"><b><?= $this->escapeHtml($page); ?></b></span>
+                    <li class="page-item ">
+                        <span class="page-link" aria-hidden="true"><b><?= $this->escapeHtml($page); ?></b></span>
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
 
             <!-- Next page link -->
+            <?php if ($this->currentPage <= $pagination['endRange']) { ?>
+                <li class="page-item">
+                    <span class="page-link"><i class="fas fa-ellipsis-h fa-xs"></i></span>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="<?= $this->url($this->route, ['page' => $this->pageCount, 'action' => $this->action], ['query' => ['page' => $this->pageCount]]); ?>"><?= $this->pageCount ?></a>
+                </li>
+            <?php } ?>
             <?php if (isset($this->next)): ?>
                 <li class="page-item">
-                    <a class="page-link bg-dark text-white" href="<?php echo $this->url($this->route, ['action' => $this->action], ['query'=>['page'=>$this->next]]); ?>" aria-label="Next">
-                        <i class="fas fa-angle-double-right"></i>
+                    <a class="page-link" href="<?= $this->url($this->route, ['page' => $this->next, 'action' =>  $this->action], ['query' => ['page' => $this->next]]); ?>" aria-label="Next">
+                        <i class="fas fa-forward fa-xs"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="<?= $this->url($this->route, ['page' => $pagination['totalPages'], 'action' => $this->action], ['query' => ['page' => $this->pageCount]]); ?>" aria-label="Previous">
+                        <i class="fas fa-fast-forward fa-xs"></i>
                     </a>
                 </li>
             <?php endif; ?>

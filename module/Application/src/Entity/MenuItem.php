@@ -9,7 +9,7 @@ use Laminas\Form\Annotation;
 
 /**
  * This class represents a menu item.
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Application\Repository\MenuItemRepository")
  * @ORM\Table(name="menuitems")
  */
 class MenuItem extends UnityOfWork {
@@ -53,6 +53,12 @@ class MenuItem extends UnityOfWork {
     protected string $icon;
 
     /**
+     * @var integer
+     * @ORM\Column(name="sort_order", type="integer", length=10, nullable=false)
+     */
+    protected int $sortOrder = 9999;
+
+    /**
      * @var string
      * @ORM\Column(name="menu_id", type="string", length=255, nullable=true)
      * @Annotation\Options({
@@ -70,7 +76,7 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Authorized for"})
      */
-    protected string $authorizedFor;
+    protected ?string $authorizedFor = null;
 
     /**
      * One MenuItem has Many MenuItems.
@@ -90,7 +96,6 @@ class MenuItem extends UnityOfWork {
 
     public function __construct() {
         $this->children = new ArrayCollection();
-
     }
 
 
@@ -177,7 +182,7 @@ class MenuItem extends UnityOfWork {
     /**
      * @return string
      */
-    public function getAuthorizedFor(): string
+    public function getAuthorizedFor()
     {
         return $this->authorizedFor;
     }
@@ -185,7 +190,7 @@ class MenuItem extends UnityOfWork {
     /**
      * @param string $authorizedFor
      */
-    public function setAuthorizedFor(string $authorizedFor): void
+    public function setAuthorizedFor($authorizedFor): void
     {
         $this->authorizedFor = $authorizedFor;
     }
@@ -195,7 +200,7 @@ class MenuItem extends UnityOfWork {
     /**
      * @return ArrayCollection
      */
-    public function getChildren(): ArrayCollection
+    public function getChildren()
     {
         return $this->children;
     }
@@ -223,5 +228,17 @@ class MenuItem extends UnityOfWork {
     {
         $this->parent = $parent;
     }
+
+    public function getSortOrder(): int
+    {
+        return $this->sortOrder;
+    }
+
+    public function setSortOrder(int $sortOrder): void
+    {
+        $this->sortOrder = $sortOrder;
+    }
+
+
 
 }

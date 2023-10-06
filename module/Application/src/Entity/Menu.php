@@ -34,6 +34,7 @@ class Menu extends UnityOfWork {
 
     /**
      * @ORM\ManyToMany(targetEntity="MenuItem")
+     * @ORM\OrderBy({"sortOrder" = "ASC"})
      * @ORM\JoinTable(name="menu_menuitems",
      *      joinColumns={@ORM\JoinColumn(name="menu_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="item_id", referencedColumnName="id")}

@@ -3,6 +3,7 @@
 namespace Application\Service;
 
 use Application\Repository\MenuRepository;
+use Symfony\Component\VarDumper\VarDumper;
 use User\Service\RbacManager;
 
 /**
@@ -33,16 +34,34 @@ class BeheerNavManager
     public function getMenuItems($menu): array
     {
         $items = [];
+
         $menuItems = $this->menuRepository->getItemByName($menu);
 
         foreach ($menuItems->getMenuItems() as $item) {
+            $dropdown = [];
+            if (count($item->getChildren()??[]) > 0) {
+                foreach($item->getChildren() as $childItem) {
+                    $dropdown[] = [
+                        'id' => $childItem->getMenuId(),
+                        'label' => $childItem->getLabel(),
+                        'link' => $childItem->getLink(),
+                        'icon' => $childItem->getIcon()
+                    ];
+                }
+            }
+
+
+
             if (empty($item->getAuthorizedFor()) || $this->rbacManager->isGranted(null, $item->getAuthorizedFor())) {
                 $items[] = [
                     'id' => $item->getMenuId(),
                     'label' => $item->getLabel(),
                     'link' => $item->getLink(),
-                    'icon' => $item->getIcon()
+                    'icon' => $item->getIcon(),
+                    'dropdown' => $dropdown,
                 ];
+
+
             }
         }
 

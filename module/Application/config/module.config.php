@@ -335,6 +335,16 @@ return [
                             ],
                         ],
                     ],
+                    'menu' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/menu[[/]:action[/:id]]',
+                            'defaults' => [
+                                'controller' => 'menubeheer',
+                                'action' => 'index',
+                            ],
+                        ],
+                    ],
                 ],
             ],
             'application' => [
@@ -381,12 +391,27 @@ return [
                     ],
                 ],
             ],
+            'menuajax' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/menuajax[/:action]',
+                    'defaults' => [
+                        'controller' => 'menuajax'
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\BeheerController::class => Controller\Factory\BeheerControllerFactory::class,
+            Controller\MenuController::class => Controller\Factory\MenuControllerFactory::class,
+            Controller\MenuAjaxController::class => Controller\Factory\MenuAjaxControllerFactory::class,
+        ],
+        'aliases' => [
+            'menubeheer' => Controller\MenuController::class,
+            'menuajax' => Controller\MenuAjaxController::class,
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -396,9 +421,9 @@ return [
             // The access filter can work in 'restrictive' (recommended) or 'permissive'
             // mode. In restrictive mode all controller actions must be explicitly listed
             // under the 'access_filter' config key, and access is denied to any not listed
-            // action for not logged in users. In permissive mode, if an action is not listed
+            // action for not logged-in users. In permissive mode, if an action is not listed
             // under the 'access_filter' key, access to it is permitted to anyone (even for
-            // not logged in users. Restrictive mode is more secure and recommended to use.
+            // not logged-in users. Restrictive mode is more secure and recommended to use.
             'mode' => 'restrictive'
         ],
         'controllers' => [
@@ -412,6 +437,15 @@ return [
                 // Allow anyone to visit "index" and "about" actions
                 ['actions' => ['index'], 'allow' => '+beheer.manage']
             ],
+            'menubeheer' => [
+                // Allow anyone to visit "index" actions
+                ['actions' => ['index', 'edit', 'orderMenuItems', 'editMenuItem'], 'allow' => '+beheer.manage']
+            ],
+            'menuajax' => [
+                // Allow anyone to visit "index" actions
+                ['actions' => ['orderMenuItems', 'deleteMenuItem'], 'allow' => '+beheer.manage']
+            ],
+
         ]
     ],
     // This key stores configuration for RBAC manager.
@@ -452,12 +486,16 @@ return [
             View\Helper\BeheerMenu::class => View\Helper\Factory\BeheerMenuFactory::class,
             View\Helper\Breadcrumbs::class => InvokableFactory::class,
             View\Helper\RenderRadioElements::class => InvokableFactory::class,
+            View\Helper\RenderCheckboxElements::class => InvokableFactory::class,
+            View\Helper\MenuItemsHelper::class => View\Helper\Factory\MenuItemsHelperFactory::class,
         ],
         'aliases' => [
             'mainMenu' => View\Helper\Menu::class,
             'beheerMenu' => View\Helper\BeheerMenu::class,
+            'menuItemsHelper' => View\Helper\MenuItemsHelper::class,
             'pageBreadcrumbs' => View\Helper\Breadcrumbs::class,
             'renderRadioFormElements' => View\Helper\RenderRadioElements::class,
+            'renderCheckboxFormElements' => View\Helper\RenderCheckboxElements::class,
         ],
     ],
     'view_manager' => [

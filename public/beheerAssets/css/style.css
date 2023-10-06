@@ -44,7 +44,7 @@
 .btn-square,
 .btn-sm-square,
 .btn-lg-square {
-    padding: 0;
+    padding: 0 !important;
     display: inline-flex;
     align-items: center;
     justify-content: center;
