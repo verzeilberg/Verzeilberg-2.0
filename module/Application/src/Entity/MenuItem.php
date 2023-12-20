@@ -20,7 +20,7 @@ class MenuItem extends UnityOfWork {
      * @ORM\Column(name="id", type="integer", length=11)
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected int $id;
+    protected ?int $id = null;
 
     /**
      * @var string
@@ -30,17 +30,17 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Label"})
      */
-    protected string $label;
+    protected ?string $label = null;
 
     /**
-     * @var string
+     * @var ?string
      * @ORM\Column(name="link", type="string", length=255, nullable=false)
      * @Annotation\Options({
      * "label": "Link"
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Link"})
      */
-    protected string $link;
+    protected ?string $link = null;
 
     /**
      * @var string
@@ -50,7 +50,7 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Icon"})
      */
-    protected string $icon;
+    protected ?string $icon = null;
 
     /**
      * @var integer
@@ -66,7 +66,7 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Id"})
      */
-    protected string $menuId;
+    protected ?string $menuId = null;
 
     /**
      * @var string
@@ -98,135 +98,44 @@ class MenuItem extends UnityOfWork {
         $this->children = new ArrayCollection();
     }
 
-
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
-    public function getLabel(): string
+    public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     */
-    public function setLabel(string $label): void
+    public function setLabel(?string $label): void
     {
         $this->label = $label;
     }
 
-    /**
-     * @return string
-     */
-    public function getLink(): string
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * @param string $link
-     */
-    public function setLink(string $link): void
+    public function setLink(?string $link): void
     {
         $this->link = $link;
     }
 
-    /**
-     * @return string
-     */
-    public function getIcon(): string
+    public function getIcon(): ?string
     {
         return $this->icon;
     }
 
-    /**
-     * @param string $icon
-     */
-    public function setIcon(string $icon): void
+    public function setIcon(?string $icon): void
     {
         $this->icon = $icon;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMenuId(): string
-    {
-        return $this->menuId;
-    }
-
-    /**
-     * @param string $menuId
-     */
-    public function setMenuId(string $menuId): void
-    {
-        $this->menuId = $menuId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuthorizedFor()
-    {
-        return $this->authorizedFor;
-    }
-
-    /**
-     * @param string $authorizedFor
-     */
-    public function setAuthorizedFor($authorizedFor): void
-    {
-        $this->authorizedFor = $authorizedFor;
-    }
-
-
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param ArrayCollection $children
-     */
-    public function setChildren(ArrayCollection $children): void
-    {
-        $this->children = $children;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * @param mixed $parent
-     */
-    public function setParent($parent): void
-    {
-        $this->parent = $parent;
     }
 
     public function getSortOrder(): int
@@ -239,6 +148,49 @@ class MenuItem extends UnityOfWork {
         $this->sortOrder = $sortOrder;
     }
 
+    public function getMenuId(): ?string
+    {
+        return $this->menuId;
+    }
 
+    public function setMenuId(?string $menuId): void
+    {
+        $this->menuId = $menuId;
+    }
 
+    public function getAuthorizedFor(): ?string
+    {
+        return $this->authorizedFor;
+    }
+
+    public function setAuthorizedFor(?string $authorizedFor): void
+    {
+        $this->authorizedFor = $authorizedFor;
+    }
+
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    public function setChildren($children): void
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent(): mixed
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent(mixed $parent): void
+    {
+        $this->parent = $parent;
+    }
 }

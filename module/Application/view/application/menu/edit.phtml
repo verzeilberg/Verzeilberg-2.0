@@ -3,17 +3,25 @@
         <div class="col-sm-12 col-md-12 col-xl-12">
             <div class="bg-secondary rounded  p-4">
                 <div class="row g-4">
-                    <h2 class="col-sm-12 col-md-12 col-xl-12 mb-4 text-primary">Beheer menu <?= $menu->getName() ?></h2>
+                    <h2 class="col-sm-12 col-md-12 col-xl-12 mb-4 text-primary">Beheer
+                        menu <?= $menu->getName() ?></h2>
                     <p>
                         Sleep de menu opties naar de desgewenst positie. Deze wordt automatisch opgeslagen.
                     </p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-sm-6 col-md-6 col-xl-6">
+                        <a class="btn btn-primary" href="<?= $this->url('beheer/menu/edit/add', ['id' => $menu->getId()]) ?>">
+                            <i class="fas fa-plus-square"></i> New menu item
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-12 col-xl-12">
             <div class="bg-secondary rounded  p-4">
                 <?php
-                $this->menuItemsHelper()->generateMenuItems($menu->getMenuItems(), $this);
+                $this->menuItemsHelper()->generateMenuItems($menu->getMenuItems(), $this, $menu);
                 ?>
             </div>
         </div>

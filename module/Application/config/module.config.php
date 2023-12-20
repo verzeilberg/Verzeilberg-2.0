@@ -338,10 +338,49 @@ return [
                     'menu' => [
                         'type' => Segment::class,
                         'options' => [
-                            'route' => '/menu[[/]:action[/:id]]',
+                            'route' => '/menu',
                             'defaults' => [
                                 'controller' => 'menubeheer',
                                 'action' => 'index',
+                            ],
+                        ],
+                        'may_terminate' => true,
+                        'child_routes' => [
+                            'edit' => [
+                                'type' => 'segment',
+                                'options' => [
+                                    'route' => '/[:id]',
+                                    'constraints' => [
+                                        'id' => '[a-zA-Z0-9_-]+',
+                                    ],
+                                    'defaults' => [
+                                        'action' => 'edit',
+                                    ],
+                                ],
+                                'may_terminate' => true,
+                                'child_routes' => [
+                                    'add' => [
+                                        'type' => 'segment',
+                                        'options' => [
+                                            'route' => '/add',
+                                            'defaults' => [
+                                                'action' => 'addMenuItem',
+                                            ],
+                                        ],
+                                    ],
+                                    'item' => [
+                                        'type' => 'segment',
+                                        'options' => [
+                                            'route' => '/item[/:menu-id]',
+                                            'constraints' => [
+                                                'id' => '[a-zA-Z0-9_-]+',
+                                            ],
+                                            'defaults' => [
+                                                'action' => 'editMenuItem',
+                                            ],
+                                        ],
+                                    ],
+                                ],
                             ],
                         ],
                     ],
@@ -429,7 +468,22 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index', 'about', 'games', 'events', 'event', 'getEventLocations', 'user', 'getLocations', 'runningStats', 'getChartData', 'detail'], 'allow' => '*'],
+                [
+                    'actions' => [
+                        'index',
+                        'about',
+                        'games',
+                        'events',
+                        'event',
+                        'getEventLocations',
+                        'user',
+                        'getLocations',
+                        'runningStats',
+                        'getChartData',
+                        'detail'
+                    ],
+                    'allow' => '*'
+                ],
                 // Allow authorized users to visit "profiel" action
                 //['actions' => ['profiel'], 'allow' => '@']
             ],
@@ -439,7 +493,7 @@ return [
             ],
             'menubeheer' => [
                 // Allow anyone to visit "index" actions
-                ['actions' => ['index', 'edit', 'orderMenuItems', 'editMenuItem'], 'allow' => '+beheer.manage']
+                ['actions' => ['index', 'edit', 'editMenuItem', 'addMenuItem'], 'allow' => '+beheer.manage']
             ],
             'menuajax' => [
                 // Allow anyone to visit "index" actions

@@ -17,13 +17,16 @@ class BeheerNavManager
     /** @var MenuRepository */
     private MenuRepository $menuRepository;
 
+    private $permissionRepository;
+
     /**
      * Constructs the service.
      */
-    public function __construct($rbacManager, $menuRepository)
+    public function __construct($rbacManager, $menuRepository, $permissionRepository)
     {
         $this->rbacManager = $rbacManager;
         $this->menuRepository = $menuRepository;
+        $this->permissionRepository = $permissionRepository;
     }
 
     /**
@@ -50,9 +53,8 @@ class BeheerNavManager
                 }
             }
 
-
-
-            if (empty($item->getAuthorizedFor()) || $this->rbacManager->isGranted(null, $item->getAuthorizedFor())) {
+            $permission = $this->permissionRepository->find($item->getAuthorizedFor());
+            if (empty($permission->getName()) || $this->rbacManager->isGranted(null, $permission->getName())) {
                 $items[] = [
                     'id' => $item->getMenuId(),
                     'label' => $item->getLabel(),
@@ -60,7 +62,6 @@ class BeheerNavManager
                     'icon' => $item->getIcon(),
                     'dropdown' => $dropdown,
                 ];
-
 
             }
         }

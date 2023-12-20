@@ -21,7 +21,7 @@
                         <tr>
                             <td><?= $menu->getName() ?></td>
                             <td class="text-center">
-                                <a class="btn btn-sm btn-primary" href="<?= $this->url('beheer/menu', ['action' => 'edit', 'id' => $menu->getId()]); ?>">
+                                <a class="btn btn-sm btn-primary" href="<?= $this->url('beheer/menu/edit', ['id' => $menu->getId()]) ?>">
                                     <i class="fas fa-edit"></i>
                                 </a>
                             </td>

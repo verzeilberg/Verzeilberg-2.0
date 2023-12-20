@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Application\Controller;
 
+use Application\Entity\MenuItem;
 use Application\Form\MenuItemForm;
 use Application\Repository\MenuItemRepository;
 use Application\Repository\MenuRepository;
@@ -62,28 +63,32 @@ class MenuController extends AbstractActionController
         $this->viewHelperManager->get('headScript')->appendFile('/js/jquery.ui.nestedSortable.js');
         $this->viewHelperManager->get('headScript')->appendFile('/js/menu.js');
 
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (empty($id)) {
+        $menuId = (int) $this->params()->fromRoute('id', 0);
+        if (empty($menuId)) {
             return $this->redirect()->toRoute('menubeheer');
         }
-        $menu = $this->menuRepository->find($id);
+        $menu = $this->menuRepository->find($menuId);
         if (empty($menu)) {
             return $this->redirect()->toRoute('menubeheer');
         }
 
         return new ViewModel(
             [
-                'menu' => $menu
+                'menu' => $menu,
             ]
         );
     }
 
     public function editMenuItemAction()
     {
+
         $this->layout('layout/beheer');
+        // Js scripts
         $this->viewHelperManager->get('headScript')->appendFile('https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js');
         $this->viewHelperManager->get('headScript')->appendFile('/js/menu-item.js');
-        $id = (int) $this->params()->fromRoute('id', 0);
+
+        $menuId = (int) $this->params()->fromRoute('id', 0);
+        $id = (int) $this->params()->fromRoute('menu-id', 0);
         if (empty($id)) {
             return $this->redirect()->toRoute('menubeheer');
         }
@@ -108,9 +113,43 @@ class MenuController extends AbstractActionController
         }
 
         return new ViewModel([
-            'form' => $form
+            'form' => $form,
+            'menuId' => $menuId
         ]);
 
+    }
+
+    public function addMenuItemAction()
+    {
+
+        $this->layout('layout/beheer');
+        // Js scripts
+        $this->viewHelperManager->get('headScript')->appendFile('https://unpkg.com/codethereal-iconpicker@1.2.1/dist/iconpicker.js');
+        $this->viewHelperManager->get('headScript')->appendFile('/js/menu-item.js');
+
+        $menuId = (int) $this->params()->fromRoute('id', 0);
+        $menuItem = new MenuItem();
+        // Create the form and inject the EntityManager
+        $form = new MenuItemForm($this->entityManager);
+        // Create a new, empty entity and bind it to the form
+        $form->bind($menuItem);
+
+
+
+        if ($this->getRequest()->isPost()) {
+            $form->setData($this->getRequest()->getPost());
+
+            if ($form->isValid()) {
+                $this->entityManager->persist($menuItem);
+                $this->entityManager->flush();
+                $this->flashMessenger()->addSuccessMessage('Menu item opgeslagen');
+            }
+        }
+
+        return new ViewModel([
+            'form' => $form,
+            'menuId' => $menuId
+        ]);
     }
 
 }
