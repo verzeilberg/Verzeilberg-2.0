@@ -92,8 +92,6 @@ class MenuItem extends UnityOfWork {
      */
     private $parent;
 
-
-
     public function __construct() {
         $this->children = new ArrayCollection();
     }

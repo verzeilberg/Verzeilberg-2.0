@@ -11,6 +11,7 @@ use Application\Repository\MenuRepository;
 use Doctrine\ORM\EntityManager;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
+use Symfony\Component\VarDumper\VarDumper;
 
 class MenuController extends AbstractActionController
 {
@@ -132,14 +133,19 @@ class MenuController extends AbstractActionController
         // Create the form and inject the EntityManager
         $form = new MenuItemForm($this->entityManager);
         // Create a new, empty entity and bind it to the form
+
+
+
         $form->bind($menuItem);
 
-
+        VarDumper::dump($menuItem); die;
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
 
             if ($form->isValid()) {
+                $menuItem->setDateCreated(new \DateTime());
+                $menuItem->setCreatedBy($this->currentUser());
                 $this->entityManager->persist($menuItem);
                 $this->entityManager->flush();
                 $this->flashMessenger()->addSuccessMessage('Menu item opgeslagen');

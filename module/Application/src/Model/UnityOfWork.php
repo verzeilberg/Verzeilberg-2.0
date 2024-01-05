@@ -19,49 +19,48 @@ class UnityOfWork extends EntityManager
      * @Annotation\Exclude()
      * @var datetime
      */
-    protected $dateCreated;
+    protected DateTime $dateCreated;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      * @var object
      */
-    protected $createdBy;
+    protected object $createdBy;
 
     /**
      * @ORM\Column(name="date_changed", type="datetime", nullable=true)
      * @var datetime
      */
-    protected $dateChanged;
+    protected DateTime $dateChanged;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="changed_by", referencedColumnName="id")
      * @var object
      */
-    protected $changedBy;
+    protected object $changedBy;
 
     /**
      * @ORM\Column(name="date_deleted", type="datetime", nullable=true)
      * @var datetime
      */
-    protected $dateDeleted;
+    protected DateTime $dateDeleted;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
      * @var object
      */
-    protected $deletedBy;
+    protected object $deletedBy;
 
     /**
      * @ORM\Column(name="deleted", type="integer", length=1, nullable=true)
-     * @var integer
      */
-    protected $deleted = 0;
+    protected int|null $deleted;
 
     /**
-     * @return string
+     * @return DateTime|null
      */
     public function getDateCreated(): ? DateTime
     {
@@ -72,14 +71,14 @@ class UnityOfWork extends EntityManager
      * @param datetime $dateCreated
      * @return UnityOfWork
      */
-    public function setDateCreated($dateCreated): UnityOfWork
+    public function setDateCreated(DateTime $dateCreated): UnityOfWork
     {
         $this->dateCreated = $dateCreated;
         return $this;
     }
 
     /**
-     * @return object
+     * @return object|null
      */
     public function getCreatedBy(): ? object
     {
@@ -97,7 +96,7 @@ class UnityOfWork extends EntityManager
     }
 
     /**
-     * @return string
+     * @return DateTime|null
      */
     public function getDateChanged(): ? DateTime
     {
@@ -115,7 +114,7 @@ class UnityOfWork extends EntityManager
     }
 
     /**
-     * @return object
+     * @return object|null
      */
     public function getChangedBy(): ? object
     {
@@ -133,7 +132,7 @@ class UnityOfWork extends EntityManager
     }
 
     /**
-     * @return string|null
+     * @return DateTime|null
      */
     public function getDateDeleted(): ?DateTime
     {
