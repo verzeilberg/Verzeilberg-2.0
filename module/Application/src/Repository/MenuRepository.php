@@ -10,12 +10,12 @@ class MenuRepository extends EntityRepository
 {
     /**
      * Get menu by id
-     * @return object
-     * @var $activityId
+     * @param null $menuId
+     * @return Menu
      */
-    public function getItemById($menuId = null): object
+    public function getItemById($menuId = null): Menu
     {
-        return $this->findBy($menuId);
+        return $this->find($menuId);
     }
 
     /**

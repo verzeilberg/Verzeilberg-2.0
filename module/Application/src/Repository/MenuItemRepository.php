@@ -66,6 +66,7 @@ class MenuItemRepository extends EntityRepository
             $this->getEntityManager()->flush();
             return true;
         } catch (Exception $e) {
+            var_dump($e->getMessage()); die;
             return false;
         }
     }

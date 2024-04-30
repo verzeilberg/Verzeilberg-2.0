@@ -34,3 +34,27 @@ $('.sortable').nestedSortable({
         });
     }
 });
+
+$("a.delete-menu-item").on( "click", function(event) {
+    event.preventDefault();
+    let menuItemId = $(this).data('menuitemid');
+    let menuId     = $(this).data('menuid');
+    $.ajax({
+        type: 'POST',
+        data: {
+            menuitemid: menuItemId,
+            menuid:     menuId
+        },
+        url: "/menuajax/deleteMenuItem",
+        async: true,
+        success: function (data) {
+            console.log(data);
+            if (data.success === true) {
+                $('li#menuItem_' + menuItemId).remove();
+            } else {
+                alert(data.errorMessage);
+            }
+
+        }
+    });
+} );

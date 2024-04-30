@@ -69,7 +69,7 @@ class steamPlayerService
         if ($returnTotalGames === 1) {
             return count($games);
         }
-
+        $games = $games ?? [];
         usort($games, function ($a, $b) {
             return $a->playtime_forever <=> $b->playtime_forever;
         });

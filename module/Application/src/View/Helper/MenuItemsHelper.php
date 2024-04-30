@@ -30,8 +30,7 @@ class MenuItemsHelper extends AbstractHelper
             echo '<i class="fas fa-edit"></i>';
             echo '</a>';
             echo '&nbsp;';
-            echo '<a class="btn btn-sm btn-danger '.(count($item->getChildren()) > 0?"disabled":"").'" href="';
-            echo $urlHelper->url('menuajax', ['action' => 'deleteMenuItem', 'id' => $item->getId()]) . '">';
+            echo '<a id=menuItem'.$item->getId().' class="btn btn-sm btn-danger delete-menu-item '.(count($item->getChildren()) > 0?"disabled":"").'" data-menuitemid="'.$item->getId().'" data-menuid="'.$menu->getId().'" href="">';
             echo '<i class="fas fa-trash-alt"></i>';
             echo '</a>';
             echo '</div>';

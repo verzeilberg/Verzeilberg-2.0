@@ -33,7 +33,7 @@ class Menu extends UnityOfWork {
     protected string $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MenuItem")
+     * @ORM\ManyToMany(targetEntity="MenuItem", inversedBy="menus", cascade={"persist", "remove"})
      * @ORM\OrderBy({"sortOrder" = "ASC"})
      * @ORM\JoinTable(name="menu_menuitems",
      *      joinColumns={@ORM\JoinColumn(name="menu_id", referencedColumnName="id")},
@@ -46,6 +46,15 @@ class Menu extends UnityOfWork {
 
     public function __construct() {
         $this->menuItems = new ArrayCollection();
+    }
+
+    public function removeMenuItem(MenuItem $menuItem)
+    {
+        if (!$this->menuItems->contains($menuItem)) {
+            return;
+        }
+        $this->menuItems->removeElement($menuItem);
+        $menuItem->removeMenu($this);
     }
 
     /**

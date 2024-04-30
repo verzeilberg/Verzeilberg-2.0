@@ -50,7 +50,7 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Icon"})
      */
-    protected ?string $icon = null;
+    protected ?string $icon = "fas fa-home";
 
     /**
      * @var integer
@@ -66,7 +66,7 @@ class MenuItem extends UnityOfWork {
      * })
      * @Annotation\Attributes({"class":"form-control", "placeholder":"Id"})
      */
-    protected ?string $menuId = null;
+    protected string $menuId = "";
 
     /**
      * @var string
@@ -86,14 +86,29 @@ class MenuItem extends UnityOfWork {
 
     /**
      * Many MenuItems have One MenuItem.
-     * @ORM\ManyToOne(targetEntity="MenuItem", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="MenuItem", inversedBy="children", cascade={"remove"})
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
-     *
      */
     private $parent;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Menu", mappedBy="menuItems")]
+     */
+    private $menus;
+
     public function __construct() {
         $this->children = new ArrayCollection();
+        $this->menus = new ArrayCollection();
+    }
+
+    public function removeMenu(Menu $menu)
+    {
+        if (!$this->menus->contains($menu)) {
+            return;
+        }
+        $this->menus->removeElement($menu);
+        $menu->removeMenuItem($this);
     }
 
     public function getId(): ?int

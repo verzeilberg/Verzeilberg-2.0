@@ -26,6 +26,11 @@ class MenuController extends AbstractActionController
     protected $menuItemRepository;
 
     /**
+     * @var array
+     */
+    protected $routes;
+
+    /**
      * @var MenuRepository
      */
     protected MenuRepository $menuRepository;
@@ -33,13 +38,15 @@ class MenuController extends AbstractActionController
         $entityManager,
         $viewHelperManager,
         $menuRepository,
-        $menuItemRepository
+        $menuItemRepository,
+        $routes
     ) {
 
         $this->entityManager        = $entityManager;
         $this->viewHelperManager    = $viewHelperManager;
         $this->menuRepository       = $menuRepository;
-        $this->menuItemRepository       = $menuItemRepository;
+        $this->menuItemRepository   = $menuItemRepository;
+        $this->routes               = $routes;
     }
 
     public function indexAction()
@@ -111,11 +118,16 @@ class MenuController extends AbstractActionController
                 $this->entityManager->flush();
                 $this->flashMessenger()->addSuccessMessage('Menu item opgeslagen');
             }
+
+            return $this->redirect()->toRoute('beheer/menu/edit', ['id' => $menuId]);
         }
 
+
+
         return new ViewModel([
-            'form' => $form,
-            'menuId' => $menuId
+            'form'      => $form,
+            'menuId'    => $menuId,
+            'routes'    => $this->routes
         ]);
 
     }
@@ -134,23 +146,28 @@ class MenuController extends AbstractActionController
         $form = new MenuItemForm($this->entityManager);
         // Create a new, empty entity and bind it to the form
 
-
-
         $form->bind($menuItem);
-
-        VarDumper::dump($menuItem); die;
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
 
             if ($form->isValid()) {
+                # Save menu item
                 $menuItem->setDateCreated(new \DateTime());
                 $menuItem->setCreatedBy($this->currentUser());
                 $this->entityManager->persist($menuItem);
+                # Add menu item to menu and save menu
+                $menu = $this->menuRepository->find($menuId);
+                $menu->addMenuItem($menuItem);
+                $this->entityManager->persist($menu);
                 $this->entityManager->flush();
                 $this->flashMessenger()->addSuccessMessage('Menu item opgeslagen');
+
+                return $this->redirect()->toRoute('beheer/menu/edit', ['id' => $menuId]);
             }
         }
+
+        VarDumper::dump($this->routes); die;
 
         return new ViewModel([
             'form' => $form,

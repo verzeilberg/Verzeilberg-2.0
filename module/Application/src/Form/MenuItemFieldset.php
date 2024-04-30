@@ -66,6 +66,25 @@ class MenuItemFieldset extends Fieldset implements InputFilterProviderInterface
 
         $this->add([
             'type' => ObjectSelect::class,
+            'name' => 'parent',
+            'options' => [
+                'display_empty_item' => true,
+                'empty_item_label'   => '---Maak uw keuze---',
+                'object_manager' => $objectManager,
+                'target_class'   => MenuItem::class,
+                'property'       => 'property',
+                'label' => 'Parent menu item',
+                'label_generator' => function ($targetEntity) {
+                    return $targetEntity->getId() . ' - ' . $targetEntity->getLabel();
+                },
+            ],
+            'attributes' => [
+                'class' => 'form-control',
+            ],
+        ]);
+
+        $this->add([
+            'type' => ObjectSelect::class,
             'name' => 'authorizedFor',
             'options' => [
                 'object_manager' => $objectManager,
@@ -86,7 +105,10 @@ class MenuItemFieldset extends Fieldset implements InputFilterProviderInterface
     {
         return [
             'label' => [
-                'required' => true,
+                'required' => true
+            ],
+            'parent' => [
+                'required' => false
             ],
         ];
     }

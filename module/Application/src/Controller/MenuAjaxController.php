@@ -67,9 +67,22 @@ class MenuAjaxController extends AbstractActionController
     {
         $success = true;
         $errorMessage = 'Item verwijderd!';
-        $menuItemId = $this->params()->fromPost('id', 0);
+        $menuItemId = $this->params()->fromPost('menuitemid', 0);
+        $menuId     = $this->params()->fromPost('menuid', 0);
+        $menuItem   = $this->menuItemRepository->find($menuItemId);
 
-        $menuItem = $this->menuItemRepository->find($menuItemId);
+       // @todo add try catch
+
+        if (!$menuItem) {
+            $success = false;
+            $errorMessage = 'Menu item niet gevonden!';
+        }
+        $menu = $this->menuRepository->getItemById($menuId);
+        if (!$menu) {
+            $success = false;
+            $errorMessage = 'Menu niet gevonden!';
+        }
+        $menuItem->removeMenu($menu);
         $result = $this->menuItemRepository->remove($menuItem);
         if (!$result) {
             $success = false;

@@ -17,47 +17,47 @@ class UnityOfWork extends EntityManager
     /**
      * @ORM\Column(name="date_created", type="datetime", nullable=false)
      * @Annotation\Exclude()
-     * @var datetime
+     * @var null|datetime
      */
-    protected DateTime $dateCreated;
+    protected ? DateTime $dateCreated = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
-     * @var object
+     * @var null|object
      */
-    protected object $createdBy;
+    protected ? object $createdBy = null;
 
     /**
      * @ORM\Column(name="date_changed", type="datetime", nullable=true)
-     * @var datetime
+     * @var null|datetime
      */
-    protected DateTime $dateChanged;
+    protected ? DateTime $dateChanged = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="changed_by", referencedColumnName="id")
-     * @var object
+     * @var null|object
      */
-    protected object $changedBy;
+    protected ? object $changedBy = null;
 
     /**
      * @ORM\Column(name="date_deleted", type="datetime", nullable=true)
-     * @var datetime
+     * @var null|datetime
      */
-    protected DateTime $dateDeleted;
+    protected ? DateTime $dateDeleted = null;
 
     /**
      * @ORM\ManyToOne(targetEntity="User\Entity\User")
      * @ORM\JoinColumn(name="deleted_by", referencedColumnName="id")
-     * @var object
+     * @var null|object
      */
-    protected object $deletedBy;
+    protected ? object $deletedBy = null;
 
     /**
      * @ORM\Column(name="deleted", type="integer", length=1, nullable=true)
      */
-    protected int|null $deleted;
+    protected null|int $deleted = null;
 
     /**
      * @return DateTime|null
