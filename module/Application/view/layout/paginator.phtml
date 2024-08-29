@@ -37,7 +37,7 @@
             <?php endforeach; ?>
 
             <!-- Next page link -->
-            <?php if ($this->currentPage <= $pagination['endRange']) { ?>
+            <?php if ($this->currentPage <= $this->last) { ?>
                 <li class="page-item">
                     <span class="page-link"><i class="fas fa-ellipsis-h fa-xs"></i></span>
                 </li>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="<?= $this->url($this->route, ['page' => $pagination['totalPages'], 'action' => $this->action], ['query' => ['page' => $this->pageCount]]); ?>" aria-label="Previous">
+                    <a class="page-link" href="<?= $this->url($this->route, ['page' =>$this->pageCount, 'action' => $this->action], ['query' => ['page' => $this->pageCount]]); ?>" aria-label="Previous">
                         <i class="fas fa-fast-forward fa-xs"></i>
                     </a>
                 </li>

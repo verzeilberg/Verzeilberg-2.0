@@ -7,19 +7,19 @@ use Laminas\Form\Element\Csrf;
 use Laminas\Form\Element\Submit;
 use Laminas\Form\Form;
 
-class MenuItemForm extends Form
+class UserDetailsForm extends Form
 {
     public function __construct(ObjectManager $objectManager)
     {
         parent::__construct('menu-item-form');
 
-        // The form will hydrate an object of type "MEnu"
+        // The form will hydrate an object of type "UserDetail"
         $this->setHydrator(new DoctrineHydrator($objectManager));
 
-        // Add the Menu fieldset, and set it as the base fieldset
-        $menuItemFieldset = new MenuItemFieldset($objectManager);
-        $menuItemFieldset->setUseAsBaseFieldset(true);
-        $this->add($menuItemFieldset);
+        // Add the UserDetail fieldset, and set it as the base fieldset
+        $userDetailFieldset = new UserDetailFieldset($objectManager);
+        $userDetailFieldset->setUseAsBaseFieldset(true);
+        $this->add($userDetailFieldset);
 
 
         // Add the Submit button

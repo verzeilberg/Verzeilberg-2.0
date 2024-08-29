@@ -2,7 +2,13 @@
 
 namespace Application\View\Helper;
 
+use Exception;
 use Laminas\View\Helper\AbstractHelper;
+use Laminas\View\Model\ViewModel;
+use Laminas\View\Renderer\PhpRenderer;
+use Laminas\View\Resolver\TemplateMapResolver;
+use Throwable;
+use User\Service\RbacManager;
 
 /**
  * This view helper class displays a menu bar.
@@ -11,75 +17,123 @@ class Menu extends AbstractHelper
 {
 
     /**
-     * Menu items array.
+     * Menu items.
      * @var array
      */
-    protected $items = [];
+    protected array $items = [];
+
+    /** @var string */
+    private string $layout = 'main';
+
+    /** @var string */
+    protected string $activeItemId = '';
 
     /**
-     * Active item's ID.
-     * @var string
+     * RBAC manager.
+     * @var RbacManager
      */
-    protected $activeItemId = '';
+    private RbacManager $rbacManager;
+    /**
+     * @var mixed
+     */
+    private mixed $menuRepository;
+    /**
+     * @var mixed
+     */
+    private mixed $permissionRepository;
+
+    private mixed $layoutService;
 
     /**
-     * Constructor.
-     * @param array $items Menu items.
+     * @param $rbacManager
+     * @param $menuRepository
+     * @param $permissionRepository
+     * @param $layoutService
      */
-    public function __construct(array $items = [])
+    public function __construct(
+        $rbacManager,
+        $menuRepository,
+        $permissionRepository,
+        $layoutService,
+    )
     {
-        $this->items = $items;
+        $this->rbacManager          = $rbacManager;
+        $this->menuRepository       = $menuRepository;
+        $this->permissionRepository = $permissionRepository;
+        $this->layoutService        = $layoutService;
     }
 
     /**
      * Sets menu items.
      * @param array $items Menu items.
      */
-    public function setItems(array $items)
+    public function setItems(array $items): void
     {
         $this->items = $items;
     }
 
-    /**
-     * @param string $activeItemId
-     * @return void
-     */
-    public function setActiveItemId(string $activeItemId)
+    public function setActiveItemId(string $activeItemId): void
     {
         $this->activeItemId = $activeItemId;
     }
 
     /**
-     * Renders the menu.
-     * @return string HTML code of the menu.
+     * Renders the view using the specified menu and layout.
+     *
+     * @param string $menu The menu to be rendered.
+     * @param string $layout The layout to be used for rendering.
+     * @return string The rendered view as a string.
      */
-    public function render(): string
+    public function render(string $menu, string $layout): string
     {
-        $result = '';
-        if (count($this->items) == 0)
-            return $result; // Do nothing if there are no items.
-
-        // Render items
-        foreach ($this->items as $item) {
-            $result .= $this->renderItem($item);
+        $this->layout = $layout;
+        if (count($this->items) === 0) {
+            $this->items = $this->getMenuItems($menu);
         }
 
-        return $result;
+        return $this->layoutService->loadView($this->layout, $this->items);
+
     }
 
+
     /**
-     * Renders an item.
-     * @param array $item The menu item info.
-     * @return string HTML code of the item.
+     * @throws Throwable
      */
-    protected function renderItem(array $item): string
+    public function getMenuItems($menu): array
     {
-        $id = $item['id'] ?? '';
-        $isActive = ($id == $this->activeItemId);
-        $label = $item['label'] ?? '';
-        $escapeHtml = $this->getView()->plugin('escapeHtml');
-        $link = $item['link'] ?? '#';
-        $fragment = isset($item['fragment']) ? '#' . $item['fragment'] : '';
-        return '<li id="'.$id.'"><a href="' . $escapeHtml($link . $fragment) . '">' . $escapeHtml($label) . '</a></li >';
+        try {
+            $items = [];
+            $menuItems = $this->menuRepository->getItemByName($menu);
+            foreach ($menuItems->getMenuItems() as $item) {
+                $dropdown = [];
+                if (count($item->getChildren() ?? []) > 0) {
+                    foreach ($item->getChildren() as $childItem) {
+                        $dropdown[] = [
+                            'id' => $childItem->getMenuId(),
+                            'label' => $childItem->getLabel(),
+                            'link' => $childItem->getLink(),
+                            'icon' => $childItem->getIcon()
+                        ];
+                    }
+                }
+
+                $permission = $this->permissionRepository->find($item->getAuthorizedFor());
+
+                if (empty($permission) || $this->rbacManager->isGranted(null, $permission->getName())) {
+                    $items[] = [
+                        'id' => $item->getMenuId(),
+                        'label' => $item->getLabel(),
+                        'link' => $item->getLink(),
+                        'icon' => $item->getIcon(),
+                        'dropdown' => $dropdown,
+                    ];
+
+                }
+            }
+
+            return $items;
+        } catch (Throwable $e) {
+            throw $e;
+        }
     }
 }

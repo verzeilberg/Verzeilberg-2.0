@@ -97,9 +97,14 @@ class Menu extends UnityOfWork {
         $this->menuItems->add($menuItem);
     }
 
-    public function getMenuItems()
+    /**
+     * @return ArrayCollection
+     */
+    public function getMenuItems(): ArrayCollection
     {
-        return $this->menuItems;
+        return $this->menuItems->filter(function($element) {
+            return $element->getParent() === null;
+        });
     }
 
     /**

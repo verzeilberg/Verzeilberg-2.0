@@ -44,7 +44,7 @@
         ->prependFile($this->basePath('vendor/jquery/jquery.min.js'))
     ?>
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
             Fancybox.bind("[data-fancybox]", {
                 // Your custom options
             });
@@ -72,7 +72,6 @@
 <!-- ***** Preloader End ***** -->
 
 
-
 <!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky">
     <div class="container">
@@ -97,9 +96,22 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <!-- Navigation -->
-                        <?= $this->mainMenu()->render(); ?>
-                    </ul>
+                        <?= $this->mainMenu()->render('main', 'main'); ?>
+                        <li>
+                            <?php if ($this->identity()) { ?>
 
+                                <div class="dropdown">
+                                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                                    <div class="dropdown-content">
+                                        <p>Hello World!</p>
+                                    </div>
+                                </div>
+
+                            <?php } else { ?>
+                                <a href="<?= $this->url('login') ?>"><i class="fa-solid fa-user"></i></a>
+                            <?php } ?>
+                        </li>
+                    </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

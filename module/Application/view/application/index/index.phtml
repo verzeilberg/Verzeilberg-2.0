@@ -193,15 +193,16 @@
         <div class="heading-section">
             <h4><em>Your Gaming</em> Library</h4>
         </div>
-        <?php foreach ($steamGames as $index => $game) { ?>
+        <?php foreach ($steamGames as $index => $game) {
+            ?>
             <div class="row">
                 <div class="col mb-2">
-                    <h4><?= $game['game']['name']  ?></h4>
+                    <h4><?= $game->getName(); ?></h4>
                     <div>
                         <?php
                         $genres = '';
-                        foreach ( $game['genres'] as $index => $genre) {
-                            $genres .= ($index > 0?', ': '') . $genre["description"];
+                        foreach ( $game->getGenres() as $index => $genre) {
+                            $genres .= ($index > 0?', ': '') . $genre->getDescription();
                         }
                         echo $genres;
                         ?>
@@ -210,27 +211,35 @@
             </div>
             <div class="row mb-4">
                 <div class="col">
-                    <img src="<?= $game['game']["header_image"]?>" alt="<?= $game['game']['name'] ?>">
+                    <img src="<?= $game->getHeaderImage()?>" alt="<?= $game->getName(); ?>">
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-calendar-day"></i></i></h4>
-                        <div class="text-center"><?= $game["user_game_detail"]['time_last_played'] ?></div>
+                        <?php
+                            $gameDetails = $game->getUserGameDetails()->first();
+                         ?>
+                        <div class="text-center"><?= $gameDetails->getTimeLastPlayed()->format('Y-m-d'); ?></div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-hourglass-half"></i></h4>
-                        <div class="text-center"><?= $game["user_game_detail"]['play_time_forever'] ?> hours</div>
+                        <div class="text-center"><?= $gameDetails->getPlaytimeForever(); ?> hours</div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="item pt-4">
                         <h4 class="text-center"><i class="fas fa-trophy"></i></h4>
                         <div class="text-center">
-                            <?= $game["achievements"]['totalAchievements'] ?? '0' ?>
+                            <?php
+                                $userAchievement = $game->getUserAchievement()->first();
+                            ?>
+
+
+                            <?= $userAchievement->getTotalFinishedAchievements(); ?>
                             /
-                            <?= $game["achievements"]['totalFinishedAchievements'] ?? '0' ?>
+                            <?= $userAchievement->getTotalAchievements(); ?>
                         </div>
                     </div>
                 </div>

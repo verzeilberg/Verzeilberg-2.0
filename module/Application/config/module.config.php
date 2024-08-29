@@ -525,7 +525,6 @@ return [
     'service_manager' => [
         'factories' => [
             Service\NavManager::class => Service\Factory\NavManagerFactory::class,
-            Service\BeheerNavManager::class => Service\Factory\BeheerNavManagerFactory::class,
             Service\RbacAssertionManager::class => Service\Factory\RbacAssertionManagerFactory::class,
             Command\LoadFixturesCommand::class => Command\Factory\LoadFixturesCommandFactory::class,
         ],
@@ -537,7 +536,6 @@ return [
     'view_helpers' => [
         'factories' => [
             View\Helper\Menu::class => View\Helper\Factory\MenuFactory::class,
-            View\Helper\BeheerMenu::class => View\Helper\Factory\BeheerMenuFactory::class,
             View\Helper\Breadcrumbs::class => InvokableFactory::class,
             View\Helper\RenderRadioElements::class => InvokableFactory::class,
             View\Helper\RenderCheckboxElements::class => InvokableFactory::class,
@@ -545,7 +543,6 @@ return [
         ],
         'aliases' => [
             'mainMenu' => View\Helper\Menu::class,
-            'beheerMenu' => View\Helper\BeheerMenu::class,
             'menuItemsHelper' => View\Helper\MenuItemsHelper::class,
             'pageBreadcrumbs' => View\Helper\Breadcrumbs::class,
             'renderRadioFormElements' => View\Helper\RenderRadioElements::class,

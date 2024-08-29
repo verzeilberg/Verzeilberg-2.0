@@ -17,6 +17,10 @@ h1 {
 .module-page {
     margin-top: 0 !important;
 }
+/** MEnu **/
+ul.nav li a {
+    font-size: 20px !important;
+}
 
 /* Running stats */
 
@@ -156,4 +160,26 @@ ul.pagination li.active a.page-link {
 .copyright {
     margin:0 0 10px 0;
     padding:0;
+}
+
+/** Drop down menu **/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: -133px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }

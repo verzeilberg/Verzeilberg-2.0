@@ -20,16 +20,16 @@ Table of contents
 09. footer
 
 --------------------------------------------- */
-/* 
+/*
 ---------------------------------------------
 font & reset css
---------------------------------------------- 
+---------------------------------------------
 */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900");
-/* 
+/*
 ---------------------------------------------
 reset
---------------------------------------------- 
+---------------------------------------------
 */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, div
 pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q,
@@ -116,10 +116,10 @@ img {
   overflow: hidden;
 }
 
-/* 
+/*
 ---------------------------------------------
 Global Styles
---------------------------------------------- 
+---------------------------------------------
 */
 html,
 body {
@@ -141,6 +141,15 @@ p {
   margin-bottom: 0px;
 }
 
+table.table tr th {
+  color: #e75e8d;
+  font-weight: bold;
+}
+
+table.table tr td {
+  color: #fff;
+}
+
 ::selection {
   background: #e75e8d;
   color: #fff;
@@ -152,7 +161,7 @@ p {
 }
 
 .templatemo-item {
-	max-width: 80px; 
+	max-width: 80px;
 	border-radius: 23px;
 }
 
@@ -226,10 +235,10 @@ section {
   text-decoration: underline;
 }
 
-/* 
+/*
 ---------------------------------------------
 Pre-loader Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .js-preloader {
@@ -328,10 +337,10 @@ Pre-loader Style
 
 
 
-/* 
+/*
 ---------------------------------------------
 Header Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .background-header {
@@ -460,11 +469,14 @@ Header Style
   letter-spacing: .3px;
 }
 
+/**
 .header-area .main-nav .nav li:last-child a {
   background-color: #27292a;
   padding: 8px 10px 8px 20px;
   border-radius: 23px;
 }
+
+
 
 .header-area .main-nav .nav li:last-child a img {
   max-width: 30px;
@@ -476,16 +488,12 @@ Header Style
 .background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
   padding-left: 25px !important;
 }
+**/
+
 
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
   color: #e75e8d !important;
-}
-
-.header-area .main-nav .nav li:last-child:hover a,
-.header-area .main-nav .nav li:last-child a.active {
-  color: #fff !important;
-  background-color: #e75e8d !important;
 }
 
 .background-header .main-nav .nav li:hover a,
@@ -766,10 +774,10 @@ Header Style
   }
 }
 
-/* 
+/*
 ---------------------------------------------
 Banner Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .main-banner {
@@ -799,10 +807,10 @@ Banner Style
   color: #ec6090;
 }
 
-/* 
+/*
 ---------------------------------------------
 Most Popular Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .most-popular {
@@ -868,10 +876,10 @@ Most Popular Style
   margin-bottom: -53px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Gaming Library Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .gaming-library {
@@ -934,10 +942,10 @@ Gaming Library Style
   margin-bottom: -53px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Footer Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 footer p {
@@ -956,10 +964,10 @@ footer p a:hover {
   color: #ec6090;
 }
 
-/* 
+/*
 ---------------------------------------------
 Featured Games Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .featured-games {
@@ -1134,10 +1142,10 @@ Featured Games Style
   font-size: 15px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Start Stream Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .start-stream .heading-section {
@@ -1164,10 +1172,10 @@ Start Stream Style
   margin-top: 30px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Live Stream Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .live-stream {
@@ -1188,7 +1196,7 @@ Live Stream Style
 }
 
 .live-stream .thumb img {
-  border-radius: 23px; 
+  border-radius: 23px;
 }
 
 .live-stream .thumb:hover .hover-effect {
@@ -1202,7 +1210,7 @@ Live Stream Style
   transition: all .4s;
 }
 
-.live-stream .hover-effect .live a { 
+.live-stream .hover-effect .live a {
   position: absolute;
   background-color: rgba(236, 96, 144, 0.9);
   padding: 5px 10px;
@@ -1267,10 +1275,10 @@ Live Stream Style
   margin-bottom: -53px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Featured Banner Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .feature-banner .thumb {
@@ -1295,10 +1303,10 @@ Featured Banner Style
   color: #ec6090;
 }
 
-/* 
+/*
 ---------------------------------------------
 Game Details Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .game-details h2 {
@@ -1377,7 +1385,7 @@ Game Details Style
 
 .game-details .content .right-info ul li:first-child i {
   color: yellow;
-} 
+}
 
 .game-details .content .right-info ul li i {
   color: #ec6090;
@@ -1390,12 +1398,12 @@ Game Details Style
 .game-details .main-border-button a {
   text-align: center;
   width: 100%;
-} 
+}
 
-/* 
+/*
 ---------------------------------------------
 Other Related Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .other-games {
@@ -1450,10 +1458,10 @@ Other Related Style
   color: #ec6090;
 }
 
-/* 
+/*
 ---------------------------------------------
 Top Streamers Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .top-streamers {
@@ -1515,10 +1523,10 @@ Top Streamers Style
   padding: 8px 20px;
 }
 
-/* 
+/*
 ---------------------------------------------
 Profile Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 .main-profile {
@@ -1631,10 +1639,10 @@ Profile Style
   text-align: center;
 }
 
-/* 
+/*
 ---------------------------------------------
 Responsive Style
---------------------------------------------- 
+---------------------------------------------
 */
 
 body {

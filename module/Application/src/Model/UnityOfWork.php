@@ -57,7 +57,7 @@ class UnityOfWork extends EntityManager
     /**
      * @ORM\Column(name="deleted", type="integer", length=1, nullable=true)
      */
-    protected null|int $deleted = null;
+    protected null|int $deleted = 0;
 
     /**
      * @return DateTime|null

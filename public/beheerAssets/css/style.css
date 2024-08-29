@@ -294,3 +294,8 @@ div.flashMessages > div.alert > ul {
 ul.pagination {
     margin-bottom:0;
 }
+
+/*** Modals ***/
+h5.modal-title {
+    color: #000000 !important;
+}

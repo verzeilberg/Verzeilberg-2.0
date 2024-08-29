@@ -8,6 +8,7 @@ use Event\Service\eventService;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Application\Controller\IndexController;
+use SteamApi\Entity\Game;
 use SteamApi\Service\steamGameService;
 use SteamApi\Service\steamGameStatsService;
 use SteamApi\Service\steamPlayerAchievementsService;
@@ -47,7 +48,13 @@ class IndexControllerFactory implements FactoryInterface
         $eventCategoryService           = new eventCategoryService($entityManager);
         $steamGameService               = new steamGameService();
         $steamPlayerAchievementsService = new steamPlayerAchievementsService($config);
-        $steamPlayerService             = new steamPlayerService($config, $steamGameService, $steamPlayerAchievementsService);
+        $steamGameRepository            = $entityManager->getRepository(Game::class);
+        $steamPlayerService             = new steamPlayerService(
+            $config,
+            $steamGameService,
+            $steamPlayerAchievementsService,
+            $entityManager
+        );
 
         return new IndexController(
             $blogService,
@@ -57,7 +64,8 @@ class IndexControllerFactory implements FactoryInterface
             $twitterOathService,
             $viewHelperManager,
             $eventCategoryService,
-            $steamPlayerService
+            $steamPlayerService,
+            $steamGameRepository
         );
     }
 }

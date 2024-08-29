@@ -12,9 +12,9 @@ use Exception;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
+use SteamApi\Repository\SteamGameRepository;
 use SteamApi\Service\steamPlayerService;
 use StravaApi\Service\StravaService;
-use Symfony\Component\VarDumper\VarDumper;
 use Twitter\Service\twitterOathService;
 use Twitter\Service\twitterService;
 use Event\Service\eventCategoryService;
@@ -38,6 +38,8 @@ class IndexController extends AbstractActionController
     /** @var steamPlayerService */
     protected steamPlayerService $steamPlayerService;
 
+    protected SteamGameRepository $steamGameRepository;
+
     public function __construct(
         blogService        $blogService,
         eventService       $eventService,
@@ -46,7 +48,8 @@ class IndexController extends AbstractActionController
         twitterOathService $twitterOathService,
                            $viewHelperManager,
         eventCategoryService $eventCategoryService,
-        $steamPlayerService
+        $steamPlayerService,
+        $steamGameRepository
     )
     {
         $this->blogService          = $blogService;
@@ -57,6 +60,7 @@ class IndexController extends AbstractActionController
         $this->viewHelperManager    = $viewHelperManager;
         $this->eventCategoryService = $eventCategoryService;
         $this->steamPlayerService   = $steamPlayerService;
+        $this->steamGameRepository  = $steamGameRepository;
     }
 
     /**
@@ -78,7 +82,8 @@ class IndexController extends AbstractActionController
         $upcommingEvent = $this->eventService->getUpcommingEvent();
 
         //Steam
-        $steamGames = $this->steamPlayerService->getOwnedGames(6);
+       // $steamGames = $this->steamPlayerService->getOwnedGames(6);
+        $steamGames = $this->steamGameRepository->findBy([],[], 6);
 
         return new ViewModel([
             'blogs' => $blogs,

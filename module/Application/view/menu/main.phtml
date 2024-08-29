@@ -1,0 +1,9 @@
+<?php
+foreach ($items as $item) {
+    $id = $item['id'] ?? '';
+    $isActive = ($id == $this->activeItemId);
+    $label = $item['label'] ?? '';
+    $link = $item['link'] ?? '#';
+    $fragment = isset($item['fragment']) ? '#' . $item['fragment'] : '';
+    echo '<li id="' . $id . '"><a href="' . htmlspecialchars($link . $fragment) . '">' . htmlspecialchars($label) . '</a></li >';
+}

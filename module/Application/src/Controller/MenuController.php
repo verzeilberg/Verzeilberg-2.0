@@ -51,6 +51,7 @@ class MenuController extends AbstractActionController
 
     public function indexAction()
     {
+
         $this->layout('layout/beheer');
 
         $menus = $this->menuRepository->findAll();
@@ -64,6 +65,7 @@ class MenuController extends AbstractActionController
 
     public function editAction()
     {
+
         $this->layout('layout/beheer');
         $this->viewHelperManager->get('headLink')->appendStylesheet('/css/menu.css');
         $this->viewHelperManager->get('headLink')->appendStylesheet('//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css');
@@ -166,8 +168,6 @@ class MenuController extends AbstractActionController
                 return $this->redirect()->toRoute('beheer/menu/edit', ['id' => $menuId]);
             }
         }
-
-        VarDumper::dump($this->routes); die;
 
         return new ViewModel([
             'form' => $form,

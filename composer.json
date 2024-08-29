@@ -10,7 +10,7 @@
         "framework"
     ],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "laminas/laminas-component-installer": "^3.0",
         "laminas/laminas-development-mode": "^3.2",
         "laminas/laminas-skeleton-installer": "^1.2.0",
@@ -111,6 +111,7 @@
         "laminas/laminas-developer-tools": "^2.1.1",
         "laminas/laminas-test": "^4.0.0",
         "doctrine/data-fixtures": "^1.6",
-      "ext-curl": "*"
+      "ext-curl": "*",
+      "ext-imap": "*"
     }
 }

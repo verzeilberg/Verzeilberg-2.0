@@ -1,0 +1,25 @@
+<?php
+foreach ($items as $item) {
+    $result = '';
+    $link = $item['link'] ?? '#';
+    $label = $item['label'] ?? '';
+    $icon = $item['icon'] ? '<i class="' . $item['icon'] . ' me-2"></i>' : '';
+    if (count($item['dropdown'] ?? []) > 0) { //Menu has subitems
+        $dropdownItems = $item['dropdown'];
+        $result = '<div class="nav-item dropdown">';
+        $result .= '<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">' . $icon . htmlspecialchars($label) . '</a>';
+        $result .= '<div class="dropdown-menu bg-transparent border-0">';
+        $result .= '<a href="' . htmlspecialchars($link) . '" class="dropdown-item">' . htmlspecialchars($label) . '</a>';
+        foreach ($dropdownItems as $dropdownItem) {
+            $dropDownLink = $dropdownItem['link'] ?? '#';
+            $dropDownlabel = $dropdownItem['label'] ?? '';
+            $result .= '<a href="' . htmlspecialchars($dropDownLink) . '" class="dropdown-item">' . htmlspecialchars($dropDownlabel) . '</a>';
+        }
+
+        $result .= '</div></div>';
+    } else { //Menu has no sub items
+        $result .= '<a href="' . htmlspecialchars($link) . '" class="nav-item nav-link">' . $icon . htmlspecialchars($label) . '</a>';
+    }
+
+    echo $result;
+}

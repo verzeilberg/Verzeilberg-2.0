@@ -3,6 +3,9 @@
 namespace Application\View\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
+use Laminas\View\Model\ViewModel;
+use Laminas\View\Renderer\PhpRenderer;
+use Laminas\View\Resolver\TemplateMapResolver;
 use Symfony\Component\VarDumper\VarDumper;
 
 /**
@@ -13,14 +16,16 @@ class BeheerMenu extends AbstractHelper
     /** @var array */
     protected array $items = [];
     /** @var string */
+    protected string $layout;
     protected string $activeItemId = '';
 
     /**
      * Constructor.
      * @param array $items Menu items.
      */
-    public function __construct(array $items = [])
+    public function __construct(array $items = [], string $layout = '')
     {
+        $this->layout = $layout;
         $this->items = $items;
     }
 
@@ -42,54 +47,25 @@ class BeheerMenu extends AbstractHelper
         $this->activeItemId = $activeItemId;
     }
 
-    /**
-     * Renders the menu.
-     * @return string HTML code of the menu.
-     */
-    public function render(): string
+    public function render()
     {
         if (count($this->items) === 0) {
-            return '';
+            $this->items = [];
         }
 
-        $result = '';
-        // Render items
-        foreach ($this->items as $item) {
-            $result .= $this->renderItem($item);
-        }
+        $view = new ViewModel();
+        $view->setVariables(['items' => $this->items]);
+        $view->setTemplate('beheer');
+        $resolver = new TemplateMapResolver([
+            'beheer' => 'module/Application/view/menu/beheer.phtml',
+        ]);
 
-        return $result;
-    }
+        $renderer = new PhpRenderer();
+        $renderer->setResolver($resolver);
 
-    /**
-     * Renders an item.
-     * @param array $item The menu item info.
-     * @return string HTML code of the item.
-     */
-    protected function renderItem(array $item): string
-    {
-        $result = '';
-        $escapeHtml = $this->getView()->plugin('escapeHtml');
-        $link = $item['link'] ?? '#';
-        $label = $item['label'] ?? '';
-        $icon = $item['icon']? '<i class="'.$item['icon'].' me-2"></i>':'';
-        if (count($item['dropdown']??[]) > 0) { //Menu has subitems
-            $dropdownItems = $item['dropdown'];
-            $result  = '<div class="nav-item dropdown">';
-            $result .= '<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">'.$icon.$escapeHtml($label).'</a>';
-            $result .= '<div class="dropdown-menu bg-transparent border-0">';
-            $result .= '<a href="'.$escapeHtml($link).'" class="dropdown-item">'.$escapeHtml($label).'</a>';
-            foreach ($dropdownItems as $dropdownItem) {
-                $dropDownLink  = $dropdownItem['link'] ?? '#';
-                $dropDownlabel = $dropdownItem['label'] ?? '';
-                $result .= '<a href="'.$escapeHtml($dropDownLink).'" class="dropdown-item">'.$escapeHtml($dropDownlabel).'</a>';
-            }
+        //Render de view
+        $content = $renderer->render($view);
 
-            $result .= '</div></div>';
-        } else { //Menu has no sub items
-            $result .= '<a href="'.$escapeHtml($link).'" class="nav-item nav-link">'.$icon.$escapeHtml($label).'</a>';
-        }
-
-        return $result;
+        return $content;
     }
 }
