@@ -74,6 +74,10 @@
     transition: 0.5s;
 }
 
+.container-fluid {
+    overflow-x: hidden;
+}
+
 @media (min-width: 992px) {
     .sidebar {
         margin-left: 0;

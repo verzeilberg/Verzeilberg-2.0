@@ -38,7 +38,7 @@ class IndexController extends AbstractActionController
     /** @var steamPlayerService */
     protected steamPlayerService $steamPlayerService;
 
-    protected SteamGameRepository $steamGameRepository;
+    //protected SteamGameRepository $steamGameRepository;
 
     public function __construct(
         blogService        $blogService,
@@ -49,7 +49,7 @@ class IndexController extends AbstractActionController
                            $viewHelperManager,
         eventCategoryService $eventCategoryService,
         $steamPlayerService,
-        $steamGameRepository
+        //$steamGameRepository
     )
     {
         $this->blogService          = $blogService;
@@ -60,7 +60,7 @@ class IndexController extends AbstractActionController
         $this->viewHelperManager    = $viewHelperManager;
         $this->eventCategoryService = $eventCategoryService;
         $this->steamPlayerService   = $steamPlayerService;
-        $this->steamGameRepository  = $steamGameRepository;
+        //$this->steamGameRepository  = $steamGameRepository;
     }
 
     /**
@@ -83,7 +83,9 @@ class IndexController extends AbstractActionController
 
         //Steam
        // $steamGames = $this->steamPlayerService->getOwnedGames(6);
-        $steamGames = $this->steamGameRepository->findBy([],[], 6);
+        //$steamGames = $this->steamGameRepository->findBy([],[], 6);
+
+        $steamGames = null;
 
         return new ViewModel([
             'blogs' => $blogs,
