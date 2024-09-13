@@ -117,6 +117,10 @@ ul.pagination li.active a.page-link {
     padding: 0;
 }
 
+div.intro {
+    font-weight:bold;
+}
+
 .social-icons li {
     list-style: none;
     display: inline-block;
