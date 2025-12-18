@@ -29,7 +29,7 @@ class UserGameDetail extends UnityOfWork {
     protected int $playtimeForever;
 
     /**
-     * @ORM\Column(name="time_last_played", type="integer", length=255, nullable=true)
+     * @ORM\Column(name="time_last_played", type="date", nullable=true)
      */
     protected int $timeLastPlayed;
 

@@ -11,9 +11,6 @@ use Doctrine\ORM\EntityManager;
 
 class UnityOfWork extends EntityManager
 {
-
-
-
     /**
      * @ORM\Column(name="date_created", type="datetime", nullable=false)
      * @Annotation\Exclude()

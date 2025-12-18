@@ -114,14 +114,16 @@ class MenuController extends AbstractActionController
 
         if ($this->getRequest()->isPost()) {
             $form->setData($this->getRequest()->getPost());
-
             if ($form->isValid()) {
                 $this->entityManager->persist($menuItem);
                 $this->entityManager->flush();
                 $this->flashMessenger()->addSuccessMessage('Menu item opgeslagen');
+                return $this->redirect()->toRoute('beheer/menu/edit', ['id' => $menuId]);
+            } else {
+                $this->flashMessenger()->addErrorMessage('Menu item niet opgeslagen');
             }
 
-            return $this->redirect()->toRoute('beheer/menu/edit', ['id' => $menuId]);
+
         }
 
 

@@ -12,6 +12,11 @@
     <?= $this->headMeta()
         ->appendName('viewport', 'width=device-width, initial-scale=1, shrink-to-fit=no')
         ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->appendProperty('og:title', $propertyTitel ?? 'Verzeilberg')
+        ->appendProperty('og:description', $propertyDescription ?? 'Verzeilberg.nl')
+        ->appendProperty('og:image', $propertyImage ?? '')
+        ->appendProperty('og:url', $propertyUrl ?? 'www.verzeilberg.nl')
+        ->appendProperty('og:type', $propertyType ?? '');
     ?>
 
     <!-- Le styles -->

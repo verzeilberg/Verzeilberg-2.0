@@ -87,6 +87,8 @@ class MenuItemFieldset extends Fieldset implements InputFilterProviderInterface
             'type' => ObjectSelect::class,
             'name' => 'authorizedFor',
             'options' => [
+                'display_empty_item' => true,
+                'empty_item_label'   => '---Maak uw keuze---',
                 'object_manager' => $objectManager,
                 'target_class'   => Permission::class,
                 'property'       => 'property',
@@ -108,6 +110,9 @@ class MenuItemFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => true
             ],
             'parent' => [
+                'required' => false
+            ],
+            'authorizedFor' => [
                 'required' => false
             ],
         ];

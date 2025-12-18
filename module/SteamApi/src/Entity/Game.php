@@ -26,7 +26,7 @@ class Game extends UnityOfWork {
     protected int $id;
 
     /**
-     * @ORM\Column(name="appid", type="integer", length=11, unique=false, nullable=false)
+     * @ORM\Column(name="appid", type="string", length=255, unique=false, nullable=false)
      */
     protected int $appId;
 
